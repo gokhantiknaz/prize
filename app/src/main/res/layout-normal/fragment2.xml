@@ -35,7 +35,7 @@
                 android:id="@+id/btn_modelCustom"
                 android:layout_width="30dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.5"
+                android:layout_weight="0.8"
                 android:text="Select"
                 app:cornerRadius="30dp" />
 
@@ -63,7 +63,7 @@
                 android:id="@+id/btn_modelFmajor"
                 android:layout_width="30dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.5"
+                android:layout_weight="0.8"
                 android:text="Select"
                 app:cornerRadius="30dp" />
 
@@ -91,7 +91,7 @@
                 android:id="@+id/btn_modelSmajor"
                 android:layout_width="30dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.5"
+                android:layout_weight="0.8"
                 android:text="Select"
                 app:cornerRadius="30dp" />
 
@@ -119,7 +119,7 @@
                 android:id="@+id/btn_modelfmax"
                 android:layout_width="30dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.5"
+                android:layout_weight="0.8"
                 android:text="Select"
                 app:cornerRadius="30dp" />
 
@@ -147,7 +147,7 @@
                 android:id="@+id/btn_modelSmax"
                 android:layout_width="30dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.5"
+                android:layout_weight="0.8"
                 android:text="Select"
                 app:cornerRadius="30dp" />
 
