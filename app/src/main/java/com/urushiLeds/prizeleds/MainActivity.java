@@ -191,9 +191,9 @@ public class MainActivity extends AppCompatActivity{
 
             switch (msg.what){
                 case STATE_CONNECTED :
-                    tv_status.setText("Bağlandı ... ");
+                    tv_status.setText("Connected ... ");
                     tv_status.setTextColor(Color.GREEN);
-                    Log.e(TAG,"Bağlandı");
+                    Log.e(TAG,"v");
                     if (i>0){
                         if(socket.isConnected() && isTxFull){
                             sendReceive.write(txData);
@@ -208,7 +208,7 @@ public class MainActivity extends AppCompatActivity{
                     progress.dismiss();
                     break;
                 case STATE_CONNECTION_FAILED :
-                    tv_status.setText("Bağlantı Hatası ... ");
+                    tv_status.setText("Connection Error ... ");
                     tv_status.setTextColor(Color.RED);
                     Log.e(TAG,"Bağlantı Hatası");
                     progress.dismiss();
@@ -247,7 +247,7 @@ public class MainActivity extends AppCompatActivity{
                     i++;
                     if (i<bleList.size()){
                         Log.e(TAG,"Diğer cihaza bağlanıyor ...");
-                        tv_status.setText("Bağlanıyor");
+                        tv_status.setText("Connecting...");
                         tv_status.setTextColor(getResources().getColor(R.color.accent));
                         progress = ProgressDialog.show(MainActivity.this, "Connecting to other leds..", "PLease Wait");
                         // Bluetooth bağlantısını kes.
@@ -264,7 +264,7 @@ public class MainActivity extends AppCompatActivity{
                         Log.e(TAG,"Tüm cihazlara veriler gönderildi.");
                         Toast.makeText(getApplicationContext(),"Settings send to all devices",Toast.LENGTH_LONG).show();
                         fab_bottom.setEnabled(true);
-                        tv_status.setText("Bağlı");
+                        tv_status.setText("Connected");
                         tv_status.setTextColor(Color.GREEN);
                     }
 
@@ -1246,7 +1246,7 @@ public class MainActivity extends AppCompatActivity{
             }
         }
 
-        tv_status.setText("Bağlantı Kesildi");
+        tv_status.setText("Connection cut");
         tv_status.setTextColor(Color.RED);
         Log.e(TAG,"Bluetooth soket kapatıldı");
     }
