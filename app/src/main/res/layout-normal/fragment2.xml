@@ -170,7 +170,7 @@
         android:layout_marginStart="145dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="67dp"
-        android:text="Mod Ayarlama "
+        android:text="SUNRISE/SUNSET"
         android:textColor="@color/white"
         android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/ib_back"
