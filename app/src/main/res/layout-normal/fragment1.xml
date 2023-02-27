@@ -78,7 +78,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Gün Doğumu"
+                    android:text="SunRise"
                     android:textColor="@color/white" />
 
                 <LinearLayout
@@ -111,7 +111,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Güneş"
+                    android:text="Sun"
                     android:textColor="@color/white" />
 
                 <LinearLayout
@@ -144,7 +144,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Gün Batımı"
+                    android:text="SunSet"
                     android:textColor="@color/white" />
 
                 <LinearLayout
@@ -177,7 +177,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Akşam"
+                    android:text="Night"
                     android:textColor="@color/white" />
 
                 <LinearLayout
@@ -226,7 +226,7 @@
                         android:layout_marginTop="0dp"
                         android:layout_marginRight="10dp"
                         android:layout_weight="1"
-                        android:text="Gün doğumu" />
+                        android:text="SunRise" />
 
                     <Button
                         android:id="@+id/btn_g"
@@ -235,7 +235,7 @@
                         android:layout_marginTop="0dp"
                         android:layout_marginRight="10dp"
                         android:layout_weight="1"
-                        android:text="Güneş" />
+                        android:text="Sun" />
 
                 </LinearLayout>
 
@@ -253,7 +253,7 @@
                         android:layout_marginTop="3dp"
                         android:layout_marginRight="10dp"
                         android:layout_weight="1"
-                        android:text="Gün Batımı" />
+                        android:text="SunSet" />
 
                     <Button
                         android:id="@+id/btn_a"
@@ -262,7 +262,7 @@
                         android:layout_marginTop="3dp"
                         android:layout_marginRight="10dp"
                         android:layout_weight="1"
-                        android:text="Akşam" />
+                        android:text="Night" />
 
                 </LinearLayout>
 

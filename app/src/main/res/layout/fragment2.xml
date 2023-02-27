@@ -26,7 +26,7 @@
                 android:layout_weight="2"
                 android:fontFamily="@font/alice"
                 android:gravity="center"
-                android:text="CUSTOM"
+                android:text="IKIGAI V.01"
                 android:textColor="@color/accent" />
 
             <Button
@@ -53,7 +53,7 @@
                 android:fontFamily="@font/alice"
                 android:gravity="center"
                 android:text="RGBW"
-                android:textColor="@color/accent" />
+                android:textColor="@color/accent" android:visibility="gone" />
 
             <Button
                 android:id="@+id/btn_modelFmajor"
@@ -79,7 +79,7 @@
                 android:fontFamily="@font/alice"
                 android:gravity="center"
                 android:text="SPECTRUM+"
-                android:textColor="@color/accent" />
+                android:textColor="@color/accent" android:visibility="gone" />
 
             <Button
                 android:id="@+id/btn_modelSmajor"
@@ -95,7 +95,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="20dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:visibility="gone">
 
             <TextView
                 android:id="@+id/textView9"
@@ -121,7 +122,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="20dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:visibility="gone">
 
             <TextView
                 android:id="@+id/textView10"

@@ -28,14 +28,14 @@
                 android:layout_weight="2"
                 android:fontFamily="@font/alice"
                 android:gravity="center"
-                android:text="CUSTOM"
+                android:text="IKIGAI V.01"
                 android:textColor="@color/accent" />
 
             <Button
                 android:id="@+id/btn_modelCustom"
                 android:layout_width="30dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.8"
+                android:layout_weight="1"
                 android:text="Select"
                 app:cornerRadius="30dp" />
 
@@ -47,7 +47,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="20dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal" android:visibility="gone">
 
             <TextView
                 android:id="@+id/tv_fmajor"
@@ -75,7 +75,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="20dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal" android:visibility="gone">
 
             <TextView
                 android:id="@+id/textView8"
@@ -103,7 +103,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="20dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal" android:visibility="gone">
 
             <TextView
                 android:id="@+id/textView9"
@@ -131,7 +131,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="20dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal" android:visibility="gone">
 
             <TextView
                 android:id="@+id/textView10"
@@ -170,7 +170,7 @@
         android:layout_marginStart="145dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="67dp"
-        android:text="SUNRISE/SUNSET"
+        android:text="SUNRISE / SUNSET"
         android:textColor="@color/white"
         android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/ib_back"

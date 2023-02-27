@@ -29,7 +29,7 @@
                 android:layout_weight="2"
                 android:fontFamily="@font/alice"
                 android:gravity="center"
-                android:text="CUSTOM"
+                android:text="IKIGAI V.01"
                 android:textColor="@color/accent" />
 
             <Button
@@ -58,7 +58,7 @@
                 android:fontFamily="@font/alice"
                 android:gravity="center"
                 android:text="RGBW"
-                android:textColor="@color/accent" />
+                android:textColor="@color/accent" android:visibility="gone"  />
 
             <Button
                 android:id="@+id/btn_modelFmajor"
@@ -86,7 +86,7 @@
                 android:fontFamily="@font/alice"
                 android:gravity="center"
                 android:text="SPECTRUM+"
-                android:textColor="@color/accent" />
+                android:textColor="@color/accent" android:visibility="gone"  />
 
             <Button
                 android:id="@+id/btn_modelSmajor"
@@ -114,7 +114,7 @@
                 android:fontFamily="@font/alice"
                 android:gravity="center"
                 android:text="WIDE SPECT"
-                android:textColor="@color/accent" />
+                android:textColor="@color/accent" android:visibility="gone"  />
 
             <Button
                 android:id="@+id/btn_modelfmax"
@@ -142,7 +142,7 @@
                 android:fontFamily="@font/alice"
                 android:gravity="center"
                 android:text="UV+"
-                android:textColor="@color/accent" />
+                android:textColor="@color/accent" android:visibility="gone" />
 
             <Button
                 android:id="@+id/btn_modelSmax"
@@ -171,7 +171,7 @@
         android:layout_marginStart="180dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="101dp"
-        android:text="SUNRISE/SUNSET"
+        android:text="SUNRISE / SUNSET"
         android:textColor="@color/white"
         android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/ib_back"

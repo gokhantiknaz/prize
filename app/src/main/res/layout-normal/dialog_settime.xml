@@ -32,7 +32,7 @@
                 android:layout_marginBottom="10dp"
                 android:fontFamily="@font/alice"
                 android:gravity="center_horizontal"
-                android:text="Gün Doğumu"
+                android:text="SunRise"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 

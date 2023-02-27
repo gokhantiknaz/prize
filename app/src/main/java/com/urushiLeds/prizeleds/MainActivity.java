@@ -466,7 +466,7 @@ public class MainActivity extends AppCompatActivity{
 
                 txData[56] = 0x66;
 
-            }else if (model.equals("SPECTRUM+")){
+            }else if (model.equals("SPECT+")){
                 txData[0] = 0x65;
                 txData[1] = 0x02;
                 txData[2] = 0x01;

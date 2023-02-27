@@ -96,9 +96,9 @@ public class BluetoothScanActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == ble_request_en) {
             if (resultCode == RESULT_OK) {
-                Toast.makeText(getApplicationContext(), "Bluetooth aktif", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Bluetooth active", Toast.LENGTH_LONG).show();
             } else if (resultCode == RESULT_CANCELED) {
-                Toast.makeText(getApplicationContext(), "Bluetooth aktif değil", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Bluetooth passive", Toast.LENGTH_LONG).show();
             }
         }
     }
