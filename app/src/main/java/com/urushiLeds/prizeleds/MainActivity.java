@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity{
             getSupportFragmentManager().beginTransaction().add(R.id.frame,new Fragment4()).commit();
            }
 
-        progress = ProgressDialog.show(MainActivity.this, "Baglanıyor...", "Lütfen Bekleyin");
+        progress = ProgressDialog.show(MainActivity.this, "Connecting...", "Please wait");
 
         // Gelen device id ile bluetooth bağlantısını kur.
         if (bleList.size()>0){
@@ -249,7 +249,7 @@ public class MainActivity extends AppCompatActivity{
                         Log.e(TAG,"Diğer cihaza bağlanıyor ...");
                         tv_status.setText("Bağlanıyor");
                         tv_status.setTextColor(getResources().getColor(R.color.accent));
-                        progress = ProgressDialog.show(MainActivity.this, "Diğer Cihaza Baglanıyor...", "Lütfen Bekleyin");
+                        progress = ProgressDialog.show(MainActivity.this, "Connecting to other leds..", "PLease Wait");
                         // Bluetooth bağlantısını kes.
                         if (socket.isConnected()){
                             closeBluetooth();
@@ -262,7 +262,7 @@ public class MainActivity extends AppCompatActivity{
 
                     }else if (socket.isConnected()){
                         Log.e(TAG,"Tüm cihazlara veriler gönderildi.");
-                        Toast.makeText(getApplicationContext(),"Tüm cihazlara verile gönderildi",Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(),"Settings send to all devices",Toast.LENGTH_LONG).show();
                         fab_bottom.setEnabled(true);
                         tv_status.setText("Bağlı");
                         tv_status.setTextColor(Color.GREEN);
@@ -271,7 +271,7 @@ public class MainActivity extends AppCompatActivity{
                     break;
                 case STATE_MESSAGE_ACK_WAIT :
                     Log.e(TAG,"Doğrulama kodu bekleniyor ...");
-                    tv_status.setText("doğrulama bekleniyor");
+                    tv_status.setText("Waiting for verification");
                     tv_status.setTextColor(getResources().getColor(R.color.accent));
                     trial ++;
                     // 30.sn ACK gelmesini bekle
