@@ -36,19 +36,19 @@ public class Fragment2 extends Fragment {
         localDataManager = new LocalDataManager();
         String model = localDataManager.getSharedPreference(getContext(),"model","manual");
         if (model.equals(MODEL_MANUAL)){
-            btn_custom.setText("Seçili");
+            btn_custom.setText("Selected");
             btn_custom.setBackgroundColor(getResources().getColor(R.color.accent));
         }else if (model.equals(MODEL_FMAJOR)){
-            btn_fmajor.setText("Seçili");
+            btn_fmajor.setText("Selected");
             btn_fmajor.setBackgroundColor(getResources().getColor(R.color.accent));
         }else if (model.equals(MODEL_SMAJOR)){
-            btn_smajor.setText("Seçili");
+            btn_smajor.setText("Selected");
             btn_smajor.setBackgroundColor(getResources().getColor(R.color.accent));
         }else if (model.equals(MODEL_FMAX)){
-            btn_fmax.setText("Seçili");
+            btn_fmax.setText("Selected");
             btn_fmax.setBackgroundColor(getResources().getColor(R.color.accent));
         }else if (model.equals(MODEL_SMAX)){
-            btn_smax.setText("Seçili");
+            btn_smax.setText("Selected");
             btn_smax.setBackgroundColor(getResources().getColor(R.color.accent));
         }
 
@@ -56,19 +56,19 @@ public class Fragment2 extends Fragment {
             @Override
             public void onClick(View v) {
 
-                btn_custom.setText("Seçili");
+                btn_custom.setText("Selected");
                 btn_custom.setBackgroundColor(getResources().getColor(R.color.accent));
 
-                btn_fmajor.setText("Seç");
+                btn_fmajor.setText("Select");
                 btn_fmajor.setBackgroundColor(getResources().getColor(R.color.purple_500));
 
-                btn_smajor.setText("Seç");
+                btn_smajor.setText("Select");
                 btn_smajor.setBackgroundColor(getResources().getColor(R.color.purple_500));
 
-                btn_fmax.setText("Seç");
+                btn_fmax.setText("Select");
                 btn_fmax.setBackgroundColor(getResources().getColor(R.color.purple_500));
 
-                btn_smax.setText("Seç");
+                btn_smax.setText("Select");
                 btn_smax.setBackgroundColor(getResources().getColor(R.color.purple_500));
 
                 localDataManager.setSharedPreference(getContext(),"model",MODEL_MANUAL);
@@ -82,19 +82,19 @@ public class Fragment2 extends Fragment {
             @Override
             public void onClick(View v) {
 
-                btn_custom.setText("Seç");
+                btn_custom.setText("Select");
                 btn_custom.setBackgroundColor(getResources().getColor(R.color.purple_500));
 
-                btn_fmajor.setText("Seç");
+                btn_fmajor.setText("Select");
                 btn_fmajor.setBackgroundColor(getResources().getColor(R.color.purple_500));
 
-                btn_smajor.setText("Seç");
+                btn_smajor.setText("Select");
                 btn_smajor.setBackgroundColor(getResources().getColor(R.color.purple_500));
 
-                btn_fmax.setText("Seç");
+                btn_fmax.setText("Select");
                 btn_fmax.setBackgroundColor(getResources().getColor(R.color.purple_500));
 
-                btn_smax.setText("Seçili");
+                btn_smax.setText("Selected");
                 btn_smax.setBackgroundColor(getResources().getColor(R.color.accent));
 
                 localDataManager.setSharedPreference(getContext(),"model",MODEL_SMAX);
@@ -108,19 +108,19 @@ public class Fragment2 extends Fragment {
             @Override
             public void onClick(View v) {
 
-                btn_custom.setText("Seç");
+                btn_custom.setText("Select");
                 btn_custom.setBackgroundColor(getResources().getColor(R.color.purple_500));
 
-                btn_fmajor.setText("Seç");
+                btn_fmajor.setText("Select");
                 btn_fmajor.setBackgroundColor(getResources().getColor(R.color.purple_500));
 
-                btn_smajor.setText("Seç");
+                btn_smajor.setText("Select");
                 btn_smajor.setBackgroundColor(getResources().getColor(R.color.purple_500));
 
-                btn_fmax.setText("Seçili");
+                btn_fmax.setText("Selected");
                 btn_fmax.setBackgroundColor(getResources().getColor(R.color.purple_500));
 
-                btn_smax.setText("Seç");
+                btn_smax.setText("Select");
                 btn_smax.setBackgroundColor(getResources().getColor(R.color.accent));
 
                 localDataManager.setSharedPreference(getContext(),"model",MODEL_FMAX);
@@ -133,19 +133,19 @@ public class Fragment2 extends Fragment {
             @Override
             public void onClick(View v) {
 
-                btn_custom.setText("Seç");
+                btn_custom.setText("Select");
                 btn_custom.setBackgroundColor(getResources().getColor(R.color.purple_500));
 
-                btn_fmajor.setText("Seç");
+                btn_fmajor.setText("Select");
                 btn_fmajor.setBackgroundColor(getResources().getColor(R.color.purple_500));
 
-                btn_smajor.setText("Seçili");
+                btn_smajor.setText("Selected");
                 btn_smajor.setBackgroundColor(getResources().getColor(R.color.purple_500));
 
-                btn_fmax.setText("Seç");
+                btn_fmax.setText("Select");
                 btn_fmax.setBackgroundColor(getResources().getColor(R.color.purple_500));
 
-                btn_smax.setText("Seç");
+                btn_smax.setText("Select");
                 btn_smax.setBackgroundColor(getResources().getColor(R.color.accent));
 
                 localDataManager.setSharedPreference(getContext(),"model",MODEL_SMAJOR);
@@ -158,19 +158,19 @@ public class Fragment2 extends Fragment {
             @Override
             public void onClick(View v) {
 
-                btn_custom.setText("Seç");
+                btn_custom.setText("Select");
                 btn_custom.setBackgroundColor(getResources().getColor(R.color.purple_500));
 
-                btn_fmajor.setText("Seçili");
+                btn_fmajor.setText("Selected");
                 btn_fmajor.setBackgroundColor(getResources().getColor(R.color.purple_500));
 
-                btn_smajor.setText("Seç");
+                btn_smajor.setText("Select");
                 btn_smajor.setBackgroundColor(getResources().getColor(R.color.purple_500));
 
-                btn_fmax.setText("Seç");
+                btn_fmax.setText("Select");
                 btn_fmax.setBackgroundColor(getResources().getColor(R.color.purple_500));
 
-                btn_smax.setText("Seç");
+                btn_smax.setText("Select");
                 btn_smax.setBackgroundColor(getResources().getColor(R.color.accent));
 
                 localDataManager.setSharedPreference(getContext(),"model",MODEL_FMAJOR);
