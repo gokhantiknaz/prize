@@ -24,7 +24,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:fontFamily="@font/alice"
+                android:fontFamily="More Fonts..."
                 android:gravity="center"
                 android:text="IKIGAI V.01"
                 android:textColor="@color/accent" />
@@ -33,7 +33,7 @@
                 android:id="@+id/btn_modelCustom"
                 android:layout_width="30dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.5"
+                android:layout_weight="0.8"
                 android:text="Select"
                 app:cornerRadius="30dp" />
 
@@ -50,7 +50,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:fontFamily="@font/alice"
+                android:fontFamily="@font/akaya_telivigala"
                 android:gravity="center"
                 android:text="RGBW"
                 android:textColor="@color/accent" android:visibility="gone" />
@@ -76,7 +76,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:fontFamily="@font/alice"
+                android:fontFamily="@font/akaya_telivigala"
                 android:gravity="center"
                 android:text="SPECTRUM+"
                 android:textColor="@color/accent" android:visibility="gone" />
@@ -103,7 +103,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:fontFamily="@font/alice"
+                android:fontFamily="@font/akaya_telivigala"
                 android:gravity="center"
                 android:text="WIDE SPECT"
                 android:textColor="@color/accent" />
@@ -130,7 +130,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:fontFamily="@font/alice"
+                android:fontFamily="@font/akaya_telivigala"
                 android:gravity="center"
                 android:text="UV+"
                 android:textColor="@color/accent" />
