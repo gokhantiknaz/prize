@@ -30,7 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Kanal 1"
+            android:text="ROYAL"
             android:textColor="@color/white" />
 
         <LinearLayout
@@ -67,7 +67,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Kanal 2"
+            android:text="BLUE"
             android:textColor="@color/white" />
 
         <LinearLayout
@@ -103,7 +103,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Kanal 3"
+            android:text="CYAN +"
             android:textColor="@color/white" />
 
         <LinearLayout
@@ -139,7 +139,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Kanal 4"
+            android:text="ACTINIC +"
             android:textColor="@color/white" />
 
         <LinearLayout
@@ -178,7 +178,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Kanal 5"
+            android:text="HE WHITE"
             android:textColor="@color/white" />
 
         <LinearLayout
@@ -212,16 +212,15 @@
 
 
         <TextView
-            android:visibility="gone"
+
             android:id="@+id/tv_testSb6title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Kanal 6"
+            android:text="MAGENTA +"
             android:textColor="@color/white" />
 
         <LinearLayout
-            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
