@@ -21,8 +21,8 @@
         android:id="@+id/btn_scan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="btn_scan"
         android:background="@android:color/transparent"
+        android:onClick="btn_scan"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ble" />

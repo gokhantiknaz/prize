@@ -68,6 +68,14 @@
                 android:text="Select"
                 app:cornerRadius="30dp" />
 
+            <Button
+                android:id="@+id/btn_modelSmax"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.8"
+                android:text="Select"
+                app:cornerRadius="30dp" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -116,14 +124,6 @@
                 android:text="WIDE SPECT"
                 android:textColor="@color/accent" android:visibility="gone"  />
 
-            <Button
-                android:id="@+id/btn_modelfmax"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.8"
-                android:text="Select"
-                app:cornerRadius="30dp" />
-
         </LinearLayout>
 
         <LinearLayout
@@ -144,15 +144,15 @@
                 android:text="UV+"
                 android:textColor="@color/accent" android:visibility="gone" />
 
-            <Button
-                android:id="@+id/btn_modelSmax"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.8"
-                android:text="Select"
-                app:cornerRadius="30dp" />
-
         </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_modelfmax"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.8"
+            android:text="Select"
+            app:cornerRadius="30dp" />
     </LinearLayout>
 
     <ImageButton
