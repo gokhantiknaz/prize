@@ -79,6 +79,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="SunRise"
+                    android:fontFamily="@font/akaya_telivigala"
                     android:textColor="@color/white" />
 
                 <LinearLayout
@@ -112,6 +113,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="Sun"
+                    android:fontFamily="@font/akaya_telivigala"
                     android:textColor="@color/white" />
 
                 <LinearLayout
@@ -145,6 +147,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="SunSet"
+                    android:fontFamily="@font/akaya_telivigala"
                     android:textColor="@color/white" />
 
                 <LinearLayout
@@ -178,6 +181,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="Night"
+                    android:fontFamily="@font/akaya_telivigala"
                     android:textColor="@color/white" />
 
                 <LinearLayout
@@ -226,6 +230,7 @@
                         android:layout_marginTop="0dp"
                         android:layout_marginRight="10dp"
                         android:layout_weight="1"
+                        android:fontFamily="@font/akaya_telivigala"
                         android:text="SunRise" />
 
                     <Button
@@ -253,6 +258,7 @@
                         android:layout_marginTop="3dp"
                         android:layout_marginRight="10dp"
                         android:layout_weight="1"
+                        android:fontFamily="@font/akaya_telivigala"
                         android:text="SunSet" />
 
                     <Button
@@ -262,6 +268,7 @@
                         android:layout_marginTop="3dp"
                         android:layout_marginRight="10dp"
                         android:layout_weight="1"
+                        android:fontFamily="@font/akaya_telivigala"
                         android:text="Night" />
 
                 </LinearLayout>
@@ -275,7 +282,8 @@
                     android:layout_marginLeft="10dp"
                     android:layout_weight="1"
                     android:onClick="btn_closeConnection"
-                    android:text="Bağlantıyı Kes" />
+                    android:fontFamily="@font/akaya_telivigala"
+                    android:text="Disconnect" />
 
             </LinearLayout>
         </LinearLayout>

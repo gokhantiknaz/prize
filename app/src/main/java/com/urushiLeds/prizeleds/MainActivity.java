@@ -41,7 +41,7 @@ import java.util.UUID;
 
 public class MainActivity extends AppCompatActivity{
 
-    private ArrayList<Models> modelsArrayList = new ArrayList<>();
+ //   private ArrayList<Models> modelsArrayList = new ArrayList<>();
 
     BottomNavigationView bottomNavigationView;
 
@@ -92,11 +92,11 @@ public class MainActivity extends AppCompatActivity{
         setContentView(R.layout.activity_main);
         init();
 
-        modelsArrayList.add(new Models("CUSTOM","Channel 1","Channel 2","Channel 3","Channel 4","Channel 5","Channel 6","Channel 7","Channel 8",8));
-        modelsArrayList.add(new Models("F-MAJOR","Cool White","Wide Spectrum",null,null,null,null,null,null,2));
-        modelsArrayList.add(new Models("S-MAJOR","Deep Blue","Aqua Sun",null,null,null,null,null,null,2));
-        modelsArrayList.add(new Models("F-MAX","Cool White","Full Spectrum","Reddish White","Blueish White",null,null,null,null,4));
-        modelsArrayList.add(new Models("S-MAX","Deep Blue","Aqua Sun","Magenta","Sky Blue",null,null,null,null,4));
+    //    modelsArrayList.add(new Models("CUSTOM","Channel 1","Channel 2","Channel 3","Channel 4","Channel 5","Channel 6",6));
+    //    modelsArrayList.add(new Models("F-MAJOR","Cool White","Wide Spectrum",null,null,null,null,2));
+    //    modelsArrayList.add(new Models("S-MAJOR","Deep Blue","Aqua Sun",null,null,null,null,2));
+   //     modelsArrayList.add(new Models("F-MAX","Cool White","Full Spectrum","Reddish White","Blueish White",null,null,4));
+     //   modelsArrayList.add(new Models("S-MAX","Deep Blue","Aqua Sun","Magenta","Sky Blue",null,null,4));
 
         localDataManager.setSharedPreference(getApplicationContext(),"test_model","false");
 
@@ -197,7 +197,7 @@ public class MainActivity extends AppCompatActivity{
                     if (i>0){
                         if(socket.isConnected() && isTxFull){
                             sendReceive.write(txData);
-                            Log.e(TAG,"Diğer cihaza aynı veriler gönderildi");
+                            Log.e(TAG,"All settings send to all devices");
                             Message message = Message.obtain();
                             message.what = STATE_MESSAGE_ACK_WAIT;
                             handler.sendMessage(message);
@@ -355,8 +355,8 @@ public class MainActivity extends AppCompatActivity{
         if (test_model.equals("test")){
             sendTestData();
         }else{
-            if (model.equals("RGBW")){
-
+            if (model.equals("RGBW"))
+            {
                 txData[0] = 0x65;
                 txData[1] = 0x01;
                 txData[2] = 0x01;
@@ -466,7 +466,9 @@ public class MainActivity extends AppCompatActivity{
 
                 txData[56] = 0x66;
 
-            }else if (model.equals("SPECT+")){
+            }
+            else if (model.equals("SPECT+"))
+            {
                 txData[0] = 0x65;
                 txData[1] = 0x02;
                 txData[2] = 0x01;
@@ -575,7 +577,9 @@ public class MainActivity extends AppCompatActivity{
                 txData[53] = (byte) Integer.parseInt(fmax_bw_a_m);
 
                 txData[56] = 0x66;
-            }else if (model.equals("WIDE SPECT")){
+            }
+            else if (model.equals("WIDE SPECT"))
+            {
                 txData[0] = 0x65;
                 txData[1] = 0x03;
                 txData[2] = 0x01;
@@ -684,7 +688,9 @@ public class MainActivity extends AppCompatActivity{
                 txData[53] = (byte) Integer.parseInt(fmax_bw_a_m);
 
                 txData[56] = 0x66;
-            }else if (model.equals("UV+")){
+            }
+            else if (model.equals("UV+"))
+            {
                 txData[0] = 0x65;
                 txData[1] = 0x04;
                 txData[2] = 0x01;
@@ -789,7 +795,9 @@ public class MainActivity extends AppCompatActivity{
                 txData[53] = (byte) Integer.parseInt(smax_sb_a_m);
                 txData[56] = 0x66;
 
-            }else{
+            }
+            else
+            {
                 //custom /////////////////////////////////////////////
 
                 txData[0] = 0x65;

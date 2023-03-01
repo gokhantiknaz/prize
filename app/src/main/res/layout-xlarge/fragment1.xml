@@ -272,7 +272,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_weight="1"
                         android:onClick="btn_closeConnection"
-                        android:text="Bağlantıyı Kes" />
+                        android:text="Disconnect" />
 
                 </LinearLayout>
             </HorizontalScrollView>

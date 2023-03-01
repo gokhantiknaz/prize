@@ -199,12 +199,12 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
 
     public void init(View view){
         model = "manual";
-        channels.add("Channel 1");
-        channels.add("Channel 2");
-        channels.add("Channel 3");
-        channels.add("Channel 4");
-       // channels.add("Channel 5");
-       // channels.add("Channel 6");
+        channels.add("ROYAL");
+        channels.add("BLUE");
+        channels.add("CYAN +");
+        channels.add("ACTINIC +");
+        channels.add("HE WHITE");
+        channels.add("MAGENTA +");
        // channels.add("Channel 7");
        // channels.add("Channel 8");
         seekBar1 = view.findViewById(R.id.seekBar1);
@@ -257,7 +257,6 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
         if (!val4.isEmpty()){
             seekBar4.setProgress(Integer.parseInt(val4));
         }
-
 
         mChart.getXAxis().setDrawGridLines(true);
         mChart.getAxisLeft().setDrawGridLines(true);
@@ -438,14 +437,14 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
 
         if (model.equals("manual")){
             channels.clear();
-            channels.add("Channel 1");
-            channels.add("Channel 2");
-            channels.add("Channel 3");
-            channels.add("Channel 4");
-            channels.add("Channel 5");
-            channels.add("Channel 6");
-            channels.add("Channel 7");
-            channels.add("Channel 8");
+            channels.add("ROYAL");
+            channels.add("BLUE");
+            channels.add("CYAN +");
+            channels.add("ACTINIC +");
+            channels.add("HE WHITE");
+            channels.add("MAGENTA +");
+          //  channels.add("Channel 7");
+          //  channels.add("Channel 8");
         }else if (model.equals("RGBW")){
             lDataSet1.setLabel("Cool White");
             lDataSet2.setLabel("Wide Spectrum");

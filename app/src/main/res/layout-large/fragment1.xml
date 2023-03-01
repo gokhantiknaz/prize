@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:background="@drawable/mainbg"
     tools:context="com.urushiLeds.prizeleds.MainActivity">
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -81,6 +80,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="SunRise"
+                    android:fontFamily="@font/akaya_telivigala"
                     android:textColor="@color/white" />
 
                 <LinearLayout
@@ -228,6 +228,7 @@
                         android:layout_marginTop="5dp"
                         android:layout_marginRight="10dp"
                         android:layout_weight="1"
+                        android:fontFamily="@font/akaya_telivigala"
                         android:text="SunRise" />
 
                     <Button
@@ -237,6 +238,7 @@
                         android:layout_marginTop="5dp"
                         android:layout_marginRight="10dp"
                         android:layout_weight="1"
+                        android:fontFamily="@font/akaya_telivigala"
                         android:text="Sun" />
 
                 </LinearLayout>
@@ -255,6 +257,7 @@
                         android:layout_marginTop="5dp"
                         android:layout_marginRight="10dp"
                         android:layout_weight="1"
+                        android:fontFamily="@font/akaya_telivigala"
                         android:text="SunSet" />
 
                     <Button
@@ -264,6 +267,7 @@
                         android:layout_marginTop="5dp"
                         android:layout_marginRight="10dp"
                         android:layout_weight="1"
+                        android:fontFamily="@font/akaya_telivigala"
                         android:text="Night" />
 
                 </LinearLayout>
@@ -277,7 +281,8 @@
                     android:onClick="btn_closeConnection"
                     android:layout_marginLeft="10dp"
                     android:layout_weight="1"
-                    android:text="Bağlantıyı Kes" />
+                    android:fontFamily="@font/akaya_telivigala"
+                    android:text="Disconnect" />
 
             </LinearLayout>
         </LinearLayout>
