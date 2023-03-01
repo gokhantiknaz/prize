@@ -171,10 +171,8 @@
                 android:thumbTint="@android:color/holo_orange_dark" />
         </LinearLayout>
 
-
-
         <TextView
-            android:visibility="gone"
+            android:visibility="visible"
             android:id="@+id/tv_testSb5title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -183,7 +181,6 @@
             android:textColor="@color/white" />
 
         <LinearLayout
-            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
@@ -213,7 +210,6 @@
 
 
         <TextView
-            android:visibility="gone"
             android:id="@+id/tv_testSb6title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -222,7 +218,6 @@
             android:textColor="@color/white" />
 
         <LinearLayout
-            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">

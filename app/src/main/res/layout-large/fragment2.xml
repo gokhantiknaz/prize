@@ -37,7 +37,7 @@
                 android:layout_width="149dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.8"
-                android:text="Select"
+                android:text="Selected"
                 app:cornerRadius="30dp" />
 
         </LinearLayout>
