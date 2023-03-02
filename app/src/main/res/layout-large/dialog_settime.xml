@@ -30,9 +30,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:fontFamily="@font/alice"
+                android:fontFamily="@font/akaya_telivigala"
                 android:gravity="center_horizontal"
-                android:text="SunRise"
+                android:text="SUNRISE"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -89,7 +89,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
                         android:layout_weight="1"
-                        android:text="Tamam"
+                        android:text="OK"
+                        android:fontFamily="@font/akaya_telivigala"
                         app:layout_constraintEnd_toEndOf="@+id/npd2"
                         app:layout_constraintHorizontal_bias="0.519"
                         app:layout_constraintStart_toStartOf="@+id/np1"

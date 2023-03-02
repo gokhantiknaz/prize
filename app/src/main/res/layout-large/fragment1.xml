@@ -232,7 +232,7 @@
                         android:layout_marginRight="10dp"
                         android:layout_weight="1"
                         android:fontFamily="@font/akaya_telivigala"
-                        android:text="SunRise" />
+                        android:text="SUNRISE" />
 
                     <Button
                         android:id="@+id/btn_g"

@@ -169,28 +169,28 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
         btn_gd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showTimeDialog("SunRise");
+                showTimeDialog("SUNRISE");
             }
         });
 
         btn_g.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showTimeDialog("Sun");
+                showTimeDialog("SUN");
             }
         });
 
         btn_gb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showTimeDialog("SunSet");
+                showTimeDialog("SUNSET");
             }
         });
 
         btn_a.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showTimeDialog("Night");
+                showTimeDialog("NIGHT");
             }
         });
 
@@ -515,10 +515,10 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
         String ah = localDataManager.getSharedPreference(getContext(),model+selectedChannel+"ah","22");
         String am = localDataManager.getSharedPreference(getContext(),model+selectedChannel+"am","00");
 
-        btn_gd.setText("SunRise "+String.format("%02d", Integer.parseInt(gdh))+":"+String.format("%02d", Integer.parseInt(gdm)));
-        btn_g.setText("Sun "+String.format("%02d", Integer.parseInt(gh))+":"+String.format("%02d", Integer.parseInt(gm)));
-        btn_gb.setText("SunSet "+String.format("%02d", Integer.parseInt(gbh))+":"+String.format("%02d", Integer.parseInt(gbm)));
-        btn_a.setText("Night "+String.format("%02d", Integer.parseInt(ah))+":"+String.format("%02d", Integer.parseInt(am)));
+        btn_gd.setText("SUNRISE "+String.format("%02d", Integer.parseInt(gdh))+":"+String.format("%02d", Integer.parseInt(gdm)));
+        btn_g.setText("SUN "+String.format("%02d", Integer.parseInt(gh))+":"+String.format("%02d", Integer.parseInt(gm)));
+        btn_gb.setText("SUNSET "+String.format("%02d", Integer.parseInt(gbh))+":"+String.format("%02d", Integer.parseInt(gbm)));
+        btn_a.setText("NIGHT "+String.format("%02d", Integer.parseInt(ah))+":"+String.format("%02d", Integer.parseInt(am)));
 
         String val  = localDataManager.getSharedPreference(getContext(),model+selectedChannel+"f1","");
         String val2 = localDataManager.getSharedPreference(getContext(),model+selectedChannel+"f2","");
@@ -714,21 +714,21 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
                 String alarm1_hour = DateTime.hournp1[np1.getValue()];
                 String alarm1_minute = DateTime.minutenp2[np2.getValue()];
 
-                if (timename.equals("SunRise")){
+                if (timename.equals("SUNRISE")){
                     gdh = Integer.parseInt(alarm1_hour);
                     gdm = Integer.parseInt(alarm1_minute);
                     if (gdh <= mgh && gdh <= mgbh && gdh <= mah){
                         if (gdh == mgh){
                             if (gdm < mgm){
-                                btn_gd.setText("SunRise "+alarm1_hour+":" + alarm1_minute);
+                                btn_gd.setText("SUNRISE "+alarm1_hour+":" + alarm1_minute);
                                 localDataManager.setSharedPreference(getContext(),model+selectedChannel+"gdh",alarm1_hour);
                                 localDataManager.setSharedPreference(getContext(),model+selectedChannel+"gdm",alarm1_minute);
                             }else {
-                                Toast.makeText(getContext(),"Yanlış değer girdiniz gün doğumu vakti diğer vakitlerden küçük olmalıdır",Toast.LENGTH_LONG).show();
+                                Toast.makeText(getContext(),"WRONG HOURS!!! SUNRISE HOURS MUST BE LESS THEN SUNSET HOURS",Toast.LENGTH_LONG).show();
                             }
                         }else if (gdh == mgbh){
                             if (gdm < mgbm){
-                                btn_gd.setText("SunRise "+alarm1_hour+":" + alarm1_minute);
+                                btn_gd.setText("SUNRISE "+alarm1_hour+":" + alarm1_minute);
                                 localDataManager.setSharedPreference(getContext(),model+selectedChannel+"gdh",alarm1_hour);
                                 localDataManager.setSharedPreference(getContext(),model+selectedChannel+"gdm",alarm1_minute);
 
@@ -737,12 +737,12 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
                                 Log.d("selectedChannel>>>",selectedChannel);
 
                             }else {
-                                Toast.makeText(getContext(),"Yanlış değer girdiniz gün doğumu vakti diğer vakitlerden küçük olmalıdır",Toast.LENGTH_LONG).show();
+                                Toast.makeText(getContext(),"WRONG HOURS!!! SUNRISE HOURS MUST BE LESS THEN OTHER HOURS",Toast.LENGTH_LONG).show();
 
                             }
                         }else if (gdh == mah){
                             if (gdm < mam){
-                                btn_gd.setText("SunRise "+alarm1_hour+":" + alarm1_minute);
+                                btn_gd.setText("SUNRISE "+alarm1_hour+":" + alarm1_minute);
                                 localDataManager.setSharedPreference(getContext(),model+selectedChannel+"gdh",alarm1_hour);
                                 localDataManager.setSharedPreference(getContext(),model+selectedChannel+"gdm",alarm1_minute);
 
@@ -751,10 +751,10 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
                                 Log.d("selectedChannel>>>",selectedChannel);
 
                             }else {
-                                Toast.makeText(getContext(),"Yanlış değer girdiniz gün doğumu vakti diğer vakitlerden küçük olmalıdır",Toast.LENGTH_LONG).show();
+                                Toast.makeText(getContext(),"WRONG HOURS!!! SUNRISE HOURS MUST BE LESS THEN OTHER HOURS",Toast.LENGTH_LONG).show();
                             }
                         }else {
-                            btn_gd.setText("SunRise "+alarm1_hour+":" + alarm1_minute);
+                            btn_gd.setText("SUNRISE "+alarm1_hour+":" + alarm1_minute);
                             localDataManager.setSharedPreference(getContext(),model+selectedChannel+"gdh",alarm1_hour);
                             localDataManager.setSharedPreference(getContext(),model+selectedChannel+"gdm",alarm1_minute);
 
@@ -767,10 +767,10 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
                         }
 
                     }else {
-                        Toast.makeText(getContext(),"Yanlış değer girdiniz gün doğumu vakti diğer vakitlerden küçük olmalıdır!",Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(),"WRONG HOURS!!! SUNRISE HOURS MUST BE LESS THEN OTHER HOURS",Toast.LENGTH_LONG).show();
                     }
 
-                }else if (timename.equals("Sun")){
+                }else if (timename.equals("SUN")){
                     gh = Integer.parseInt(alarm1_hour);
                     gm = Integer.parseInt(alarm1_minute);
                     Log.d(TAG, "güneş saat:"+gh+" güneş dakika : "+gm);
@@ -784,7 +784,7 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
                     if (gh >= mgdh && gh <= mgbh && gh <= mah){
                         if (gh == mgdh){
                             if (gm > mgdm){
-                                btn_g.setText("Sun "+alarm1_hour+":"+alarm1_minute);
+                                btn_g.setText("SUN "+alarm1_hour+":"+alarm1_minute);
                                 localDataManager.setSharedPreference(getContext(),model+selectedChannel+"gh",alarm1_hour);
                                 localDataManager.setSharedPreference(getContext(),model+selectedChannel+"gm",alarm1_minute);
                             }else {
@@ -792,7 +792,7 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
                             }
                         } else if (gh == mgbh){
                             if (gm < gbm){
-                                btn_g.setText("Sun "+alarm1_hour+":"+alarm1_minute);
+                                btn_g.setText("SUN "+alarm1_hour+":"+alarm1_minute);
                                 localDataManager.setSharedPreference(getContext(),model+selectedChannel+"gh",alarm1_hour);
                                 localDataManager.setSharedPreference(getContext(),model+selectedChannel+"gm",alarm1_minute);
                             }else {
@@ -800,29 +800,30 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
                             }
                         } else if (gh == mah){
                             if (gm < mam){
-                                btn_g.setText("Sun "+alarm1_hour+":"+alarm1_minute);
+                                btn_g.setText("SUN "+alarm1_hour+":"+alarm1_minute);
                                 localDataManager.setSharedPreference(getContext(),model+selectedChannel+"gh",alarm1_hour);
                                 localDataManager.setSharedPreference(getContext(),model+selectedChannel+"gm",alarm1_minute);
                             }else {
-                                Toast.makeText(getContext(),"Yanlış değer girdiniz güneş vakti gün doğumundan büyük diğer vakitlerden küçük olmalıdır!",Toast.LENGTH_LONG).show();
+                                Toast.makeText(getContext(),"" +
+                                        "WRONG HOURS!!! SUN HOURS MUST BIGGER THEN OTHER SUNRISE AND MUST BE LESS THEN OTHERS",Toast.LENGTH_LONG).show();
                             }
                         }else {
-                            btn_g.setText("Sun "+alarm1_hour+":"+alarm1_minute);
+                            btn_g.setText("SUN "+alarm1_hour+":"+alarm1_minute);
                             localDataManager.setSharedPreference(getContext(),model+selectedChannel+"gh",alarm1_hour);
                             localDataManager.setSharedPreference(getContext(),model+selectedChannel+"gm",alarm1_minute);
                         }
 
                     }else {
-                        Toast.makeText(getContext(),"Yanlış değer girdiniz güneş vakti gün doğumundan büyük diğer vakitlerden küçük olmalıdır!",Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(),"WRONG HOURS!!! SUN HOURS MUST BIGGER THEN OTHER SUNRISE AND MUST BE LESS THEN OTHERS",Toast.LENGTH_LONG).show();
                     }
 
-                }else if (timename.equals("SunSet")){
+                }else if (timename.equals("SUNSET")){
                     gbh = Integer.parseInt(alarm1_hour);
                     gbm = Integer.parseInt(alarm1_minute);
                     if (gbh >= mgdh && gbh >= mgh && gbh <= mah){
                         if (gbh == mgdh){
                             if (gbm > mgdm){
-                                btn_gb.setText("SunSet "+alarm1_hour+":"+ alarm1_minute);
+                                btn_gb.setText("SUNSET "+alarm1_hour+":"+ alarm1_minute);
                                 localDataManager.setSharedPreference(getContext(),model+selectedChannel+"gbh",alarm1_hour);
                                 localDataManager.setSharedPreference(getContext(),model+selectedChannel+"gbm",alarm1_minute);
                             }else {
@@ -830,7 +831,7 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
                             }
                         } else if (gbh == mgh){
                             if (gbm > mgm){
-                                btn_gb.setText("SunSet "+alarm1_hour+":"+ alarm1_minute);
+                                btn_gb.setText("SUNSET "+alarm1_hour+":"+ alarm1_minute);
                                 localDataManager.setSharedPreference(getContext(),model+selectedChannel+"gbh",alarm1_hour);
                                 localDataManager.setSharedPreference(getContext(),model+selectedChannel+"gbm",alarm1_minute);
                             }else {
@@ -838,27 +839,27 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
                             }
                         } else if (gbh == mah){
                             if (gbm < mam){
-                                btn_gb.setText("SunSet "+alarm1_hour+":"+ alarm1_minute);
+                                btn_gb.setText("SUNSET "+alarm1_hour+":"+ alarm1_minute);
                                 localDataManager.setSharedPreference(getContext(),model+selectedChannel+"gbh",alarm1_hour);
                                 localDataManager.setSharedPreference(getContext(),model+selectedChannel+"gbm",alarm1_minute);
                             }else {
                                 Toast.makeText(getContext(),"Yanlış değer girdiniz gün batımı vakti gün doğumundan, güneşten büyük akşam vaktinden küçük olmalıdır!",Toast.LENGTH_LONG).show();
                             }
                         }else {
-                            btn_gb.setText("SunSet"+alarm1_hour+":"+ alarm1_minute);
+                            btn_gb.setText("SUNSET"+alarm1_hour+":"+ alarm1_minute);
                             localDataManager.setSharedPreference(getContext(),model+selectedChannel+"gbh",alarm1_hour);
                             localDataManager.setSharedPreference(getContext(),model+selectedChannel+"gbm",alarm1_minute);
                         }
                     }else {
                         Toast.makeText(getContext(),"Yanlış değer girdiniz gün batımı vakti gün doğumundan, güneşten büyük akşam vaktinden küçük olmalıdır!",Toast.LENGTH_LONG).show();
                     }
-                }else if (timename.equals("Night")){
+                }else if (timename.equals("NIGHT")){
                     ah = Integer.parseInt(alarm1_hour);
                     am = Integer.parseInt(alarm1_minute);
                     if (ah > mgdh && ah > mgh && ah > mgbh){
                        if (ah == mgdh){
                            if (am > mgdm){
-                               btn_a.setText("Night "+alarm1_hour+":" + alarm1_minute);
+                               btn_a.setText("NIGHT "+alarm1_hour+":" + alarm1_minute);
                                localDataManager.setSharedPreference(getContext(),model+selectedChannel+"ah",alarm1_hour);
                                localDataManager.setSharedPreference(getContext(),model+selectedChannel+"am",alarm1_minute);
                            }else {
@@ -866,7 +867,7 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
                            }
                        } else if (ah == mgh){
                            if (am > mgm){
-                               btn_a.setText("Night "+alarm1_hour+":" + alarm1_minute);
+                               btn_a.setText("NIGHT "+alarm1_hour+":" + alarm1_minute);
                                localDataManager.setSharedPreference(getContext(),model+selectedChannel+"ah",alarm1_hour);
                                localDataManager.setSharedPreference(getContext(),model+selectedChannel+"am",alarm1_minute);
                            }else {
@@ -874,14 +875,14 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
                            }
                        } else if (ah == mgbh){
                            if (am > mgbm){
-                               btn_a.setText("Night "+alarm1_hour+":" + alarm1_minute);
+                               btn_a.setText("NIGHT "+alarm1_hour+":" + alarm1_minute);
                                localDataManager.setSharedPreference(getContext(),model+selectedChannel+"ah",alarm1_hour);
                                localDataManager.setSharedPreference(getContext(),model+selectedChannel+"am",alarm1_minute);
                            }else {
                                Toast.makeText(getContext(),"Yanlış değer girdiniz akşam vakti diğer vakitlerden büyük olmalıdır!",Toast.LENGTH_LONG).show();
                            }
                        } else {
-                           btn_a.setText("Night "+alarm1_hour+":" + alarm1_minute);
+                           btn_a.setText("NIGHT "+alarm1_hour+":" + alarm1_minute);
                            localDataManager.setSharedPreference(getContext(),model+selectedChannel+"ah",alarm1_hour);
                            localDataManager.setSharedPreference(getContext(),model+selectedChannel+"am",alarm1_minute);
                        }
@@ -917,10 +918,10 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
                 channels.add("WHITE");
                 setSpinner();
                 modelNo = MODEL_FMAJOR;
-                tv_sb1title.setText("SunRise");
-                tv_sb2title.setText("Sun");
-                tv_sb3title.setText("SunSet");
-                tv_sb4title.setText("Night");
+                tv_sb1title.setText("SUNRISE");
+                tv_sb2title.setText("SUN");
+                tv_sb3title.setText("SUNSET");
+                tv_sb4title.setText("NIGHT");
                 seekBar3.setVisibility(View.VISIBLE);
                 seekBar4.setVisibility(View.VISIBLE);
                 tv_seekBar3.setVisibility(View.VISIBLE);
@@ -940,10 +941,10 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
                 setSpinner();
 
                 modelNo = MODEL_SMAJOR;
-                tv_sb1title.setText("SunRise");
-                tv_sb2title.setText("Sun");
-                tv_sb3title.setText("SunSet");
-                tv_sb4title.setText("Night");
+                tv_sb1title.setText("SUNRISE");
+                tv_sb2title.setText("SUN");
+                tv_sb3title.setText("SUNSET");
+                tv_sb4title.setText("NIGHT");
                 seekBar3.setVisibility(View.VISIBLE);
                 seekBar4.setVisibility(View.VISIBLE);
                 tv_seekBar3.setVisibility(View.VISIBLE);
@@ -963,10 +964,10 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
                 setSpinner();
 
                 modelNo = MODEL_FMAX;
-                tv_sb1title.setText("SunRise");
-                tv_sb2title.setText("Sun");
-                tv_sb3title.setText("SunSet");
-                tv_sb4title.setText("Night");
+                tv_sb1title.setText("SUNRISE");
+                tv_sb2title.setText("SUN");
+                tv_sb3title.setText("SUNSET");
+                tv_sb4title.setText("NIGHT");
                 seekBar3.setVisibility(View.VISIBLE);
                 seekBar4.setVisibility(View.VISIBLE);
                 tv_seekBar3.setVisibility(View.VISIBLE);
@@ -987,10 +988,10 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
                 setSpinner();
 
                 modelNo = MODEL_SMAX;
-                tv_sb1title.setText("SunRise");
-                tv_sb2title.setText("Sun");
-                tv_sb3title.setText("SunSet");
-                tv_sb4title.setText("Night");
+                tv_sb1title.setText("SUNRISE");
+                tv_sb2title.setText("SUN");
+                tv_sb3title.setText("SUNSET");
+                tv_sb4title.setText("NIGHT");
                 seekBar3.setVisibility(View.VISIBLE);
                 seekBar4.setVisibility(View.VISIBLE);
                 tv_seekBar3.setVisibility(View.VISIBLE);

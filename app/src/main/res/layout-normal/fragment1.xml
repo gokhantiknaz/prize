@@ -240,7 +240,8 @@
                         android:layout_marginTop="0dp"
                         android:layout_marginRight="10dp"
                         android:layout_weight="1"
-                        android:text="Sun" />
+                        android:fontFamily="@font/akaya_telivigala"
+                        android:text="SUN" />
 
                 </LinearLayout>
 

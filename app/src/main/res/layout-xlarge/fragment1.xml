@@ -79,7 +79,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="SunRise"
+                    android:text="SUNRISE"
+                    android:fontFamily="@font/akaya_telivigala"
                     android:textColor="@color/white" />
 
                 <LinearLayout
@@ -112,7 +113,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Sun"
+                    android:text="SUN"
+                    android:fontFamily="@font/akaya_telivigala"
                     android:textColor="@color/white" />
 
                 <LinearLayout
@@ -145,7 +147,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="SunSet"
+                    android:text="SUNSET"
+                    android:fontFamily="@font/akaya_telivigala"
                     android:textColor="@color/white" />
 
                 <LinearLayout
@@ -178,7 +181,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Night"
+                    android:text="NIGHT"
+                    android:fontFamily="@font/akaya_telivigala"
                     android:textColor="@color/white" />
 
                 <LinearLayout
@@ -231,7 +235,8 @@
                         android:layout_marginTop="5dp"
                         android:layout_marginEnd="100dp"
                         android:layout_weight="1"
-                        android:text="SunRise" />
+                        android:fontFamily="@font/akaya_telivigala"
+                        android:text="SUNRISE" />
 
                     <Button
                         android:id="@+id/btn_g"
@@ -239,9 +244,9 @@
                         android:layout_height="40dp"
                         android:layout_marginTop="5dp"
                         android:layout_marginEnd="100dp"
-
+                        android:fontFamily="@font/akaya_telivigala"
                         android:layout_weight="1"
-                        android:text="Sun" />
+                        android:text="SUN" />
 
                     <Button
                         android:id="@+id/btn_gb"
@@ -249,9 +254,9 @@
                         android:layout_height="40sp"
                         android:layout_marginTop="5dp"
                         android:layout_marginEnd="100dp"
-
+                        android:fontFamily="@font/akaya_telivigala"
                         android:layout_weight="1"
-                        android:text="SunSet" />
+                        android:text="SUNSET" />
 
                     <Button
                         android:id="@+id/btn_a"
@@ -259,9 +264,9 @@
                         android:layout_height="40dp"
                         android:layout_marginTop="5dp"
                         android:layout_marginEnd="100dp"
-
+                        android:fontFamily="@font/akaya_telivigala"
                         android:layout_weight="1"
-                        android:text="Night" />
+                        android:text="NIGHT" />
 
                     <Button
                         android:id="@+id/btn_closeConnection"
@@ -272,7 +277,8 @@
                         android:layout_marginLeft="10dp"
                         android:layout_weight="1"
                         android:onClick="btn_closeConnection"
-                        android:text="Disconnect" />
+                        android:fontFamily="@font/akaya_telivigala"
+                        android:text="DISCONNECT" />
 
                 </LinearLayout>
             </HorizontalScrollView>
