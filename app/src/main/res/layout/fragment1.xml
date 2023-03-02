@@ -81,7 +81,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="SunRise"
+                    android:text="SUNRISE"
+                    android:fontFamily="@font/akaya_telivigala"
                     android:textColor="@color/white" />
 
                 <LinearLayout
@@ -114,7 +115,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Sun"
+                    android:text="SUN"
+                    android:fontFamily="@font/akaya_telivigala"
                     android:textColor="@color/white" />
 
                 <LinearLayout
@@ -147,7 +149,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="SunSet"
+                    android:text="SUNSET"
+                    android:fontFamily="@font/akaya_telivigala"
                     android:textColor="@color/white" />
 
                 <LinearLayout
@@ -180,7 +183,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Night"
+                    android:text="NIGHT"
+                    android:fontFamily="@font/akaya_telivigala"
                     android:textColor="@color/white" />
 
                 <LinearLayout
@@ -229,7 +233,8 @@
                         android:layout_marginTop="5dp"
                         android:layout_marginRight="10dp"
                         android:layout_weight="1"
-                        android:text="SunRise" />
+                        android:text="SUNRISE"
+                        android:fontFamily="@font/akaya_telivigala"/>
 
                     <Button
                         android:id="@+id/btn_g"
@@ -238,7 +243,8 @@
                         android:layout_marginTop="5dp"
                         android:layout_marginRight="10dp"
                         android:layout_weight="1"
-                        android:text="Sun" />
+                        android:text="SUN"
+                        android:fontFamily="@font/akaya_telivigala"/>
 
                 </LinearLayout>
 
@@ -256,7 +262,8 @@
                         android:layout_marginTop="5dp"
                         android:layout_marginRight="10dp"
                         android:layout_weight="1"
-                        android:text="SunSet" />
+                        android:text="SUNSET"
+                        android:fontFamily="@font/akaya_telivigala"/>
 
                     <Button
                         android:id="@+id/btn_a"
@@ -265,7 +272,8 @@
                         android:layout_marginTop="5dp"
                         android:layout_marginRight="10dp"
                         android:layout_weight="1"
-                        android:text="Night" />
+                        android:text="NIGHT"
+                        android:fontFamily="@font/akaya_telivigala"/>
 
                 </LinearLayout>
 
