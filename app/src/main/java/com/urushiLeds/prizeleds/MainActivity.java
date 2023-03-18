@@ -942,7 +942,7 @@ public class MainActivity extends AppCompatActivity{
                 txData[52] = (byte) Integer.parseInt(mah4);
                 txData[53] = (byte) Integer.parseInt(mam4);
 
-                /*
+
                 txData[54] = 0x05; //5. kanal
                 String ch5brightness1  = localDataManager.getSharedPreference(getApplicationContext(),model+"Channel 5"+"f1","0");
                 String ch5brightness2 = localDataManager.getSharedPreference(getApplicationContext(),model+"Channel 5"+"f2","0");
@@ -1015,6 +1015,7 @@ public class MainActivity extends AppCompatActivity{
                 txData[78] = (byte) Integer.parseInt(mah6);
                 txData[79] = (byte) Integer.parseInt(mam6);
 
+                 /*
                 txData[80] = 0x07; //7. kanal
                 String ch7brightness1  = localDataManager.getSharedPreference(getApplicationContext(),model+"Channel 7"+"f1","0");
                 String ch7brightness2 = localDataManager.getSharedPreference(getApplicationContext(),model+"Channel 7"+"f2","0");

@@ -286,91 +286,48 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
         xAxis.setDrawGridLines(false);
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
 
-
         entries.add(new Entry(0, 0));
-        entries2.add(new Entry(1, 0));
-        entries3.add(new Entry(2, 0));
-        entries4.add(new Entry(3, 0));
-        entries5.add(new Entry(4, 0));
-        entries6.add(new Entry(5, 0));
-        entries7.add(new Entry(6, 0));
-        entries8.add(new Entry(7, 0));
-
-
-
         entries.add(new Entry(0, 0));
-        entries2.add(new Entry(1, 0));
-        entries3.add(new Entry(2, 0));
-        entries4.add(new Entry(3, 0));
-        entries5.add(new Entry(4, 0));
-        entries6.add(new Entry(5, 0));
-        entries7.add(new Entry(6, 0));
-        entries8.add(new Entry(7, 0));
-
-
-
         entries.add(new Entry(0, 0));
-        entries2.add(new Entry(1, 0));
-        entries3.add(new Entry(2, 0));
-        entries4.add(new Entry(3, 0));
-        entries5.add(new Entry(4, 0));
-        entries6.add(new Entry(5, 0));
-        entries7.add(new Entry(6, 0));
-        entries8.add(new Entry(7, 0));
-
-
-
         entries.add(new Entry(0, 0));
-        entries2.add(new Entry(1, 0));
-        entries3.add(new Entry(2, 0));
-        entries4.add(new Entry(3, 0));
-        entries5.add(new Entry(4, 0));
-        entries6.add(new Entry(5, 0));
-        entries7.add(new Entry(6, 0));
-        entries8.add(new Entry(7, 0));
-
-
-
         entries.add(new Entry(0, 0));
+
+
         entries2.add(new Entry(1, 0));
-        entries3.add(new Entry(2, 0));
-        entries4.add(new Entry(3, 0));
-        entries5.add(new Entry(4, 0));
-        entries6.add(new Entry(5, 0));
-        entries7.add(new Entry(6, 0));
-        entries8.add(new Entry(7, 0));
-
-
-
-        entries.add(new Entry(0, 0));
         entries2.add(new Entry(1, 0));
-        entries3.add(new Entry(2, 0));
-        entries4.add(new Entry(3, 0));
-        entries5.add(new Entry(4, 0));
-        entries6.add(new Entry(5, 0));
-        entries7.add(new Entry(6, 0));
-        entries8.add(new Entry(7, 0));
-
-
-
-        entries.add(new Entry(0, 0));
         entries2.add(new Entry(1, 0));
-        entries3.add(new Entry(2, 0));
-        entries4.add(new Entry(3, 0));
-        entries5.add(new Entry(4, 0));
-        entries6.add(new Entry(5, 0));
-        entries7.add(new Entry(6, 0));
-        entries8.add(new Entry(7, 0));
-
-
-        entries.add(new Entry(0, 0));
         entries2.add(new Entry(1, 0));
+        entries2.add(new Entry(1, 0));
+        entries2.add(new Entry(1, 0));
+
+
         entries3.add(new Entry(2, 0));
+        entries3.add(new Entry(2, 0));
+        entries3.add(new Entry(2, 0));
+        entries3.add(new Entry(2, 0));
+        entries3.add(new Entry(2, 0));
+        entries3.add(new Entry(2, 0));
+
         entries4.add(new Entry(3, 0));
+        entries4.add(new Entry(3, 0));
+        entries4.add(new Entry(3, 0));
+        entries4.add(new Entry(3, 0));
+        entries4.add(new Entry(3, 0));
+        entries4.add(new Entry(3, 0));
+
         entries5.add(new Entry(4, 0));
+        entries5.add(new Entry(4, 0));
+        entries5.add(new Entry(4, 0));
+        entries5.add(new Entry(4, 0));
+        entries5.add(new Entry(4, 0));
+        entries5.add(new Entry(4, 0));
+
         entries6.add(new Entry(5, 0));
-        entries7.add(new Entry(6, 0));
-        entries8.add(new Entry(7, 0));
+        entries6.add(new Entry(5, 0));
+        entries6.add(new Entry(5, 0));
+        entries6.add(new Entry(5, 0));
+        entries6.add(new Entry(5, 0));
+        entries6.add(new Entry(5, 0));
 
         lDataSet1 = new LineDataSet(entries, "ROYAL");
         lDataSet1.setDrawFilled(false);
@@ -435,6 +392,7 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
         mChart.setMaxVisibleValueCount(0);
 
 
+        // üst kanal secimine burası ekliyor.
         if (model.equals("manual")){
             channels.clear();
             channels.add("ROYAL");
@@ -505,6 +463,23 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
 
         selectedChannel = sp_channel.getSelectedItem().toString();
 
+        if(selectedChannel=="ROYAL")
+            selectedChannel="Channel 1";
+
+        if(selectedChannel=="BLUE")
+            selectedChannel="Channel 2";
+
+        if(selectedChannel=="CYAN +")
+            selectedChannel="Channel 3";
+
+        if(selectedChannel=="ACTINIC +")
+            selectedChannel="Channel 4";
+
+        if(selectedChannel=="HE WHITE")
+            selectedChannel="Channel 5";
+
+        if(selectedChannel=="MAGENTA +")
+            selectedChannel="Channel 6";
 
         String gdh = localDataManager.getSharedPreference(getContext(),model+selectedChannel+"gdh","07");
         String gdm = localDataManager.getSharedPreference(getContext(),model+selectedChannel+"gdm","00");
@@ -558,8 +533,8 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
             lDataSet2.setLabel("BLUE");
             lDataSet3.setLabel("CYAN +");
             lDataSet4.setLabel("ACTINIC +");
-            lDataSet4.setLabel("HE WHITE");
-            lDataSet4.setLabel("MAGENTA +");
+            lDataSet5.setLabel("HE WHITE");
+            lDataSet6.setLabel("MAGENTA +");
 
             seekBar1.setEnabled(false);
             seekBar4.setEnabled(false);
@@ -574,10 +549,10 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
                 setDatasetSettings(4,"ACTINIC +");
             }
             else if (selectedChannel.equals("Channel 5")){
-                setDatasetSettings(4,"HE WHITE");
+                setDatasetSettings(5,"HE WHITE");
             }
             else if (selectedChannel.equals("Channel 6")){
-                setDatasetSettings(4,"MAGENTA +");
+                setDatasetSettings(6,"MAGENTA +");
             }
         }
         else if (model.equals("RGBW")){
@@ -770,7 +745,8 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
                         Toast.makeText(getContext(),"WRONG HOURS!!! SUNRISE HOURS MUST BE LESS THEN OTHER HOURS",Toast.LENGTH_LONG).show();
                     }
 
-                }else if (timename.equals("SUN")){
+                }
+                else if (timename.equals("SUN")){
                     gh = Integer.parseInt(alarm1_hour);
                     gm = Integer.parseInt(alarm1_minute);
                     Log.d(TAG, "güneş saat:"+gh+" güneş dakika : "+gm);
@@ -780,7 +756,6 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
                     Log.d("MODEL>>>",model);
                     Log.d("selectedChannel>>>",selectedChannel);
 
-
                     if (gh >= mgdh && gh <= mgbh && gh <= mah){
                         if (gh == mgdh){
                             if (gm > mgdm){
@@ -788,7 +763,7 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
                                 localDataManager.setSharedPreference(getContext(),model+selectedChannel+"gh",alarm1_hour);
                                 localDataManager.setSharedPreference(getContext(),model+selectedChannel+"gm",alarm1_minute);
                             }else {
-                                Toast.makeText(getContext(),"Yanlış değer girdiniz güneş vakti gün doğumundan büyük diğer vakitlerden küçük olmalıdır!",Toast.LENGTH_LONG).show();
+                                Toast.makeText(getContext(), "WRONG HOURS!!! SUN HOURS MUST BIGGER THEN SUNRISE AND MUST BE LESS THEN OTHERS",Toast.LENGTH_LONG).show();
                             }
                         } else if (gh == mgbh){
                             if (gm < gbm){
@@ -796,7 +771,8 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
                                 localDataManager.setSharedPreference(getContext(),model+selectedChannel+"gh",alarm1_hour);
                                 localDataManager.setSharedPreference(getContext(),model+selectedChannel+"gm",alarm1_minute);
                             }else {
-                                Toast.makeText(getContext(),"Yanlış değer girdiniz güneş vakti gün doğumundan büyük diğer vakitlerden küçük olmalıdır!",Toast.LENGTH_LONG).show();
+
+                                Toast.makeText(getContext(),"WRONG HOURS!!! SUN HOURS MUST BIGGER THEN SUNRISE AND MUST BE LESS THEN OTHERS",Toast.LENGTH_LONG).show();
                             }
                         } else if (gh == mah){
                             if (gm < mam){
@@ -805,7 +781,7 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
                                 localDataManager.setSharedPreference(getContext(),model+selectedChannel+"gm",alarm1_minute);
                             }else {
                                 Toast.makeText(getContext(),"" +
-                                        "WRONG HOURS!!! SUN HOURS MUST BIGGER THEN OTHER SUNRISE AND MUST BE LESS THEN OTHERS",Toast.LENGTH_LONG).show();
+                                        "WRONG HOURS!!! SUN HOURS MUST BIGGER THEN SUNRISE AND MUST BE LESS THEN OTHERS",Toast.LENGTH_LONG).show();
                             }
                         }else {
                             btn_g.setText("SUN "+alarm1_hour+":"+alarm1_minute);
@@ -814,10 +790,11 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
                         }
 
                     }else {
-                        Toast.makeText(getContext(),"WRONG HOURS!!! SUN HOURS MUST BIGGER THEN OTHER SUNRISE AND MUST BE LESS THEN OTHERS",Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(),"WRONG HOURS!!! SUN HOURS MUST BIGGER THEN SUNRISE AND MUST BE LESS THEN OTHERS",Toast.LENGTH_LONG).show();
                     }
 
-                }else if (timename.equals("SUNSET")){
+                }
+                else if (timename.equals("SUNSET")){
                     gbh = Integer.parseInt(alarm1_hour);
                     gbm = Integer.parseInt(alarm1_minute);
                     if (gbh >= mgdh && gbh >= mgh && gbh <= mah){
@@ -827,7 +804,7 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
                                 localDataManager.setSharedPreference(getContext(),model+selectedChannel+"gbh",alarm1_hour);
                                 localDataManager.setSharedPreference(getContext(),model+selectedChannel+"gbm",alarm1_minute);
                             }else {
-                                Toast.makeText(getContext(),"Yanlış değer girdiniz gün batımı vakti gün doğumundan, güneşten büyük akşam vaktinden küçük olmalıdır!",Toast.LENGTH_LONG).show();
+                                Toast.makeText(getContext(),"WRONG VALUE, SUNSET HOURS MUST BE GREATER THAN SUNRISE AND SMALLER THEN SUN AND NIGHT HOURS!",Toast.LENGTH_LONG).show();
                             }
                         } else if (gbh == mgh){
                             if (gbm > mgm){
@@ -835,7 +812,9 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
                                 localDataManager.setSharedPreference(getContext(),model+selectedChannel+"gbh",alarm1_hour);
                                 localDataManager.setSharedPreference(getContext(),model+selectedChannel+"gbm",alarm1_minute);
                             }else {
-                                Toast.makeText(getContext(),"Yanlış değer girdiniz gün batımı vakti gün doğumundan, güneşten büyük akşam vaktinden küçük olmalıdır!",Toast.LENGTH_LONG).show();
+
+                                Toast.makeText(getContext(),
+                                        "WRONG VALUE, SUNSET HOURS MUST BE GREATER THAN SUNRISE AND SUN AND SMALLER THEN NIGHT HOURS!",Toast.LENGTH_LONG).show();
                             }
                         } else if (gbh == mah){
                             if (gbm < mam){
@@ -843,17 +822,20 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
                                 localDataManager.setSharedPreference(getContext(),model+selectedChannel+"gbh",alarm1_hour);
                                 localDataManager.setSharedPreference(getContext(),model+selectedChannel+"gbm",alarm1_minute);
                             }else {
-                                Toast.makeText(getContext(),"Yanlış değer girdiniz gün batımı vakti gün doğumundan, güneşten büyük akşam vaktinden küçük olmalıdır!",Toast.LENGTH_LONG).show();
+
+                                Toast.makeText(getContext(),"WRONG VALUE, SUNSET HOURS MUST BE GREATER THAN SUNRISE AND SUN AND SMALLER THEN NIGHT HOURS!",Toast.LENGTH_LONG).show();
                             }
                         }else {
                             btn_gb.setText("SUNSET"+alarm1_hour+":"+ alarm1_minute);
                             localDataManager.setSharedPreference(getContext(),model+selectedChannel+"gbh",alarm1_hour);
                             localDataManager.setSharedPreference(getContext(),model+selectedChannel+"gbm",alarm1_minute);
                         }
-                    }else {
-                        Toast.makeText(getContext(),"Yanlış değer girdiniz gün batımı vakti gün doğumundan, güneşten büyük akşam vaktinden küçük olmalıdır!",Toast.LENGTH_LONG).show();
                     }
-                }else if (timename.equals("NIGHT")){
+                    else {
+                        Toast.makeText(getContext(),"WRONG VALUE, SUNSET HOURS MUST BE GREATER THAN SUNRISE AND SUN AND SMALLER THEN NIGHT HOURS!",Toast.LENGTH_LONG).show();
+                    }
+                }
+                else if (timename.equals("NIGHT")){
                     ah = Integer.parseInt(alarm1_hour);
                     am = Integer.parseInt(alarm1_minute);
                     if (ah > mgdh && ah > mgh && ah > mgbh){
@@ -863,7 +845,8 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
                                localDataManager.setSharedPreference(getContext(),model+selectedChannel+"ah",alarm1_hour);
                                localDataManager.setSharedPreference(getContext(),model+selectedChannel+"am",alarm1_minute);
                            }else {
-                               Toast.makeText(getContext(),"Yanlış değer girdiniz akşam vakti diğer vakitlerden büyük olmalıdır!",Toast.LENGTH_LONG).show();
+
+                               Toast.makeText(getContext(),"WRONG VALUE, NIGHT HOURS MUST BE GREATER THAN ALL OTHER HOURS!",Toast.LENGTH_LONG).show();
                            }
                        } else if (ah == mgh){
                            if (am > mgm){
@@ -871,7 +854,7 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
                                localDataManager.setSharedPreference(getContext(),model+selectedChannel+"ah",alarm1_hour);
                                localDataManager.setSharedPreference(getContext(),model+selectedChannel+"am",alarm1_minute);
                            }else {
-                               Toast.makeText(getContext(),"Yanlış değer girdiniz akşam vakti diğer vakitlerden büyük olmalıdır!",Toast.LENGTH_LONG).show();
+                               Toast.makeText(getContext(),"WRONG VALUE, NIGHT HOURS MUST BE GREATER THAN ALL OTHER HOURS!",Toast.LENGTH_LONG).show();
                            }
                        } else if (ah == mgbh){
                            if (am > mgbm){
@@ -879,7 +862,7 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
                                localDataManager.setSharedPreference(getContext(),model+selectedChannel+"ah",alarm1_hour);
                                localDataManager.setSharedPreference(getContext(),model+selectedChannel+"am",alarm1_minute);
                            }else {
-                               Toast.makeText(getContext(),"Yanlış değer girdiniz akşam vakti diğer vakitlerden büyük olmalıdır!",Toast.LENGTH_LONG).show();
+                               Toast.makeText(getContext(),"WRONG VALUE, NIGHT HOURS MUST BE GREATER THAN ALL OTHER HOURS!",Toast.LENGTH_LONG).show();
                            }
                        } else {
                            btn_a.setText("NIGHT "+alarm1_hour+":" + alarm1_minute);
@@ -887,7 +870,7 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
                            localDataManager.setSharedPreference(getContext(),model+selectedChannel+"am",alarm1_minute);
                        }
                     }else {
-                        Toast.makeText(getContext(),"Yanlış değer girdiniz akşam vakti diğer vakitlerden büyük olmalıdır!",Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(),"WRONG VALUE, NIGHT HOURS MUST BE GREATER THAN ALL OTHER HOURS!",Toast.LENGTH_LONG).show();
                     }
                 }
                 retrieveMemorizedDatas();
@@ -928,7 +911,8 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
                 tv_seekBar4.setVisibility(View.VISIBLE);
                 tv_sb3title.setVisibility(View.VISIBLE);
                 tv_sb4title.setVisibility(View.VISIBLE);
-            }else if (model.equals("SPECTRUM+")){
+            }
+            else if (model.equals("SPECTRUM+")){
                 lDataSet1.setLabel("5000K");
                 lDataSet2.setLabel("6500K");
                 lDataSet3.setLabel("9000K");
@@ -951,7 +935,8 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
                 tv_seekBar4.setVisibility(View.VISIBLE);
                 tv_sb3title.setVisibility(View.VISIBLE);
                 tv_sb4title.setVisibility(View.VISIBLE);
-            }else if (model.equals("WIDE SPECT")){
+            }
+            else if (model.equals("WIDE SPECT")){
                 lDataSet1.setLabel("REDDISH WHITE");
                 lDataSet2.setLabel("GREENISH WHITE");
                 lDataSet3.setLabel("BLUEISH WHITE");
@@ -974,7 +959,8 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
                 tv_seekBar4.setVisibility(View.VISIBLE);
                 tv_sb3title.setVisibility(View.VISIBLE);
                 tv_sb4title.setVisibility(View.VISIBLE);
-            }else if (model.equals("UV+")){
+            }
+            else if (model.equals("UV+")){
                 lDataSet1.setLabel("5000K");
                 lDataSet2.setLabel("6500K");
                 lDataSet3.setLabel("9000K");
@@ -1131,46 +1117,7 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
                 setDataset(lDataSet7,2,R.color.lighgray,label);
                 setDataset(lDataSet8,2,R.color.lighgray,label);
                 break;
-            case 7:
-                lDataSet7.setFillColor(R.color.purple_500);
-                lDataSet1.setDrawFilled(false);
-                lDataSet2.setDrawFilled(false);
-                lDataSet3.setDrawFilled(false);
-                lDataSet4.setDrawFilled(false);
-                lDataSet5.setDrawFilled(false);
-                lDataSet6.setDrawFilled(false);
-                lDataSet8.setDrawFilled(false);
-                lDataSet7.setDrawFilled(true);
 
-                setDataset(lDataSet1,2,R.color.lighgray,label);
-                setDataset(lDataSet2,2,R.color.lighgray,label);
-                setDataset(lDataSet3,2,R.color.lighgray,label);
-                setDataset(lDataSet4,2,R.color.lighgray,label);
-                setDataset(lDataSet7,5,R.color.purple_500,label);
-                setDataset(lDataSet5,2,R.color.lighgray,label);
-                setDataset(lDataSet6,2,R.color.lighgray,label);
-                setDataset(lDataSet8,2,R.color.lighgray,label);
-                break;
-            case 8:
-                lDataSet8.setFillColor(R.color.purple_500);
-                lDataSet1.setDrawFilled(false);
-                lDataSet2.setDrawFilled(false);
-                lDataSet3.setDrawFilled(false);
-                lDataSet4.setDrawFilled(false);
-                lDataSet5.setDrawFilled(false);
-                lDataSet6.setDrawFilled(false);
-                lDataSet7.setDrawFilled(false);
-                lDataSet8.setDrawFilled(true);
-
-                setDataset(lDataSet1,2,R.color.lighgray,label);
-                setDataset(lDataSet2,2,R.color.lighgray,label);
-                setDataset(lDataSet3,2,R.color.lighgray,label);
-                setDataset(lDataSet4,2,R.color.lighgray,label);
-                setDataset(lDataSet8,5,R.color.purple_500,label);
-                setDataset(lDataSet5,2,R.color.lighgray,label);
-                setDataset(lDataSet6,2,R.color.lighgray,label);
-                setDataset(lDataSet7,2,R.color.lighgray,label);
-                break;
             default:
                 break;
         }
@@ -1190,7 +1137,7 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
                 break;
             case 4:
                 tv_seekBar4.setText("%"+progress);
-                break;
+
             default:
                 break;
         }
@@ -1204,9 +1151,9 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
             }else if (selectedChannel.equals("Channel 4")){
                 setSwitch(entries4,seekBarNo,progress,lDataSet4,"ACTINIC +");
             }else if (selectedChannel.equals("Channel 5")){
-                setSwitch(entries4,seekBarNo,progress,lDataSet4,"HE WHITE");
+                setSwitch(entries5,seekBarNo,progress,lDataSet5,"HE WHITE");
             }else if (selectedChannel.equals("Channel 6")){
-                setSwitch(entries4,seekBarNo,progress,lDataSet4,"MAGENTA +");
+                setSwitch(entries6,seekBarNo,progress,lDataSet6,"MAGENTA +");
             }
 
         }else if (model.equals("RGBW")){
@@ -1258,8 +1205,8 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
         chartData.addDataSet(lDataSet2);
         chartData.addDataSet(lDataSet3);
         chartData.addDataSet(lDataSet4);
-        //chartData.addDataSet(lDataSet5);
-        //chartData.addDataSet(lDataSet6);
+        chartData.addDataSet(lDataSet5);
+        chartData.addDataSet(lDataSet6);
         //chartData.addDataSet(lDataSet7);
         //chartData.addDataSet(lDataSet8);
 
@@ -1271,50 +1218,16 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
     public void setSwitch(ArrayList entry,int seekBarNo,int progress,LineDataSet lDataSet,String label){
         switch (modelNo){
             case MODEL_DEFAULT:
-                try {
-                    //entry.set(seekBarNo-1,new Entry(seekBarNo-1,progress));
-                    lDataSet.setLabel(label);
-                    retrieveMemorizedDatas();
-                }catch (Exception e){
-
-                }
-
-                break;
-            case MODEL_FMAJOR:
-               try {
-                   //entry.set(seekBarNo-1,new Entry(seekBarNo-1,progress));
-                   lDataSet.setLabel(label);
-                   retrieveMemorizedDatas();
-               }catch (Exception e){
-                   Log.e(TAG,e.getLocalizedMessage());
-               }
-                break;
             case MODEL_FMAX:
-                try {
-                    //entry.set(seekBarNo-1,new Entry(seekBarNo-1,progress));
-                    lDataSet.setLabel(label);
-                    retrieveMemorizedDatas();
-                }catch (Exception e){
-
-
-                }
-                break;
             case MODEL_SMAJOR:
-                try {
-                    //entry.set(seekBarNo-1,new Entry(seekBarNo-1,progress));
-                    lDataSet.setLabel(label);
-                    retrieveMemorizedDatas();
-                }catch (Exception e){
-
-                }
-                break;
             case MODEL_SMAX:
+            case MODEL_FMAJOR:
                 try {
                     //entry.set(seekBarNo-1,new Entry(seekBarNo-1,progress));
                     lDataSet.setLabel(label);
                     retrieveMemorizedDatas();
                 }catch (Exception e){
-
+                    Log.e(TAG,e.getLocalizedMessage());
                 }
                 break;
             default:
@@ -1440,14 +1353,11 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
             entries4.add(new Entry(c4gbh/8f+c4gbm/1000f, Integer.parseInt(c4f3)));
             entries4.add(new Entry(c4ah/8f+c4am/1000f, Integer.parseInt(c4f4)));
 
-
             lDataSet4 = new LineDataSet(entries4, "ACTINIC +");
             lDataSet4.setLineWidth(2);
             chartData.addDataSet(lDataSet4);
             lDataSet4.setColor(R.color.lighgray);
 
-
-            /*
             mChannel = "Channel 5";
             String c5f1 = localDataManager.getSharedPreference(getContext(),model+mChannel+"f1","0");
             String c5f2 = localDataManager.getSharedPreference(getContext(),model+mChannel+"f2","0");
@@ -1469,7 +1379,7 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
             entries5.add(new Entry(c5gbh/8f+c5gbm/1000f, Integer.parseInt(c5f3)));
             entries5.add(new Entry(c5ah/8f+c5am/1000f, Integer.parseInt(c5f4)));
 
-            lDataSet5 = new LineDataSet(entries5, "Kanal 5");
+            lDataSet5 = new LineDataSet(entries5, "HE WHITE");
             lDataSet5.setLineWidth(2);
             chartData.addDataSet(lDataSet5);
             lDataSet5.setColor(R.color.lighgray);
@@ -1497,12 +1407,12 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
             entries6.add(new Entry(c6ah/8f+c6am/1000f, Integer.parseInt(c6f4)));
 
 
-            lDataSet6 = new LineDataSet(entries6, "Kanal 6");
+            lDataSet6 = new LineDataSet(entries6, "MAGENTA +");
             lDataSet6.setLineWidth(2);
             chartData.addDataSet(lDataSet6);
             lDataSet6.setColor(R.color.lighgray);
 
-
+/*
             mChannel = "Channel 7";
             String c7f1 = localDataManager.getSharedPreference(getContext(),model+mChannel+"f1","0");
             String c7f2 = localDataManager.getSharedPreference(getContext(),model+mChannel+"f2","0");
