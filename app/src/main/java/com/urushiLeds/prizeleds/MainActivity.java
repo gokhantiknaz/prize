@@ -355,8 +355,7 @@ public class MainActivity extends AppCompatActivity{
         if (test_model.equals("test")){
             sendTestData();
         }else{
-            if (model.equals("RGBW"))
-            {
+            if (model.equals("RGBW")){
                 txData[0] = 0x65;
                 txData[1] = 0x01;
                 txData[2] = 0x01;
@@ -467,8 +466,7 @@ public class MainActivity extends AppCompatActivity{
                 txData[56] = 0x66;
 
             }
-            else if (model.equals("SPECT+"))
-            {
+            else if (model.equals("SPECT+")){
                 txData[0] = 0x65;
                 txData[1] = 0x02;
                 txData[2] = 0x01;
@@ -578,8 +576,7 @@ public class MainActivity extends AppCompatActivity{
 
                 txData[56] = 0x66;
             }
-            else if (model.equals("WIDE SPECT"))
-            {
+            else if (model.equals("WIDE SPECT")){
                 txData[0] = 0x65;
                 txData[1] = 0x03;
                 txData[2] = 0x01;
@@ -689,8 +686,7 @@ public class MainActivity extends AppCompatActivity{
 
                 txData[56] = 0x66;
             }
-            else if (model.equals("UV+"))
-            {
+            else if (model.equals("UV+")) {
                 txData[0] = 0x65;
                 txData[1] = 0x04;
                 txData[2] = 0x01;
@@ -805,8 +801,8 @@ public class MainActivity extends AppCompatActivity{
 
                 txData[2] = 0x01; //1. kanal
                 String ch1brightness1  = localDataManager.getSharedPreference(getApplicationContext(),model+"Channel 1"+"f1","0");
-                String ch1brightness2 = localDataManager.getSharedPreference(getApplicationContext(),model+"Channel 1"+"f2","0");
-                String ch1brightness3 = localDataManager.getSharedPreference(getApplicationContext(),model+"Channel 1"+"f3","0");
+                String ch1brightness2 =localDataManager.getSharedPreference(getApplicationContext(),model+"Channel 1"+"f2","0");
+                String ch1brightness3 =localDataManager.getSharedPreference(getApplicationContext(),model+"Channel 1"+"f3","0");
                 String ch1brightness4 = localDataManager.getSharedPreference(getApplicationContext(),model+"Channel 1"+"f4","0");
 
                 String mgdh1 = localDataManager.getSharedPreference(getApplicationContext(),model+"Channel 1"+"gdh","7");
@@ -839,8 +835,8 @@ public class MainActivity extends AppCompatActivity{
 
                 txData[15] = 0x02; //2. kanal
                 String ch2brightness1  = localDataManager.getSharedPreference(getApplicationContext(),model+"Channel 2"+"f1","0");
-                String ch2brightness2 = localDataManager.getSharedPreference(getApplicationContext(),model+"Channel 2"+"f2","0");
-                String ch2brightness3 = localDataManager.getSharedPreference(getApplicationContext(),model+"Channel 2"+"f3","0");
+                String ch2brightness2 =localDataManager.getSharedPreference(getApplicationContext(),model+"Channel 2"+"f2","0");
+                String ch2brightness3 =localDataManager.getSharedPreference(getApplicationContext(),model+"Channel 2"+"f3","0");
                 String ch2brightness4 = localDataManager.getSharedPreference(getApplicationContext(),model+"Channel 2"+"f4","0");
 
                 String mgdh2 = localDataManager.getSharedPreference(getApplicationContext(),model+"Channel 2"+"gdh","7");
@@ -944,11 +940,11 @@ public class MainActivity extends AppCompatActivity{
 
 
                 txData[54] = 0x05; //5. kanal
+
                 String ch5brightness1  = localDataManager.getSharedPreference(getApplicationContext(),model+"Channel 5"+"f1","0");
                 String ch5brightness2 = localDataManager.getSharedPreference(getApplicationContext(),model+"Channel 5"+"f2","0");
                 String ch5brightness3 = localDataManager.getSharedPreference(getApplicationContext(),model+"Channel 5"+"f3","0");
                 String ch5brightness4 = localDataManager.getSharedPreference(getApplicationContext(),model+"Channel 5"+"f4","0");
-
 
                 String mgdh5 = localDataManager.getSharedPreference(getApplicationContext(),model+"Channel 5"+"gdh","7");
                 String mgdm5 = localDataManager.getSharedPreference(getApplicationContext(),model+"Channel 5"+"gdm","0");
@@ -956,8 +952,8 @@ public class MainActivity extends AppCompatActivity{
                 String mgm5  = localDataManager.getSharedPreference(getApplicationContext(),model+"Channel 5"+"gm","0");
                 String mgbh5 = localDataManager.getSharedPreference(getApplicationContext(),model+"Channel 5"+"gbh","17");
                 String mgbm5 = localDataManager.getSharedPreference(getApplicationContext(),model+"Channel 5"+"gbm","0");
-                String mah5 = localDataManager.getSharedPreference(getApplicationContext(),model+"Channel 5"+"ah","22");
-                String mam5 = localDataManager.getSharedPreference(getApplicationContext(),model+"Channel 5"+"am","0");
+                String mah5  = localDataManager.getSharedPreference(getApplicationContext(),model+"Channel 5"+"ah","22");
+                String mam5  = localDataManager.getSharedPreference(getApplicationContext(),model+"Channel 5"+"am","0");
 
 
                 txData[55] = (byte) Integer.parseInt(ch5brightness1);
@@ -982,8 +978,8 @@ public class MainActivity extends AppCompatActivity{
 
                 txData[67] = 0x06; //6. kanal
                 String ch6brightness1  = localDataManager.getSharedPreference(getApplicationContext(),model+"Channel 6"+"f1","0");
-                String ch6brightness2 = localDataManager.getSharedPreference(getApplicationContext(),model+"Channel 6"+"f2","0");
-                String ch6brightness3 = localDataManager.getSharedPreference(getApplicationContext(),model+"Channel 6"+"f3","0");
+                String ch6brightness2 =  localDataManager.getSharedPreference(getApplicationContext(),model+"Channel 6"+"f2","0");
+                String ch6brightness3 =  localDataManager.getSharedPreference(getApplicationContext(),model+"Channel 6"+"f3","0");
                 String ch6brightness4 = localDataManager.getSharedPreference(getApplicationContext(),model+"Channel 6"+"f4","0");
 
 
@@ -1082,9 +1078,9 @@ public class MainActivity extends AppCompatActivity{
 
                  */
 
-                txData[54] = Byte.parseByte(hour);
-                txData[55] = Byte.parseByte(minute);
-                txData[56] = 0x66; //stop
+                txData[80] = Byte.parseByte(hour);
+                txData[81] = Byte.parseByte(minute);
+                txData[82] = 0x66; //stop
             }
         }
 
@@ -1123,18 +1119,19 @@ public class MainActivity extends AppCompatActivity{
         txData_Test[5] = (byte) Integer.parseInt(test_f3);
         txData_Test[6] = (byte) Integer.parseInt(test_f4);
 
-        //txData_Test[7] = (byte) Integer.parseInt(test_f5);
-        //txData_Test[8] = (byte) Integer.parseInt(test_f6);
+        txData_Test[7] = (byte) Integer.parseInt(test_f5);
+        txData_Test[8] = (byte) Integer.parseInt(test_f6);
         //txData_Test[9] = (byte) Integer.parseInt(test_f7);
         //txData_Test[10] = (byte) Integer.parseInt(test_f8);
 
-        for (int i = 7; i < 54; i++){
+        // saatleri boşalt
+        for (int i = 9; i < 80; i++){
             txData_Test[i] = 0x00;
         }
 
-        txData_Test[54] = Byte.parseByte(hour);
-        txData_Test[55] = Byte.parseByte(minute);
-        txData_Test[56] = 0x66;
+        txData_Test[80] = Byte.parseByte(hour);
+        txData_Test[81] = Byte.parseByte(minute);
+        txData_Test[82] = 0x66;
 
         try {
             isTxFull = true;

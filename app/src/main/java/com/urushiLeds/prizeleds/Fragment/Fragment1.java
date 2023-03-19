@@ -83,8 +83,9 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment1,container,false);
-
         init(view);
+
+        localDataManager.setSharedPreference(getContext(),"model","manual");
 
         chartInit();
 
@@ -240,8 +241,7 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
         /*
          * Seekbar ların set edilmesi
          * fixme Bu bölümü retrieveMemorizedData kısmında yapabilirsin
-         */
-        String val = localDataManager.getSharedPreference(getContext(),model+selectedChannel+"f1","");
+         */String val = localDataManager.getSharedPreference(getContext(),model+selectedChannel+"f1","");
         if (!val.isEmpty()){
             seekBar1.setProgress(Integer.parseInt(val));
         }
@@ -291,7 +291,7 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
         entries.add(new Entry(0, 0));
         entries.add(new Entry(0, 0));
         entries.add(new Entry(0, 0));
-
+        entries.add(new Entry(0, 0));
 
         entries2.add(new Entry(1, 0));
         entries2.add(new Entry(1, 0));
@@ -365,7 +365,6 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
         lDataSet5.setDrawCircles(false);
         chartData.addDataSet(lDataSet5);
 
-
         lDataSet6 = new LineDataSet(entries6, "MAGENTA +");
         lDataSet6.setDrawFilled(false);
         lDataSet6.setDrawValues(false);
@@ -373,7 +372,7 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
         lDataSet6.setDrawCircles(false);
         chartData.addDataSet(lDataSet6);
 
-
+        /*
         lDataSet7 = new LineDataSet(entries7, "Kanal 7");
         lDataSet7.setDrawFilled(false);
         lDataSet7.setDrawValues(false);
@@ -388,7 +387,7 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
         lDataSet8.setLineWidth(5);
         lDataSet8.setDrawCircles(false);
         chartData.addDataSet(lDataSet8);
-
+        */
         mChart.setMaxVisibleValueCount(0);
 
 
@@ -403,21 +402,24 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
             channels.add("MAGENTA +");
           //  channels.add("Channel 7");
           //  channels.add("Channel 8");
-        }else if (model.equals("RGBW")){
+        }
+        else if (model.equals("RGBW")){
             lDataSet1.setLabel("Cool White");
             lDataSet2.setLabel("Wide Spectrum");
             channels.clear();
             channels.add("Cool White");
             channels.add("Wide Spectrum");
             setSpinner();
-        }else if (model.equals("SPECTRUM+")){
+        }
+        else if (model.equals("SPECTRUM+")){
             lDataSet1.setLabel("Deep Blue");
             lDataSet2.setLabel("Aqua Sun");
             channels.clear();
             channels.add("Deep Blue");
             channels.add("Aqua Sun");
             setSpinner();
-        }else if (model.equals("WIDE SPECT")){
+        }
+        else if (model.equals("WIDE SPECT")){
             lDataSet1.setLabel("Cool White");
             lDataSet2.setLabel("Full Spectrum");
             lDataSet3.setLabel("Reddish White");
@@ -428,7 +430,8 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
             channels.add("Reddish White");
             channels.add("Blueish White");
             setSpinner();
-        }else if (model.equals("UV+")){
+        }
+        else if (model.equals("UV+")){
             lDataSet1.setLabel("Deep Blue");
             lDataSet2.setLabel("Aqua Sun");
             lDataSet3.setLabel("Magenta");
@@ -443,8 +446,6 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
 
         mChart.setData(chartData);
         mChart.animateY(5000);
-
-
     }
 
     /*                                    SPINNER SETTINGS START                                   */
@@ -1004,8 +1005,8 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
                 lDataSet4.setDrawFilled(false);
                 lDataSet5.setDrawFilled(false);
                 lDataSet6.setDrawFilled(false);
-                lDataSet7.setDrawFilled(false);
-                lDataSet8.setDrawFilled(false);
+                //lDataSet7.setDrawFilled(false);
+                //lDataSet8.setDrawFilled(false);
 
                 setDataset(lDataSet1,5,R.color.purple_500,label);
                 setDataset(lDataSet2,2,R.color.lighgray,label);
@@ -1013,8 +1014,8 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
                 setDataset(lDataSet4,2,R.color.lighgray,label);
                 setDataset(lDataSet5,2,R.color.lighgray,label);
                 setDataset(lDataSet6,2,R.color.lighgray,label);
-                setDataset(lDataSet7,2,R.color.lighgray,label);
-                setDataset(lDataSet8,2,R.color.lighgray,label);
+                //setDataset(lDataSet7,2,R.color.lighgray,label);
+                //setDataset(lDataSet8,2,R.color.lighgray,label);
                 break;
             case 2:
                 lDataSet2.setFillColor(R.color.purple_500);
@@ -1024,8 +1025,8 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
                 lDataSet4.setDrawFilled(false);
                 lDataSet5.setDrawFilled(false);
                 lDataSet6.setDrawFilled(false);
-                lDataSet7.setDrawFilled(false);
-                lDataSet8.setDrawFilled(false);
+             //   lDataSet7.setDrawFilled(false);
+               // lDataSet8.setDrawFilled(false);
 
                 setDataset(lDataSet1,2,R.color.lighgray,label);
                 setDataset(lDataSet2,5,R.color.purple_500,label);
@@ -1033,8 +1034,8 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
                 setDataset(lDataSet4,2,R.color.lighgray,label);
                 setDataset(lDataSet5,5,R.color.lighgray,label);
                 setDataset(lDataSet6,2,R.color.lighgray,label);
-                setDataset(lDataSet7,2,R.color.lighgray,label);
-                setDataset(lDataSet8,2,R.color.lighgray,label);
+             //   setDataset(lDataSet7,2,R.color.lighgray,label);
+              //  setDataset(lDataSet8,2,R.color.lighgray,label);
                 break;
             case 3:
                 lDataSet3.setFillColor(R.color.purple_500);
@@ -1044,8 +1045,8 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
                 lDataSet4.setDrawFilled(false);
                 lDataSet5.setDrawFilled(false);
                 lDataSet6.setDrawFilled(false);
-                lDataSet7.setDrawFilled(false);
-                lDataSet8.setDrawFilled(false);
+               // lDataSet7.setDrawFilled(false);
+               // lDataSet8.setDrawFilled(false);
 
                 setDataset(lDataSet1,2,R.color.lighgray,label);
                 setDataset(lDataSet2,2,R.color.lighgray,label);
@@ -1053,8 +1054,8 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
                 setDataset(lDataSet4,2,R.color.lighgray,label);
                 setDataset(lDataSet5,5,R.color.lighgray,label);
                 setDataset(lDataSet6,2,R.color.lighgray,label);
-                setDataset(lDataSet7,2,R.color.lighgray,label);
-                setDataset(lDataSet8,2,R.color.lighgray,label);
+               // setDataset(lDataSet7,2,R.color.lighgray,label);
+              //  setDataset(lDataSet8,2,R.color.lighgray,label);
 
                 break;
             case 4:
@@ -1065,8 +1066,8 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
                 lDataSet4.setDrawFilled(true);
                 lDataSet5.setDrawFilled(false);
                 lDataSet6.setDrawFilled(false);
-                lDataSet7.setDrawFilled(false);
-                lDataSet8.setDrawFilled(false);
+               // lDataSet7.setDrawFilled(false);
+               // lDataSet8.setDrawFilled(false);
 
                 setDataset(lDataSet1,2,R.color.lighgray,label);
                 setDataset(lDataSet2,2,R.color.lighgray,label);
@@ -1074,8 +1075,8 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
                 setDataset(lDataSet4,5,R.color.purple_500,label);
                 setDataset(lDataSet5,5,R.color.lighgray,label);
                 setDataset(lDataSet6,2,R.color.lighgray,label);
-                setDataset(lDataSet7,2,R.color.lighgray,label);
-                setDataset(lDataSet8,2,R.color.lighgray,label);
+               // setDataset(lDataSet7,2,R.color.lighgray,label);
+               // setDataset(lDataSet8,2,R.color.lighgray,label);
                 break;
             case 5:
                 lDataSet5.setFillColor(R.color.purple_500);
@@ -1084,9 +1085,10 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
                 lDataSet3.setDrawFilled(false);
                 lDataSet4.setDrawFilled(false);
                 lDataSet6.setDrawFilled(false);
-                lDataSet7.setDrawFilled(false);
-                lDataSet8.setDrawFilled(false);
                 lDataSet5.setDrawFilled(true);
+                //lDataSet7.setDrawFilled(false);,
+                //lDataSet8.setDrawFilled(false);
+
 
                 setDataset(lDataSet1,2,R.color.lighgray,label);
                 setDataset(lDataSet2,2,R.color.lighgray,label);
@@ -1094,8 +1096,8 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
                 setDataset(lDataSet4,2,R.color.lighgray,label);
                 setDataset(lDataSet5,5,R.color.purple_500,label);
                 setDataset(lDataSet6,2,R.color.lighgray,label);
-                setDataset(lDataSet7,2,R.color.lighgray,label);
-                setDataset(lDataSet8,2,R.color.lighgray,label);
+                //setDataset(lDataSet7,2,R.color.lighgray,label);
+              //  setDataset(lDataSet8,2,R.color.lighgray,label);
                 break;
             case 6:
                 lDataSet6.setFillColor(R.color.purple_500);
@@ -1104,9 +1106,10 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
                 lDataSet3.setDrawFilled(false);
                 lDataSet4.setDrawFilled(false);
                 lDataSet5.setDrawFilled(false);
-                lDataSet7.setDrawFilled(false);
-                lDataSet8.setDrawFilled(false);
                 lDataSet6.setDrawFilled(true);
+
+                // lDataSet7.setDrawFilled(false);
+                // lDataSet8.setDrawFilled(false);
 
                 setDataset(lDataSet1,2,R.color.lighgray,label);
                 setDataset(lDataSet2,2,R.color.lighgray,label);
@@ -1114,8 +1117,8 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
                 setDataset(lDataSet4,2,R.color.lighgray,label);
                 setDataset(lDataSet6,5,R.color.purple_500,label);
                 setDataset(lDataSet5,2,R.color.lighgray,label);
-                setDataset(lDataSet7,2,R.color.lighgray,label);
-                setDataset(lDataSet8,2,R.color.lighgray,label);
+               // setDataset(lDataSet7,2,R.color.lighgray,label);
+               // setDataset(lDataSet8,2,R.color.lighgray,label);
                 break;
 
             default:
@@ -1156,7 +1159,8 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
                 setSwitch(entries6,seekBarNo,progress,lDataSet6,"MAGENTA +");
             }
 
-        }else if (model.equals("RGBW")){
+        }
+        else if (model.equals("RGBW")){
             if (selectedChannel.equals("RED")){
                 setSwitch(entries,seekBarNo,progress,lDataSet1,"RED");
             }else if (selectedChannel.equals("GREEN")){
@@ -1166,7 +1170,8 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
             }else if (selectedChannel.equals("WHITE")){
                 setSwitch(entries4,seekBarNo,progress,lDataSet4,"WHITE");
             }
-        }else if (model.equals("SPECTRUM+")){
+        }
+        else if (model.equals("SPECTRUM+")){
             if (selectedChannel.equals("5000K")){
                 setSwitch(entries,seekBarNo,progress,lDataSet1,"5000K");
             }else if (selectedChannel.equals("6500K")){
@@ -1177,7 +1182,8 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
                 setSwitch(entries4,seekBarNo,progress,lDataSet4,"MAGENTA");
             }
 
-        }else if (model.equals("WIDE SPECT")){
+        }
+        else if (model.equals("WIDE SPECT")){
             if (selectedChannel.equals("REDDISH WHITE")){
                 setSwitch(entries,seekBarNo,progress,lDataSet1,"REDDISH WHITE");
             }else if (selectedChannel.equals("GREENISH WHITE")){
@@ -1188,7 +1194,8 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
                 setSwitch(entries4,seekBarNo,progress,lDataSet4,"SUNLIKE WHITE");
             }
 
-        }else if (model.equals("UV+")){
+        }
+        else if (model.equals("UV+")){
             if (selectedChannel.equals("5000K")){
                 setSwitch(entries,seekBarNo,progress,lDataSet1,"5000K");
             }else if (selectedChannel.equals("6500K")){
@@ -1467,17 +1474,22 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
             lDataSet8.setColor(R.color.lighgray);
 
 
-             */
-
             DecimalFormat df = new DecimalFormat();
             df.setMaximumFractionDigits(2);
 
+            /*
+            refreshChart(entries,Integer.parseInt(c1f1),Integer.parseInt(c1f2),Integer.parseInt(c1f3),Integer.parseInt(c1f4), c1gdh/8f+c1gdm/1000f,c1gh/8f+c1gm/1000f,c1gbh/8f+c1gbm/1000f,c1ah/8f+c1am/1000f,lDataSet1,2,"Channel 1",R.color.lighgray);
+            refreshChart(entries2,Integer.parseInt(c2f1),Integer.parseInt(c2f2),Integer.parseInt(c2f3),Integer.parseInt(c2f4),c2gdh/8f+c2gdm/1000f,c2gh/8f+c2gm/1000f,c2gbh/8f+c2gbm/1000f,c2ah/8f+c2am/1000f,lDataSet2,2,"Channel 2",R.color.lighgray);
+            refreshChart(entries3,Integer.parseInt(c3f1),Integer.parseInt(c3f2),Integer.parseInt(c3f3),Integer.parseInt(c3f4),c3gdh/8f+c3gdm/1000f,c3gh/8f+c3gm/1000f,c3gbh/8f+c3gbm/1000f,c3ah/8f+c3am/1000f,lDataSet3,2,"Channel 3",R.color.lighgray);
+            refreshChart(entries4,Integer.parseInt(c4f1),Integer.parseInt(c4f2),Integer.parseInt(c4f3),Integer.parseInt(c4f4),c4gdh/8f+c4gdm/1000f,c4gh/8f+c4gm/1000f,c4gbh/8f+c4gbm/1000f,c4ah/8f+c4am/1000f,lDataSet4,2,"Channel 4",R.color.lighgray);
+            refreshChart(entries5,Integer.parseInt(c5f1),Integer.parseInt(c5f2),Integer.parseInt(c5f3),Integer.parseInt(c5f4),c5gdh/8f+c5gdm/1000f,c5gh/8f+c5gm/1000f,c5gbh/8f+c5gbm/1000f,c5ah/8f+c5am/1000f,lDataSet5,2,"Channel 5",R.color.lighgray);
+            refreshChart(entries6,Integer.parseInt(c6f1),Integer.parseInt(c6f2),Integer.parseInt(c6f3),Integer.parseInt(c6f4),c6gdh/8f+c6gdm/1000f,c6gh/8f+c6gm/1000f,c6gbh/8f+c6gbm/1000f,c6ah/8f+c6am/1000f,lDataSet6,2,"Channel 6",R.color.lighgray);
+ */
+
             mChart.setData(chartData);
             mChart.invalidate();
-
-
-
-        }else if (model.equals("RGBW")){
+        }
+        else if (model.equals("RGBW")){
             String mChannel = "RED";
             String c1f1 = localDataManager.getSharedPreference(getContext(),model+mChannel+"f1","0");
             String c1f2 = localDataManager.getSharedPreference(getContext(),model+mChannel+"f2","0");
@@ -1536,7 +1548,8 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
             refreshChart(entries3,Integer.parseInt(c3f1),Integer.parseInt(c3f2),Integer.parseInt(c3f3),Integer.parseInt(c3f4),c3gdh/8f + c3gdm/1000f,c3gh/8f + c3gm/1000f,c3gbh/8f + c3gbm/1000f,c3ah/8f + c3am/1000f,lDataSet3,2,"BLUE",R.color.lighgray);
             refreshChart(entries4,Integer.parseInt(c4f1),Integer.parseInt(c4f2),Integer.parseInt(c4f3),Integer.parseInt(c4f4),c4gdh/8f + c4gdm/1000f,c4gh/8f + c4gm/1000f,c4gbh/8f + c4gbm/1000f,c4ah/8f + c4am/1000f,lDataSet4,2,"WHITE",R.color.lighgray);
 
-        }else if (model.equals("SPECTRUM+")){
+        }
+        else if (model.equals("SPECTRUM+")){
             String mChannel = "5000K";
             String c1f1 = localDataManager.getSharedPreference(getContext(),model+mChannel+"f1","0");
             String c1f2 = localDataManager.getSharedPreference(getContext(),model+mChannel+"f2","0");
@@ -1594,7 +1607,8 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
             refreshChart(entries2,Integer.parseInt(c2f1),Integer.parseInt(c2f2),Integer.parseInt(c2f3),Integer.parseInt(c2f4),c2gdh/8f + c2gdm/1000f,c2gh/8f + c2gm/1000f,c2gbh/8f + c2gbm/1000f,c2ah/8f + c2am/1000f,lDataSet2,2,"6500K",R.color.lighgray);
             refreshChart(entries3,Integer.parseInt(c3f1),Integer.parseInt(c3f2),Integer.parseInt(c3f3),Integer.parseInt(c3f4),c3gdh/8f + c3gdm/1000f,c3gh/8f + c3gm/1000f,c3gbh/8f + c3gbm/1000f,c3ah/8f + c3am/1000f,lDataSet3,2,"9000K",R.color.lighgray);
             refreshChart(entries4,Integer.parseInt(c4f1),Integer.parseInt(c4f2),Integer.parseInt(c4f3),Integer.parseInt(c4f4),c4gdh/8f + c4gdm/1000f,c4gh/8f + c4gm/1000f,c4gbh/8f + c4gbm/1000f,c4ah/8f + c4am/1000f,lDataSet4,2,"MAGENTA",R.color.lighgray);
-        }else if (model.equals("WIDE SPECT")){
+        }
+        else if (model.equals("WIDE SPECT")){
             String mChannel = "REDDISH WHITE";
             String c1f1 = localDataManager.getSharedPreference(getContext(),model+mChannel+"f1","0");
             String c1f2 = localDataManager.getSharedPreference(getContext(),model+mChannel+"f2","0");
@@ -1652,7 +1666,9 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
             refreshChart(entries2,Integer.parseInt(c2f1),Integer.parseInt(c2f2),Integer.parseInt(c2f3),Integer.parseInt(c2f4),c2gdh/8f + c2gdm/1000f,c2gh/8f + c2gm/1000f,c2gbh/8f + c2gbm/1000f,c2ah/8f + c2am/1000f,lDataSet2,2,"GREENISH WHITE",R.color.lighgray);
             refreshChart(entries3,Integer.parseInt(c3f1),Integer.parseInt(c3f2),Integer.parseInt(c3f3),Integer.parseInt(c3f4),c3gdh/8f + c3gdm/1000f,c3gh/8f + c3gm/1000f,c3gbh/8f + c3gbm/1000f,c3ah/8f + c3am/1000f,lDataSet3,2,"BLUEISH WHITE",R.color.lighgray);
             refreshChart(entries4,Integer.parseInt(c4f1),Integer.parseInt(c4f2),Integer.parseInt(c4f3),Integer.parseInt(c4f4),c4gdh/8f + c4gdm/1000f,c4gh/8f + c4gm/1000f,c4gbh/8f + c4gbm/1000f,c4ah/8f + c4am/1000f,lDataSet4,2,"SUNLIKE WHITE",R.color.lighgray);
-        }else if (model.equals("UV+")){
+        }
+        else if (model.equals("UV+"))
+        {
             String mChannel = "5000K";
             String c1f1 = localDataManager.getSharedPreference(getContext(),model+mChannel+"f1","0");
             String c1f2 = localDataManager.getSharedPreference(getContext(),model+mChannel+"f2","0");
@@ -1719,6 +1735,8 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
         entry.add(new Entry(time2, pivot2));
         entry.add(new Entry(time3, pivot3));
         entry.add(new Entry(time4, pivot4));
+
+
 
         //lineDataSet = (LineDataSet) chartData.getDataSetByLabel(channel,false);
         lineDataSet = new LineDataSet(entry, channel);
