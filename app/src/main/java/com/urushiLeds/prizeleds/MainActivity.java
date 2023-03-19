@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity{
     private String device_id;
     private int i = 0;
     private byte[] txData = new byte[109];
-    private byte[] txData_Test = new byte[109];
+
     private int trial = 0,trial_ack=0;
 
     private boolean isTxFull = false;
@@ -353,7 +353,34 @@ public class MainActivity extends AppCompatActivity{
         txData[54] = Byte.parseByte(hour);
         txData[55] = Byte.parseByte(minute);
         if (test_model.equals("test")){
-            sendTestData();
+            txData[0] = 0x65;
+            txData[1] = 0x06;
+            txData[2] = 0xA;
+
+            String test_f1 = localDataManager.getSharedPreference(getApplicationContext(),"testf1","0");
+            String test_f2 = localDataManager.getSharedPreference(getApplicationContext(),"testf2","0");
+            String test_f3 = localDataManager.getSharedPreference(getApplicationContext(),"testf3","0");
+            String test_f4 = localDataManager.getSharedPreference(getApplicationContext(),"testf4","0");
+            String test_f5 = localDataManager.getSharedPreference(getApplicationContext(),"testf5","0");
+            String test_f6 = localDataManager.getSharedPreference(getApplicationContext(),"testf6","0");
+            String test_f7 = localDataManager.getSharedPreference(getApplicationContext(),"testf7","0");
+            String test_f8 = localDataManager.getSharedPreference(getApplicationContext(),"testf8","0");
+
+            txData[3] = (byte) Integer.parseInt(test_f1);
+            txData[4] = (byte) Integer.parseInt(test_f2);
+            txData[5] = (byte) Integer.parseInt(test_f3);
+            txData[6] = (byte) Integer.parseInt(test_f4);
+
+            txData[7] = (byte) Integer.parseInt(test_f5);
+            txData[8] = (byte) Integer.parseInt(test_f6);
+            //txData_Test[9] = (byte) Integer.parseInt(test_f7);
+            //txData_Test[10] = (byte) Integer.parseInt(test_f8);
+
+            // saatleri boşalt
+            for (int i = 9; i < 80; i++) {
+                txData[i] = 0x00;
+            }
+            txData[82] = 0x66;
         }else{
             if (model.equals("RGBW")){
                 txData[0] = 0x65;
@@ -792,12 +819,11 @@ public class MainActivity extends AppCompatActivity{
                 txData[56] = 0x66;
 
             }
-            else
-            {
+            else{
                 //custom /////////////////////////////////////////////
 
-                txData[0] = 0x65;
-                txData[1] = 0x01;
+                txData[0] = 0x65; //101
+                txData[1] = 0x01; //1
 
                 txData[2] = 0x01; //1. kanal
                 String ch1brightness1  = localDataManager.getSharedPreference(getApplicationContext(),model+"Channel 1"+"f1","0");
@@ -1099,52 +1125,6 @@ public class MainActivity extends AppCompatActivity{
             Toast.makeText(getApplicationContext(),e.getLocalizedMessage(),Toast.LENGTH_LONG).show();
         }
     }
-
-    public void sendTestData(){
-        txData_Test[0] = 0x65;
-        txData_Test[1] = 0x06;
-        txData_Test[2] = 0xA;
-
-        String test_f1 = localDataManager.getSharedPreference(getApplicationContext(),"testf1","0");
-        String test_f2 = localDataManager.getSharedPreference(getApplicationContext(),"testf2","0");
-        String test_f3 = localDataManager.getSharedPreference(getApplicationContext(),"testf3","0");
-        String test_f4 = localDataManager.getSharedPreference(getApplicationContext(),"testf4","0");
-        String test_f5 = localDataManager.getSharedPreference(getApplicationContext(),"testf5","0");
-        String test_f6 = localDataManager.getSharedPreference(getApplicationContext(),"testf6","0");
-        String test_f7 = localDataManager.getSharedPreference(getApplicationContext(),"testf7","0");
-        String test_f8 = localDataManager.getSharedPreference(getApplicationContext(),"testf8","0");
-
-        txData_Test[3] = (byte) Integer.parseInt(test_f1);
-        txData_Test[4] = (byte) Integer.parseInt(test_f2);
-        txData_Test[5] = (byte) Integer.parseInt(test_f3);
-        txData_Test[6] = (byte) Integer.parseInt(test_f4);
-
-        txData_Test[7] = (byte) Integer.parseInt(test_f5);
-        txData_Test[8] = (byte) Integer.parseInt(test_f6);
-        //txData_Test[9] = (byte) Integer.parseInt(test_f7);
-        //txData_Test[10] = (byte) Integer.parseInt(test_f8);
-
-        // saatleri boşalt
-        for (int i = 9; i < 80; i++){
-            txData_Test[i] = 0x00;
-        }
-
-        txData_Test[80] = Byte.parseByte(hour);
-        txData_Test[81] = Byte.parseByte(minute);
-        txData_Test[82] = 0x66;
-
-        try {
-            isTxFull = true;
-            sendReceive.write(txData_Test);
-            Log.e(TAG,"Veriler gönderildi.");
-            Message message = Message.obtain();
-            message.what = STATE_MESSAGE_ACK_WAIT;
-            handler.sendMessage(message);
-        }catch (Exception e){
-            Toast.makeText(getApplicationContext(),e.getLocalizedMessage(),Toast.LENGTH_LONG).show();
-        }
-    }
-
 
     public void btn_closeConnection(View view) {
         closeBluetooth();
