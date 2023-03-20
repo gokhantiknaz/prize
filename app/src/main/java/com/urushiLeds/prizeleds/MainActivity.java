@@ -1,4 +1,3 @@
-
 package com.urushiLeds.prizeleds;
 
 import androidx.annotation.NonNull;
@@ -22,7 +21,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.urushiLeds.prizeleds.Class.LocalDataManager;
-import com.urushiLeds.prizeleds.Class.Models;
 import com.urushiLeds.prizeleds.Fragment.Fragment1;
 import com.urushiLeds.prizeleds.Fragment.Fragment2;
 import com.urushiLeds.prizeleds.Fragment.Fragment3;
@@ -39,9 +37,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
 
-public class MainActivity extends AppCompatActivity{
+public class MainActivity extends AppCompatActivity {
 
- //   private ArrayList<Models> modelsArrayList = new ArrayList<>();
+    //   private ArrayList<Models> modelsArrayList = new ArrayList<>();
 
     BottomNavigationView bottomNavigationView;
 
@@ -54,7 +52,7 @@ public class MainActivity extends AppCompatActivity{
     private int i = 0;
     private byte[] txData = new byte[109];
 
-    private int trial = 0,trial_ack=0;
+    private int trial = 0, trial_ack = 0;
 
     private boolean isTxFull = false;
 
@@ -74,7 +72,7 @@ public class MainActivity extends AppCompatActivity{
     static final int STATE_MESSAGE_ACK_WAIT = 5;
     static final int STATE_MESSAGE_WRONG_ACK_RECEIVED = 6;
 
-    private String tempMsg = null,hour,minute;
+    private String tempMsg = null, hour, minute;
 
     private static final UUID ESP32_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
 
@@ -92,25 +90,25 @@ public class MainActivity extends AppCompatActivity{
         setContentView(R.layout.activity_main);
         init();
 
-    //    modelsArrayList.add(new Models("CUSTOM","Channel 1","Channel 2","Channel 3","Channel 4","Channel 5","Channel 6",6));
-    //    modelsArrayList.add(new Models("F-MAJOR","Cool White","Wide Spectrum",null,null,null,null,2));
-    //    modelsArrayList.add(new Models("S-MAJOR","Deep Blue","Aqua Sun",null,null,null,null,2));
-   //     modelsArrayList.add(new Models("F-MAX","Cool White","Full Spectrum","Reddish White","Blueish White",null,null,4));
-     //   modelsArrayList.add(new Models("S-MAX","Deep Blue","Aqua Sun","Magenta","Sky Blue",null,null,4));
+        //    modelsArrayList.add(new Models("CUSTOM","Channel 1","Channel 2","Channel 3","Channel 4","Channel 5","Channel 6",6));
+        //    modelsArrayList.add(new Models("F-MAJOR","Cool White","Wide Spectrum",null,null,null,null,2));
+        //    modelsArrayList.add(new Models("S-MAJOR","Deep Blue","Aqua Sun",null,null,null,null,2));
+        //     modelsArrayList.add(new Models("F-MAX","Cool White","Full Spectrum","Reddish White","Blueish White",null,null,4));
+        //   modelsArrayList.add(new Models("S-MAX","Deep Blue","Aqua Sun","Magenta","Sky Blue",null,null,4));
 
-        localDataManager.setSharedPreference(getApplicationContext(),"test_model","false");
+        localDataManager.setSharedPreference(getApplicationContext(), "test_model", "false");
 
         if (findViewById(R.id.frame) != null) {
-            if (savedInstanceState != null){
+            if (savedInstanceState != null) {
                 return;
             }
-            getSupportFragmentManager().beginTransaction().add(R.id.frame,new Fragment4()).commit();
-           }
+            getSupportFragmentManager().beginTransaction().add(R.id.frame, new Fragment4()).commit();
+        }
 
         progress = ProgressDialog.show(MainActivity.this, "Connecting...", "Please wait");
 
         // Gelen device id ile bluetooth bağlantısını kur.
-        if (bleList.size()>0){
+        if (bleList.size() > 0) {
             device_id = bleList.get(0);
             clientClass = new ClientClass(device_id);
             clientClass.start();
@@ -119,25 +117,29 @@ public class MainActivity extends AppCompatActivity{
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
+                switch (item.getItemId()) {
                     case R.id.action_settings:
                         fragmentTemp = new Fragment2();
-                        getSupportFragmentManager().beginTransaction().replace(R.id.frame,fragmentTemp,""+fragmentTemp).commit();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.frame, fragmentTemp, "" + fragmentTemp).commit();
                         break;
                     case R.id.action_back:
-                        if (socket.isConnected()){
+                        if (socket.isConnected()) {
                             closeBluetooth();
                         }
-                        startActivity(new Intent(MainActivity.this,BluetoothScanActivity.class));
+                        startActivity(new Intent(MainActivity.this, BluetoothScanActivity.class));
                         finish();
                         break;
                     case R.id.action_test:
                         fragmentTemp = new Fragment3();
-                        getSupportFragmentManager().beginTransaction().replace(R.id.frame,fragmentTemp,""+fragmentTemp).commit();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.frame, fragmentTemp, "" + fragmentTemp).commit();
                         break;
                     case R.id.action_home:
                         if (findViewById(R.id.frame) != null) {
-                            getSupportFragmentManager().beginTransaction().add(R.id.frame,new Fragment1()).commit();
+                            getSupportFragmentManager().beginTransaction().add(R.id.frame, new Fragment1()).commit();
+                        }
+                    case R.id.color_picker:
+                        if (findViewById(R.id.frame) != null) {
+                            getSupportFragmentManager().beginTransaction().add(R.id.frame, new ColorPicker()).commit();
                         }
                         break;
                     default:
