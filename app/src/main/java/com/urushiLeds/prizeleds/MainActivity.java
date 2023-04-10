@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
 
     private FloatingActionButton fab_bottom;
 
+
+    private CheckBox chkOpen15;
     private static final String TAG = "MainActivity";
     private Fragment fragmentTemp;
     private TextView tv_status;
@@ -104,6 +107,7 @@ public class MainActivity extends AppCompatActivity {
             }
             getSupportFragmentManager().beginTransaction().add(R.id.frame, new Fragment4()).commit();
         }
+
 
         progress = ProgressDialog.show(MainActivity.this, "Connecting...", "Please wait");
 
@@ -362,7 +366,11 @@ public class MainActivity extends AppCompatActivity {
         txData[55] = Byte.parseByte(minute);
         if (test_model.equals("test")){
             txData[0] = 0x65;
-            txData[1] = 0x06;
+            String longManuel = localDataManager.getSharedPreference(getApplicationContext(),"longManuel","false");
+            if(longManuel.equals("true"))
+                txData[1] = 0x07;
+            else
+                txData[1] = 0x06;
             txData[2] = 0xA;
 
             String test_f1 = localDataManager.getSharedPreference(getApplicationContext(),"testf1","0");
@@ -1263,5 +1271,4 @@ public class MainActivity extends AppCompatActivity {
         minute = currentTime.substring(3,5);
         Log.e(TAG, "getDateTime: hour : "+hour+" minute : "+minute);
     }
-
 }

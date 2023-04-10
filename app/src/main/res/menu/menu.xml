@@ -25,9 +25,9 @@
         android:title="Home"
         app:showAsAction="always" />
 
-    <item
-        android:id="@+id/color_picker"
-        android:icon="@drawable/ic_baseline_home_24"
-        android:title="Color"
-        app:showAsAction="always" />
+<!--    <item-->
+<!--        android:id="@+id/color_picker"-->
+<!--        android:icon="@drawable/ic_baseline_home_24"-->
+<!--        android:title="Color"-->
+<!--        app:showAsAction="always" />-->
 </menu>

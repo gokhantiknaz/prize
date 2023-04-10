@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -13,10 +14,14 @@ import androidx.fragment.app.Fragment;
 
 import com.urushi.prizeleds.R;
 import com.urushiLeds.prizeleds.Class.LocalDataManager;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 
 public class Fragment3 extends Fragment {
     private TextView tv_testSeekBar1,tv_testSeekBar2,tv_testSeekBar3,tv_testSeekBar4,tv_testSeekBar5,tv_testSeekBar6,tv_testSeekBar7,tv_testSeekBar8;
     private SeekBar test_seekBar1,test_seekBar2,test_seekBar3,test_seekBar4,test_seekBar5,test_seekBar6,test_seekBar7,test_seekBar8;
+
+    private CheckBox chkOpen15;
     private String test_model = "test", model;
     private LocalDataManager localDataManager;
     private TextView tv_sb1title,tv_sb2title,tv_sb3title,tv_sb4title,tv_sb5title,tv_sb6title,tv_sb7title,tv_sb8title;
@@ -241,8 +246,6 @@ public class Fragment3 extends Fragment {
 
             }
         });
-
-
         test_seekBar5.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -260,8 +263,6 @@ public class Fragment3 extends Fragment {
 
             }
         });
-
-
         test_seekBar6.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -279,8 +280,6 @@ public class Fragment3 extends Fragment {
 
             }
         });
-
-
         test_seekBar7.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -298,8 +297,6 @@ public class Fragment3 extends Fragment {
 
             }
         });
-
-
         test_seekBar8.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -317,6 +314,20 @@ public class Fragment3 extends Fragment {
 
             }
         });
+        CheckBox fishCB = (CheckBox) view.findViewById(R.id.chkOpen15);
+
+
+        if (fishCB.isChecked()) {
+            fishCB.toggle();     // flips the checkbox to unchecked if it was checked
+        }
+        fishCB.setOnCheckedChangeListener(
+                new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton arg0, boolean isChecked) {
+                        localDataManager.setSharedPreference(getContext(),"longManuel",isChecked?"true":"false");
+                    }
+                }
+        );
 
 
         return view;
@@ -349,6 +360,8 @@ public class Fragment3 extends Fragment {
         test_seekBar6 = view.findViewById(R.id.test_seekBar6);
         test_seekBar7 = view.findViewById(R.id.test_seekBar7);
         test_seekBar8 = view.findViewById(R.id.test_seekBar8);
+
+        chkOpen15 = view.findViewById(R.id.chkOpen15);
 
         localDataManager = new LocalDataManager();
 

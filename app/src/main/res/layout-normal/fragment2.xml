@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/mainbg">
+    android:background="@color/black">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,7 +23,7 @@
 
             <TextView
                 android:id="@+id/tv_manual"
-                android:layout_width="wrap_content"
+                android:layout_width="166dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:fontFamily="@font/akaya_telivigala"
@@ -33,7 +33,7 @@
 
             <Button
                 android:id="@+id/btn_modelCustom"
-                android:layout_width="30dp"
+                android:layout_width="173dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.8"
                 android:text="Select"
