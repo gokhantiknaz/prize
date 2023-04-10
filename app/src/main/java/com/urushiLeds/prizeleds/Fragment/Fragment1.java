@@ -4,10 +4,10 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -40,15 +40,24 @@ import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.ChartTouchListener;
 import com.github.mikephil.charting.listener.OnChartGestureListener;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
-
+import com.urushiLeds.prizeleds.Class.Template;
 import java.io.File;
-import java.text.DecimalFormat;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.OptionalDataException;
+import java.io.StreamCorruptedException;
 import java.util.ArrayList;
+
 
 public class Fragment1 extends Fragment implements OnChartGestureListener, OnChartValueSelectedListener, AdapterView.OnItemSelectedListener{
 
     private static final String TAG = "Fragment1";
 
+    private TextView tv_status;
     private SeekBar seekBar1,seekBar2,seekBar3,seekBar4;
     private Spinner sp_channel;
     LineDataSet lDataSet1,lDataSet2,lDataSet3,lDataSet4,lDataSet5,lDataSet6,lDataSet7,lDataSet8;
@@ -78,9 +87,9 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
     private ArrayList<Entry> entries7 = new ArrayList<>();
     private ArrayList<Entry> entries8 = new ArrayList<>();
 
+    private ArrayList<Template> templates = new ArrayList<>();
     ArrayList<String > channels = new ArrayList<>();
     final String[] weekdays = {"00:00-08:00", "08:00-16:00", "16:00-23:59"};
-
     private String model;
 
     private LocalDataManager localDataManager;
@@ -89,6 +98,9 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment1,container,false);
+
+        View inf = inflater.inflate(R.layout.activity_main, container, false);
+        tv_status = (TextView) inf.findViewById(R.id.tv_status);
         init(view);
 
         localDataManager.setSharedPreference(getContext(),"model","manual");
@@ -212,8 +224,7 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
         loadtmpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
+                loadState("");
             }
         });
 
@@ -230,7 +241,12 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         String fileName = String.valueOf(taskEditText.getText());
-                        File file = new File(getContext().getFilesDir(), fileName);
+                        saveState(fileName);
+                        if(tv_status!=null)
+                        {
+                            tv_status.setText("Saved... ");
+                            tv_status.setTextColor(Color.GREEN);
+                        }
                     }
                 })
                 .setNegativeButton("Cancel", null)
@@ -1302,6 +1318,46 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
         entries8.clear();
 
         String model = localDataManager.getSharedPreference(getContext(),"model","manual");
+
+        for (int i = 1; i < 7; i++) {
+            String mChannel = "Channel "+ Integer.toString(i);
+
+            Template t = new Template();
+
+            String cxf1 = localDataManager.getSharedPreference(getContext(),model+mChannel+"f1","0");
+            String cxf2 = localDataManager.getSharedPreference(getContext(),model+mChannel+"f2","0");
+            String cxf3 = localDataManager.getSharedPreference(getContext(),model+mChannel+"f3","0");
+            String cxf4 = localDataManager.getSharedPreference(getContext(),model+mChannel+"f4","0");
+
+            float cxgdh = Float.parseFloat(localDataManager.getSharedPreference(getContext(),model+mChannel+"gdh","7"));
+            float cxgdm = Float.parseFloat(localDataManager.getSharedPreference(getContext(),model+mChannel+"gdm","00"));
+            float cxgh  = Float.parseFloat(localDataManager.getSharedPreference(getContext(),model+mChannel+"gh","12"));
+            float cxgm  = Float.parseFloat(localDataManager.getSharedPreference(getContext(),model+mChannel+"gm","00"));
+            float cxgbh = Float.parseFloat(localDataManager.getSharedPreference(getContext(),model+mChannel+"gbh","17"));
+            float cxgbm = Float.parseFloat(localDataManager.getSharedPreference(getContext(),model+mChannel+"gbm","00"));
+            float cxah = Float.parseFloat(localDataManager.getSharedPreference(getContext(),model+mChannel+"ah","22"));
+            float cxam = Float.parseFloat(localDataManager.getSharedPreference(getContext(),model+mChannel+"am","00"));
+
+            t.Channel = mChannel;
+            t.sabahBrightness=cxf1;
+            t.ogleBrightness=cxf2;
+            t.aksamBrightness=cxf3;
+            t.geceBrightness=cxf4;
+
+            t.sabahHour=cxgdh;
+            t.sabahMin=cxgdm;
+
+            t.ogleHour=cxgh;
+            t.ogleMin=cxgm;
+
+            t.aksamHour=cxgbh;
+            t.aksamMin=cxgbm;
+
+            t.geceHour=cxah;
+            t.geceMin=cxam;
+            templates.add(t);
+        }
+
         if (model.equals("manual")){
             String mChannel = "Channel 1";
             String c1f1 = localDataManager.getSharedPreference(getContext(),model+mChannel+"f1","0");
@@ -1318,6 +1374,25 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
             float c1ah = Float.parseFloat(localDataManager.getSharedPreference(getContext(),model+mChannel+"ah","22"));
             float c1am = Float.parseFloat(localDataManager.getSharedPreference(getContext(),model+mChannel+"am","00"));
 
+            Template t = new Template();
+            t.Channel = mChannel;
+            t.sabahBrightness=c1f1;
+            t.ogleBrightness=c1f2;
+            t.aksamBrightness=c1f3;
+            t.geceBrightness=c1f4;
+
+            t.sabahHour=c1gdh;
+            t.sabahMin=c1gdm;
+
+            t.ogleHour=c1gh;
+            t.ogleMin=c1gm;
+
+            t.aksamHour=c1gbh;
+            t.aksamMin=c1gbm;
+
+            t.geceHour=c1ah;
+            t.geceMin=c1am;
+            templates.add(t);
 
             entries.add(new Entry(c1gdh/8f+c1gdm/1000f, Integer.parseInt(c1f1)));
             entries.add(new Entry(c1gh/8f+c1gm/1000f, Integer.parseInt(c1f2)));
@@ -1328,7 +1403,6 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
             lDataSet1.setLineWidth(2);
             chartData.addDataSet(lDataSet1);
             lDataSet1.setColor(R.color.lighgray);
-
 
             mChannel = "Channel 2";
             String c2f1 = localDataManager.getSharedPreference(getContext(),model+mChannel+"f1","0");
@@ -1349,7 +1423,6 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
             entries2.add(new Entry(c2gh/8f+c2gm/1000f, Integer.parseInt(c2f2)));
             entries2.add(new Entry(c2gbh/8f+c2gbm/1000f, Integer.parseInt(c2f3)));
             entries2.add(new Entry(c2ah/8f+c2am/1000f, Integer.parseInt(c2f4)));
-
 
             lDataSet2 = new LineDataSet(entries2, "BLUE");
             lDataSet2.setLineWidth(2);
@@ -1772,6 +1845,57 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
         }
     }
 
+    private void saveState(String fileName) {
+        FileOutputStream outStream = null;
+        try {
+            File f = new File(Environment.getExternalStorageDirectory(), "/"+fileName+".iki");
+
+            outStream = new FileOutputStream(f);
+            ObjectOutputStream objectOutStream = new ObjectOutputStream(outStream);
+
+            objectOutStream.writeObject(templates);
+            objectOutStream.close();
+
+
+        } catch (FileNotFoundException e1) {
+            e1.printStackTrace();
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
+    }
+
+    private void loadState(String fileName)
+    {
+        ArrayList<Template> loadedData =null;
+        FileInputStream inStream = null;
+        try {
+            File f = new File(Environment.getExternalStorageDirectory(), "/"+fileName+".iki");
+            inStream = new FileInputStream(f);
+            ObjectInputStream objectInStream = new ObjectInputStream(inStream);
+
+            loadedData = ((ArrayList<Template>) objectInStream.readObject());
+            objectInStream.close();
+        } catch (FileNotFoundException e1) {
+            e1.printStackTrace();
+        } catch (ClassNotFoundException e1) {
+            e1.printStackTrace();
+        } catch (OptionalDataException e1) {
+            e1.printStackTrace();
+        } catch (StreamCorruptedException e1) {
+            e1.printStackTrace();
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
+//        if(loadedData!=null)
+//            for(int i = 0; i< s.length;i++)
+//            {
+//                Global.spellList[i] = s[i];
+//            }
+//        else
+//        {
+//            Log.e("FAILED TO LOAD", "YOU SUCK!!!!");
+//        }
+    }
     public void refreshChart(ArrayList entry,int pivot1,int pivot2,int pivot3,int pivot4,float time1,float time2,float time3,float time4,LineDataSet lineDataSet,int width,String channel,int color){
 
         entry.add(new Entry(time1, pivot1));

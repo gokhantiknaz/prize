@@ -10,9 +10,12 @@ import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -46,20 +49,13 @@ public class MainActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
 
     private FloatingActionButton fab_bottom;
-
-
-    private CheckBox chkOpen15;
     private static final String TAG = "MainActivity";
     private Fragment fragmentTemp;
     private TextView tv_status;
     private String device_id;
-    private int i = 0;
     private byte[] txData = new byte[109];
-
     private int trial = 0, trial_ack = 0;
-
     private boolean isTxFull = false;
-
     BluetoothAdapter bluetoothAdapter;
     SendReceive sendReceive;
     ArrayList<String> bleList = new ArrayList<>();
@@ -94,6 +90,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         init();
 
+        if (Build.VERSION.SDK_INT >= 30){
+            if (!Environment.isExternalStorageManager()){
+                Intent getpermission = new Intent();
+                getpermission.setAction(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION);
+                startActivity(getpermission);
+            }
+        }
+
         //    modelsArrayList.add(new Models("CUSTOM","Channel 1","Channel 2","Channel 3","Channel 4","Channel 5","Channel 6",6));
         //    modelsArrayList.add(new Models("F-MAJOR","Cool White","Wide Spectrum",null,null,null,null,2));
         //    modelsArrayList.add(new Models("S-MAJOR","Deep Blue","Aqua Sun",null,null,null,null,2));
@@ -108,7 +112,6 @@ public class MainActivity extends AppCompatActivity {
             }
             getSupportFragmentManager().beginTransaction().add(R.id.frame, new Fragment4()).commit();
         }
-
 
         progress = ProgressDialog.show(MainActivity.this, "Connecting...", "Please wait");
 
@@ -195,13 +198,12 @@ public class MainActivity extends AppCompatActivity {
     Handler handler = new Handler(new Handler.Callback() {
         @Override
         public boolean handleMessage(@NonNull Message msg) {
-
             switch (msg.what){
                 case STATE_CONNECTED :
                     tv_status.setText("Connected ... ");
                     tv_status.setTextColor(Color.GREEN);
                     Log.e(TAG,"v");
-                    if (i>0){
+                    if (bleList.size()>sendList.size()){
                         if(socket.isConnected() && isTxFull){
                             sendReceive.write(txData);
                             sendList.remove(device.getAddress());
@@ -210,9 +212,9 @@ public class MainActivity extends AppCompatActivity {
                             message.what = STATE_MESSAGE_ACK_WAIT;
                             handler.sendMessage(message);
                         }
-                    }else{
-                        fab_bottom.setEnabled(true);
                     }
+                    else
+                        fab_bottom.setEnabled(true);
                     progress.dismiss();
                     break;
                 case STATE_CONNECTION_FAILED :
@@ -223,7 +225,7 @@ public class MainActivity extends AppCompatActivity {
                     if (socket.isConnected()){
                        closeBluetooth();
                     }
-                    if (i<bleList.size()){
+                    if (sendList.size()<bleList.size()){
                         Message message = Message.obtain();
                         message.what = STATE_MESSAGE_NEXTCONNECTION_WAIT;
                         handler.sendMessage(message);
@@ -250,19 +252,14 @@ public class MainActivity extends AppCompatActivity {
                     }
                     break;
                 case STATE_MESSAGE_NEXTCONNECTION_WAIT:
-                    i++;
                     String test_model = localDataManager.getSharedPreference(getApplicationContext(),"test_model","false");
                     boolean isSent = sendList.size()>0;
-
-                    if (test_model.equals("test"))
-                    {
-                        isSent = i<bleList.size();
-                    }
                     if (isSent){
                         Log.e(TAG,"Diğer cihaza bağlanıyor ...");
                         tv_status.setText("Connecting...");
                         tv_status.setTextColor(getResources().getColor(R.color.accent));
-                        progress = ProgressDialog.show(MainActivity.this, "Connecting to other leds..", "PLease Wait");
+                        progress =
+                                ProgressDialog.show(MainActivity.this, "Connecting to other leds..", "PLease Wait");
                         // Bluetooth bağlantısını kes.
                         if (socket.isConnected()){
                             closeBluetooth();
@@ -272,14 +269,14 @@ public class MainActivity extends AppCompatActivity {
                         clientClass = new ClientClass(device_id);
                         clientClass.start();
                         Log.e(TAG,device.getAddress());
-                    }else if (socket.isConnected()){
+                    }
+                    else if (socket.isConnected()){
                         Log.e(TAG,"Tüm cihazlara veriler gönderildi.");
                         Toast.makeText(getApplicationContext(),"Settings send to all devices",Toast.LENGTH_LONG).show();
                         fab_bottom.setEnabled(true);
                         tv_status.setText("Connected");
                         tv_status.setTextColor(Color.GREEN);
                     }
-
                     break;
                 case STATE_MESSAGE_ACK_WAIT :
                     Log.e(TAG,"Doğrulama kodu bekleniyor ...");
@@ -329,7 +326,6 @@ public class MainActivity extends AppCompatActivity {
                 }
                 if (sendList.size()>0){
                     try {
-                        i++;
                         device_id = sendList.get(0);
                         clientClass = new ClientClass(device_id);
                         clientClass.start();
@@ -350,7 +346,7 @@ public class MainActivity extends AppCompatActivity {
     public void fab_bottom(View view) {
         // anlık saat ve dakika bilgisini al
         getDateTime();
-        i=0;
+
         sendList = (ArrayList<String>) bleList.clone();
 
         fab_bottom.setEnabled(false);
@@ -1135,8 +1131,6 @@ public class MainActivity extends AppCompatActivity {
             isTxFull = true;
             sendReceive.write(txData);
             sendList.remove(device.getAddress());
-            if (!test_model.equals("test"))
-                i++;
             Log.e(TAG,"Veriler gönderildi.");
             Message message = Message.obtain();
             message.what = STATE_MESSAGE_ACK_WAIT;

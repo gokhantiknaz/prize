@@ -21,8 +21,6 @@ import android.widget.CompoundButton;
 public class Fragment3 extends Fragment {
     private TextView tv_testSeekBar1,tv_testSeekBar2,tv_testSeekBar3,tv_testSeekBar4,tv_testSeekBar5,tv_testSeekBar6,tv_testSeekBar7,tv_testSeekBar8;
     private SeekBar test_seekBar1,test_seekBar2,test_seekBar3,test_seekBar4,test_seekBar5,test_seekBar6,test_seekBar7,test_seekBar8;
-
-    private CheckBox chkOpen1,chkOpen10;
     private String test_model = "test", model;
     private LocalDataManager localDataManager;
     private TextView tv_sb1title,tv_sb2title,tv_sb3title,tv_sb4title,tv_sb5title,tv_sb6title,tv_sb7title,tv_sb8title;
@@ -193,7 +191,6 @@ public class Fragment3 extends Fragment {
 
             }
         });
-
         test_seekBar2.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -211,7 +208,6 @@ public class Fragment3 extends Fragment {
 
             }
         });
-
         test_seekBar3.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -229,7 +225,6 @@ public class Fragment3 extends Fragment {
 
             }
         });
-
         test_seekBar4.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -315,45 +310,9 @@ public class Fragment3 extends Fragment {
 
             }
         });
-//        CheckBox chkOpen1 = (CheckBox) view.findViewById(R.id.chkOpen1);
-//        CheckBox chkOpen10 = (CheckBox) view.findViewById(R.id.chkOpen10);
-//
-//        if (chkOpen1.isChecked()) {
-//            chkOpen1.toggle();     // flips the checkbox to unchecked if it was checked
-//        }
-//
-//        if (chkOpen10.isChecked()) {
-//            chkOpen10.toggle();     // flips the checkbox to unchecked if it was checked
-//        }
-//        chkOpen1.setOnCheckedChangeListener(
-//                new CompoundButton.OnCheckedChangeListener() {
-//                    @Override
-//                    public void onCheckedChanged(CompoundButton arg0, boolean isChecked) {
-//                        localDataManager.setSharedPreference(getContext(),"oneMinute",isChecked?"true":"false");
-//                        localDataManager.setSharedPreference(getContext(),"tenMinute",isChecked?"false":"true");
-//                        chkOpen10.setChecked(!isChecked);
-//
-//                    }
-//                }
-//        );
-
-//        chkOpen10.setOnCheckedChangeListener(
-//                new CompoundButton.OnCheckedChangeListener() {
-//                    @Override
-//                    public void onCheckedChanged(CompoundButton arg0, boolean isChecked) {
-//                        chkOpen1.setChecked(!isChecked);
-//                        localDataManager.setSharedPreference(getContext(),"tenMinutes",isChecked?"true":"false");
-//                        localDataManager.setSharedPreference(getContext(),"oneMinutes",isChecked?"false":"true");
-//                    }
-//                }
-//        );
-
 
         return view;
     }
-
-
-
     public void init(View view){
         tv_sb1title = view.findViewById(R.id.tv_testsb1title);
         tv_sb2title = view.findViewById(R.id.tv_testSb2title);
