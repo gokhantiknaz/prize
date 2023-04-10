@@ -18,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -1149,6 +1150,22 @@ public class MainActivity extends AppCompatActivity {
         closeBluetooth();
     }
 
+    public void onRadioButtonClicked(View view) {
+        // Is the button now checked?
+        boolean checked = ((RadioButton) view).isChecked();
+
+        // Check which radio button was clicked
+        switch(view.getId()) {
+            case R.id.oneMinute:
+                if (checked)
+                    localDataManager.setSharedPreference(view.getContext(),"longManuel","false");
+                break;
+            case R.id.tenMinutes:
+                if (checked)
+                    localDataManager.setSharedPreference(view.getContext(),"longManuel","true");
+                break;
+        }
+    }
     private class ClientClass extends Thread{
 
         public ClientClass (String device_id){

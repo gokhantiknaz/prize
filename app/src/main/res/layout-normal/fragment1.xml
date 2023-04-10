@@ -286,6 +286,38 @@
                     android:fontFamily="@font/akaya_telivigala"
                     android:text="DISCONNECT" />
 
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btnsaveTmp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/akaya_telivigala"
+                        android:text="Save"
+                        app:icon="@drawable/ic_baseline_save_24" />
+
+                    <Button
+                        android:id="@+id/btnLoadTmp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/akaya_telivigala"
+                        android:text="Load"
+                        app:icon="@android:drawable/stat_sys_upload" />
+
+                </LinearLayout>
+
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

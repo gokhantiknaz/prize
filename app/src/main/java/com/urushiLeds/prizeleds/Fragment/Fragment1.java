@@ -1,6 +1,10 @@
 package com.urushiLeds.prizeleds.Fragment;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -12,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.SeekBar;
 import android.widget.Spinner;
@@ -36,6 +41,7 @@ import com.github.mikephil.charting.listener.ChartTouchListener;
 import com.github.mikephil.charting.listener.OnChartGestureListener;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 
+import java.io.File;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
@@ -49,7 +55,7 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
     LineData chartData = new LineData();
     String selectedChannel;
     private TextView tv_seekBar1,tv_seekBar2,tv_seekBar3,tv_seekBar4,tv_sb1title,tv_sb2title,tv_sb3title,tv_sb4title;
-    private Button btn_gd,btn_gb,btn_g,btn_a;
+    private Button btn_gd,btn_gb,btn_g,btn_a,savetmButton,loadtmpButton;
 
     final static int MODEL_DEFAULT = 0;
     final static int MODEL_FMAJOR = 1;
@@ -195,7 +201,41 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
             }
         });
 
+        savetmButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showAddItemDialog(getContext());
+
+            }
+        });
+
+        loadtmpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+            }
+        });
+
         return view;
+    }
+
+    private void showAddItemDialog(Context c) {
+        final EditText taskEditText = new EditText(c);
+        AlertDialog dialog = new AlertDialog.Builder(c)
+                .setTitle("Save Template")
+                .setMessage("Enter File Name")
+                .setView(taskEditText)
+                .setPositiveButton("Save", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String fileName = String.valueOf(taskEditText.getText());
+                        File file = new File(getContext().getFilesDir(), fileName);
+                    }
+                })
+                .setNegativeButton("Cancel", null)
+                .create();
+        dialog.show();
     }
 
     public void init(View view){
@@ -228,6 +268,9 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
         btn_g = view.findViewById(R.id.btn_g);
         btn_gb = view.findViewById(R.id.btn_gb);
         btn_a = view.findViewById(R.id.btn_a);
+
+        savetmButton = view.findViewById(R.id.btnsaveTmp);
+        loadtmpButton = view.findViewById(R.id.btnLoadTmp);
         ArrayAdapter adapter = new ArrayAdapter(getContext(),R.layout.spinner_item,channels);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         //Setting the ArrayAdapter data on the Spinner
@@ -1749,8 +1792,6 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
 
     }
 
-
-
     public void refreshChart8Channel(ArrayList entry,int pivot1,int pivot2,int pivot3,int pivot4,int pivot5,int pivot6,int pivot7,int pivot8,float time1,float time2,float time3,float time4,float time5,float time6,float time7,float time8,LineDataSet lineDataSet,int width,String channel,int color){
 
         entry.add(new Entry(time1, pivot1));
@@ -1772,10 +1813,6 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
         mChart.invalidate();
 
     }
-
-
-
-
 
     /////////////////////////////////////// MP-ANDROID CHART IMPLEMENTATIONS ///////////////////////////////////////////////////
     @Override

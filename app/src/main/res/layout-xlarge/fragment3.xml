@@ -321,12 +321,30 @@
                 android:layout_marginBottom="0dp"
                 android:max="100" />
         </LinearLayout>
-        <CheckBox
-            android:id="@+id/chkOpen15"
-            android:layout_width="342dp"
+        <RadioGroup
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Open for 15 Minutes"
-            android:textColor="@color/white" />
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/oneMinute"
+                android:layout_width="129dp"
+                android:layout_height="wrap_content"
+                android:onClick="onRadioButtonClicked"
+                android:text="One Minute"
+                android:textColor="@color/white" />
+
+            <RadioButton
+                android:id="@+id/tenMinutes"
+                android:layout_width="154dp"
+                android:layout_height="wrap_content"
+                android:onClick="onRadioButtonClicked"
+                android:text="10 Minutes"
+                android:textColor="@color/white" />
+        </RadioGroup>
+
+
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

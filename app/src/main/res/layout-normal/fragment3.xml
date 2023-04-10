@@ -322,15 +322,43 @@
                 android:max="100" />
         </LinearLayout>
 
-    </LinearLayout>
 
-    <CheckBox
-        android:id="@+id/chkOpen15"
-        android:layout_width="342dp"
-        android:layout_height="wrap_content"
-        android:text="Open for 15 Minutes"
-        android:textColor="@color/white"
-        tools:layout_editor_absoluteX="-5dp"
-        tools:layout_editor_absoluteY="475dp" />
+<!--        <CheckBox-->
+<!--            android:id="@+id/chkOpen1"-->
+<!--            android:layout_width="342dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Open for 1 Minute"-->
+<!--            android:textColor="@color/white" />-->
+<!--        <CheckBox-->
+<!--            android:id="@+id/chkOpen10"-->
+<!--            android:layout_width="342dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Open for 10 Minutes"-->
+<!--            android:textColor="@color/white" />-->
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/oneMinute"
+                android:layout_width="129dp"
+                android:layout_height="wrap_content"
+                android:onClick="onRadioButtonClicked"
+                android:text="One Minute"
+                android:textColor="@color/white" />
+
+            <RadioButton
+                android:id="@+id/tenMinutes"
+                android:layout_width="154dp"
+                android:layout_height="wrap_content"
+                android:onClick="onRadioButtonClicked"
+                android:text="10 Minutes"
+                android:textColor="@color/white" />
+        </RadioGroup>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
