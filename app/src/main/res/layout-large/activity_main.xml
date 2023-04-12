@@ -56,9 +56,10 @@
         android:onClick="fab_bottom"
         android:layout_height="wrap_content"
         app:tint="@android:color/white"
-        android:backgroundTint="@color/black"
-        android:src="@drawable/icon"
+        app:backgroundTint="@color/black"
+        app:srcCompat="@drawable/icon"
         app:layout_anchor="@id/bottom_appbar" />
+
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

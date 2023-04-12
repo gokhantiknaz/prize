@@ -224,7 +224,20 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
         loadtmpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadState("");
+
+                ArrayList<String> templateArrray = LoadTemplateList();
+                String[] stringArray = templateArrray.toArray(new String[0]);
+
+
+                AlertDialog.Builder listAlert = new AlertDialog.Builder(getContext());
+
+                listAlert.setTitle("Select template");
+                listAlert.setItems(stringArray, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                     loadState(stringArray[which]);
+                    }
+                }).show();
             }
         });
 
@@ -1848,7 +1861,16 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
     private void saveState(String fileName) {
         FileOutputStream outStream = null;
         try {
-            File f = new File(Environment.getExternalStorageDirectory(), "/"+fileName+".iki");
+            String fullPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/IkigaiTemplates";
+
+            File dir = new File(fullPath);
+            if (!dir.exists()) {
+                dir.mkdirs();
+            }
+
+            File f = new File(fullPath, "/"+fileName+".myth");
+            if(f.exists())
+                f.delete();
 
             outStream = new FileOutputStream(f);
             ObjectOutputStream objectOutStream = new ObjectOutputStream(outStream);
@@ -1869,7 +1891,8 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
         ArrayList<Template> loadedData =null;
         FileInputStream inStream = null;
         try {
-            File f = new File(Environment.getExternalStorageDirectory(), "/"+fileName+".iki");
+            String fullPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/IkigaiTemplates";
+            File f = new File(fullPath, "/"+fileName);
             inStream = new FileInputStream(f);
             ObjectInputStream objectInStream = new ObjectInputStream(inStream);
 
@@ -1895,6 +1918,18 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
 //        {
 //            Log.e("FAILED TO LOAD", "YOU SUCK!!!!");
 //        }
+    }
+
+    private  ArrayList<String> LoadTemplateList(){
+        File directoryDefault = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), "IkigaiTemplates");
+
+        ArrayList<String> namesArray = new ArrayList<>();
+        File[] arrayFiles = directoryDefault.listFiles();
+
+        for (File file : arrayFiles) {
+            namesArray.add(file.getName());
+        }
+        return namesArray;
     }
     public void refreshChart(ArrayList entry,int pivot1,int pivot2,int pivot3,int pivot4,float time1,float time2,float time3,float time4,LineDataSet lineDataSet,int width,String channel,int color){
 
