@@ -8,14 +8,14 @@ public class Template  implements Cloneable, Serializable {
     public String ogleBrightness;
     public String aksamBrightness;
     public String geceBrightness;
-    public float sabahHour;
-    public float ogleHour;
-    public float aksamHour;
-    public float geceHour;
-    public float sabahMin;
-    public float ogleMin;
-    public float aksamMin;
-    public float geceMin;
+    public String sabahHour;
+    public String ogleHour;
+    public String aksamHour;
+    public String geceHour;
+    public String sabahMin;
+    public String ogleMin;
+    public String aksamMin;
+    public String geceMin;
     public Template() {
     }
 }

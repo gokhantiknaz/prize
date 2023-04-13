@@ -377,10 +377,8 @@ public class MainActivity extends AppCompatActivity {
         if (test_model.equals("test")) {
             txData[0] = 0x65;
             String longManuel = localDataManager.getSharedPreference(getApplicationContext(), "longManuel", "false");
-            if (longManuel.equals("true"))
-                txData[1] = 0x07;
-            else
-                txData[1] = 0x06;
+
+            txData[1] = 0x06;
             txData[2] = 0xA;
 
             String test_f1 = localDataManager.getSharedPreference(getApplicationContext(), "testf1", "0");
