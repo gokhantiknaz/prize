@@ -1547,7 +1547,8 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
 
             mChart.setData(chartData);
             mChart.invalidate();
-        } else if (model.equals("RGBW")) {
+        }
+        else if (model.equals("RGBW")) {
             String mChannel = "RED";
             String c1f1 = localDataManager.getSharedPreference(getContext(), model + mChannel + "f1", "0");
             String c1f2 = localDataManager.getSharedPreference(getContext(), model + mChannel + "f2", "0");
@@ -1606,7 +1607,8 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
             refreshChart(entries3, Integer.parseInt(c3f1), Integer.parseInt(c3f2), Integer.parseInt(c3f3), Integer.parseInt(c3f4), c3gdh / 8f + c3gdm / 1000f, c3gh / 8f + c3gm / 1000f, c3gbh / 8f + c3gbm / 1000f, c3ah / 8f + c3am / 1000f, lDataSet3, 2, "BLUE", R.color.lighgray);
             refreshChart(entries4, Integer.parseInt(c4f1), Integer.parseInt(c4f2), Integer.parseInt(c4f3), Integer.parseInt(c4f4), c4gdh / 8f + c4gdm / 1000f, c4gh / 8f + c4gm / 1000f, c4gbh / 8f + c4gbm / 1000f, c4ah / 8f + c4am / 1000f, lDataSet4, 2, "WHITE", R.color.lighgray);
 
-        } else if (model.equals("SPECTRUM+")) {
+        }
+        else if (model.equals("SPECTRUM+")) {
             String mChannel = "5000K";
             String c1f1 = localDataManager.getSharedPreference(getContext(), model + mChannel + "f1", "0");
             String c1f2 = localDataManager.getSharedPreference(getContext(), model + mChannel + "f2", "0");
@@ -1664,7 +1666,8 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
             refreshChart(entries2, Integer.parseInt(c2f1), Integer.parseInt(c2f2), Integer.parseInt(c2f3), Integer.parseInt(c2f4), c2gdh / 8f + c2gdm / 1000f, c2gh / 8f + c2gm / 1000f, c2gbh / 8f + c2gbm / 1000f, c2ah / 8f + c2am / 1000f, lDataSet2, 2, "6500K", R.color.lighgray);
             refreshChart(entries3, Integer.parseInt(c3f1), Integer.parseInt(c3f2), Integer.parseInt(c3f3), Integer.parseInt(c3f4), c3gdh / 8f + c3gdm / 1000f, c3gh / 8f + c3gm / 1000f, c3gbh / 8f + c3gbm / 1000f, c3ah / 8f + c3am / 1000f, lDataSet3, 2, "9000K", R.color.lighgray);
             refreshChart(entries4, Integer.parseInt(c4f1), Integer.parseInt(c4f2), Integer.parseInt(c4f3), Integer.parseInt(c4f4), c4gdh / 8f + c4gdm / 1000f, c4gh / 8f + c4gm / 1000f, c4gbh / 8f + c4gbm / 1000f, c4ah / 8f + c4am / 1000f, lDataSet4, 2, "MAGENTA", R.color.lighgray);
-        } else if (model.equals("WIDE SPECT")) {
+        }
+        else if (model.equals("WIDE SPECT")) {
             String mChannel = "REDDISH WHITE";
             String c1f1 = localDataManager.getSharedPreference(getContext(), model + mChannel + "f1", "0");
             String c1f2 = localDataManager.getSharedPreference(getContext(), model + mChannel + "f2", "0");
@@ -1722,7 +1725,8 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
             refreshChart(entries2, Integer.parseInt(c2f1), Integer.parseInt(c2f2), Integer.parseInt(c2f3), Integer.parseInt(c2f4), c2gdh / 8f + c2gdm / 1000f, c2gh / 8f + c2gm / 1000f, c2gbh / 8f + c2gbm / 1000f, c2ah / 8f + c2am / 1000f, lDataSet2, 2, "GREENISH WHITE", R.color.lighgray);
             refreshChart(entries3, Integer.parseInt(c3f1), Integer.parseInt(c3f2), Integer.parseInt(c3f3), Integer.parseInt(c3f4), c3gdh / 8f + c3gdm / 1000f, c3gh / 8f + c3gm / 1000f, c3gbh / 8f + c3gbm / 1000f, c3ah / 8f + c3am / 1000f, lDataSet3, 2, "BLUEISH WHITE", R.color.lighgray);
             refreshChart(entries4, Integer.parseInt(c4f1), Integer.parseInt(c4f2), Integer.parseInt(c4f3), Integer.parseInt(c4f4), c4gdh / 8f + c4gdm / 1000f, c4gh / 8f + c4gm / 1000f, c4gbh / 8f + c4gbm / 1000f, c4ah / 8f + c4am / 1000f, lDataSet4, 2, "SUNLIKE WHITE", R.color.lighgray);
-        } else if (model.equals("UV+")) {
+        }
+        else if (model.equals("UV+")) {
             String mChannel = "5000K";
             String c1f1 = localDataManager.getSharedPreference(getContext(), model + mChannel + "f1", "0");
             String c1f2 = localDataManager.getSharedPreference(getContext(), model + mChannel + "f2", "0");
@@ -1866,8 +1870,6 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
             int x=1;
             for (Template data : loadedData) {
                 try {
-
-
                     String cxf1 = data.sabahBrightness;
                     String cxf2 = data.ogleBrightness;
                     String cxf3 = data.aksamBrightness;
@@ -1911,14 +1913,12 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
 //                    btn_a.setText("NIGHT " + String.format("%02d", Integer.parseInt(data.geceHour)) + ":" + String.format("%02d", Integer.parseInt(data.geceMin)));
 
                     x++;
-
-                    retrieveMemorizedDatas();
-
                 } catch (Exception e) {
                     Log.e(TAG, e.getMessage());
                 }
             }
 
+            retrieveMemorizedDatas();
             sp_channel.setSelection(0);
             onItemSelected(null,getView(),0,0);
 
