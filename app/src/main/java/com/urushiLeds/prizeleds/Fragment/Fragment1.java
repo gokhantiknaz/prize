@@ -1875,7 +1875,7 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
         FileOutputStream outStream = null;
         templates = new ArrayList<>();
         try {
-            String fullPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/IkigaiTemplates";
+            String fullPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/prizeTemplates";
 
             File dir = new File(fullPath);
             if (!dir.exists()) {
@@ -1943,7 +1943,7 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
         ArrayList<Template> loadedData = null;
         FileInputStream inStream = null;
         try {
-            String fullPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/IkigaiTemplates";
+            String fullPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/prizeTemplates";
             File f = new File(fullPath, "/" + fileName);
             inStream = new FileInputStream(f);
             ObjectInputStream objectInStream = new ObjectInputStream(inStream);
@@ -2019,7 +2019,7 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
         }
     }
     private ArrayList<String> LoadTemplateList() {
-        File directoryDefault = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), "IkigaiTemplates");
+        File directoryDefault = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), "prizeTemplates");
 
         ArrayList<String> namesArray = new ArrayList<>();
         File[] arrayFiles = directoryDefault.listFiles();
