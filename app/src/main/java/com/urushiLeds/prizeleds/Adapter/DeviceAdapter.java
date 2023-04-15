@@ -40,7 +40,6 @@ public class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.MyViewHold
             tv_bleadress = itemView.findViewById(R.id.tv_bleId);
             cv_rv = itemView.findViewById(R.id.cv_rv);
             iv_add = itemView.findViewById(R.id.iv_add);
-
         }
 
     }

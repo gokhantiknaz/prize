@@ -19,4 +19,11 @@
     <color name="divider">#BDBDBD</color>
 
     <color name="lighgray">#D3D3D3</color>
+
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="colorLineLight">#FFCC80</color>
+    <color name="colorLineMedium">#FFB74D</color>
+    <color name="colorBackground">#FFE0B2</color>
 </resources>

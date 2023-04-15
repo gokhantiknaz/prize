@@ -43,7 +43,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-public class BluetoothScanActivity extends AppCompatActivity {
+public class ScanActivity extends AppCompatActivity {
 
     private static final long SCAN_PERIOD = 10000;
     private BluetoothAdapter bluetoothAdapter;
@@ -52,6 +52,7 @@ public class BluetoothScanActivity extends AppCompatActivity {
     private DeviceAdapter mAdapter;
     private BeaconAdapter adapter;
 
+    private RecyclerView.LayoutManager mLayoutManager;
     ArrayList arrayList_bleDevices = new ArrayList<>();
 
     private Handler mHandler;
@@ -63,8 +64,6 @@ public class BluetoothScanActivity extends AppCompatActivity {
     private int REQUEST_ENABLE_BT = 1;
 
     private List<Beacon> beacons;
-
-    private final String UUIDS = "[19721006-2004-2007-2014-acc0cbeac000]"; //closebeacons UUIDS
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,7 +98,7 @@ public class BluetoothScanActivity extends AppCompatActivity {
     public void init() {
         btn_scan = findViewById(R.id.btn_scan);
         mRecylerView = findViewById(R.id.rv_ble);
-        beacons = Collections.synchronizedList(new ArrayList<Beacon>());
+
         mHandler = new Handler();
         if (!getPackageManager().hasSystemFeature(PackageManager.FEATURE_BLUETOOTH_LE)) {
             Toast.makeText(this, "BLE Not Supported",
@@ -120,7 +119,7 @@ public class BluetoothScanActivity extends AppCompatActivity {
         mRecylerView.setHasFixedSize(true);
         mRecylerView.setItemViewCacheSize(50);
         mRecylerView.setLayoutManager(linearLayoutManager);
-        adapter = new BeaconAdapter(this, beacons);
+        adapter= new BeaconAdapter(this,beacons);
     }
 
     @Override
@@ -141,7 +140,7 @@ public class BluetoothScanActivity extends AppCompatActivity {
                 // for ActivityCompat#requestPermissions for more details.
                 return;
             }
-            startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
+            startActivityForResult(enableBtIntent,  REQUEST_ENABLE_BT);
         } else {
             if (Build.VERSION.SDK_INT >= 21) {
                 mLEScanner = bluetoothAdapter.getBluetoothLeScanner();
@@ -151,6 +150,7 @@ public class BluetoothScanActivity extends AppCompatActivity {
                 filters = new ArrayList<ScanFilter>();
 
                 beacons = Collections.synchronizedList(new ArrayList<Beacon>());
+
             }
             scanLeDevice(true);
         }
@@ -166,7 +166,6 @@ public class BluetoothScanActivity extends AppCompatActivity {
 
     private void scanLeDevice(final boolean enable) {
         if (enable) {
-
             mHandler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -190,7 +189,6 @@ public class BluetoothScanActivity extends AppCompatActivity {
             mLEScanner.stopScan(mScanCallback);
         }
     }
-
     @Override
     protected void onDestroy() {
 
@@ -217,12 +215,14 @@ public class BluetoothScanActivity extends AppCompatActivity {
         public void onScanResult(int callbackType, ScanResult result) {
             //Log.i("callbackType", String.valueOf(callbackType));
             //Log.i("result", result.toString());
+
             BluetoothDevice btDevice = result.getDevice();
+
             String uuidsFromScan = String.valueOf(result.getScanRecord().getServiceUuids());
+
             //check that this is closebeacons device by UUIDS &
             // device with same address is not contains in list.
-
-            if (checkMacAddress(String.valueOf(result.getDevice().getAddress()))) {
+            if (true) {
                 if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
                     // TODO: Consider calling
                     //    ActivityCompat#requestPermissions
@@ -252,35 +252,26 @@ public class BluetoothScanActivity extends AppCompatActivity {
             }
         }
 
-        public boolean checkMacAddress(String address) {
-            if (beacons.size() != 0) {
-                Iterator<Beacon> it = beacons.iterator();
-                while (it.hasNext()) {
-                    Beacon beacon = it.next();
-                    String addressBeacon = String.valueOf(beacon.getAddress());
-                    boolean bool = (addressBeacon.equals(address));
-                    if (bool) {
-                        return false;
-                    }
-                }
-            }
-            return true;
-        }
-
         @Override
         public void onScanFailed(int errorCode) {
             Log.e("Scan Failed", "Error Code: " + errorCode);
         }
     };
 
-//    private BluetoothAdapter.LeScanCallback mLeScanCallback =
-//            (device, rssi, scanRecord) -> runOnUiThread(new Runnable() {
-//                @Override
-//                public void run() {
-//                    Log.i("onLeScan", device.toString());
-//                    connectToDevice(device);
-//                }
-//            });
+    private BluetoothAdapter.LeScanCallback mLeScanCallback =
+            new BluetoothAdapter.LeScanCallback() {
+                @Override
+                public void onLeScan(final BluetoothDevice device, int rssi,
+                                     byte[] scanRecord) {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Log.i("onLeScan", device.toString());
+                            connectToDevice(device);
+                        }
+                    });
+                }
+            };
 
     public void connectToDevice(BluetoothDevice device) {
         if (mGatt == null) {
@@ -364,15 +355,17 @@ public class BluetoothScanActivity extends AppCompatActivity {
         }
     };
 
-    public void displayBeaconsList() {
+    public void displayBeaconsList()
+    {
         mRecylerView = findViewById(R.id.rv_ble);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
         mRecylerView.setHasFixedSize(true);
         mRecylerView.setItemViewCacheSize(50);
+        mRecylerView.setLayoutManager(linearLayoutManager);
 
-        adapter = new BeaconAdapter(this, beacons);
         mRecylerView.setLayoutManager(linearLayoutManager);
         mRecylerView.setAdapter(adapter);
+
 
 //        recyclerView = (RecyclerView) findViewById(R.id.beacons_recycler_view);
 //        layoutManager = new LinearLayoutManager(this);
@@ -383,22 +376,25 @@ public class BluetoothScanActivity extends AppCompatActivity {
 //        recyclerView.setAdapter(adapter);
     }
 
-    public void addBeacon(Beacon iBeacon) {
-        if (beacons.size() != 0) {
+    public void addBeacon(Beacon iBeacon)
+    {
+        if(beacons.size() != 0)
+        {
             Iterator<Beacon> it = beacons.iterator();
-            while (it.hasNext()) {
+            while (it.hasNext())
+            {
                 Beacon beacon = it.next();
                 String addressBeacon = String.valueOf(beacon.getAddress());
                 String addressIBeacon = String.valueOf(iBeacon.getAddress());
                 boolean bool = (addressBeacon.equals(addressIBeacon));
-                if (bool) {
+                if (bool)
+                {
                     it.remove();
                 }
             }
         }
         beacons.add(iBeacon);
     }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (requestCode == REQUEST_ENABLE_BT) {
@@ -410,7 +406,6 @@ public class BluetoothScanActivity extends AppCompatActivity {
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
-
     private static String[] PERMISSIONS_STORAGE = {
             Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
@@ -453,13 +448,27 @@ public class BluetoothScanActivity extends AppCompatActivity {
             return;
         }
 
-        for (int i = 0; i < beacons.size(); i++) {
-            Log.e("deviceList", beacons.get(i).toString() + "pos : " + i);
+        if (beacons.isEmpty() && !bluetoothAdapter.getAddress().isEmpty()) {
+            arrayList_bleDevices.clear();
+
+            Set<BluetoothDevice> bt = bluetoothAdapter.getBondedDevices();
+
+            for (BluetoothDevice bluetoothDevice : bt) {
+                if (bluetoothDevice.getName().contains("ikigai") || bluetoothDevice.getName().contains("IKIGAI")) {
+                    arrayList_bleDevices.add(new Ble_devices(bluetoothDevice.getName(), bluetoothDevice.getAddress()));
+                }
+            }
+            mRecylerView.setAdapter(adapter);
+        } else {
+
+            for (int i = 0; i < beacons.size(); i++) {
+                Log.e("deviceList", beacons.get(i).toString() + "pos : " + i);
+            }
+            Intent intent = new Intent(ScanActivity.this, MainActivity.class);
+            intent.putStringArrayListExtra("bleDevicesList", arrayList_bleDevices);
+            startActivity(intent);
+            finish();
         }
-        Intent intent = new Intent(BluetoothScanActivity.this, MainActivity.class);
-        intent.putStringArrayListExtra("bleDevicesList", arrayList_bleDevices);
-        startActivity(intent);
-        finish();
 
     }
 }
