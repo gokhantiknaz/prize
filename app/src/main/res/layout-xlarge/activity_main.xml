@@ -57,8 +57,8 @@
         android:layout_height="wrap_content"
         android:tint="@color/white"
         app:tint="@android:color/white"
-        app:backgroundTint="@color/black"
-        app:srcCompat="@drawable/icon"
+        app:backgroundTint="@color/red"
+        app:srcCompat="@drawable/lights"
         app:layout_anchor="@id/bottom_appbar" />
 
 

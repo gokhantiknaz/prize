@@ -1,14 +1,13 @@
 package com.urushiLeds.prizeleds.Class;
 
 public class Models {
-    private String modelName,channel1,channel2,channel3,channel4,channel5,channel6;
+    private String modelName,channel1,channel2,channel3,channel4,channel5,channel6,channel7,channel8;
     int channel;
 
     public Models() {
     }
 
-    public Models(String modelName, String channel1, String channel2, String channel3, String channel4, String channel5, String channel6,
-                   int channel) {
+    public Models(String modelName, String channel1, String channel2, String channel3, String channel4, String channel5, String channel6, String channel7, String channel8, int channel) {
         this.modelName = modelName;
         this.channel1 = channel1;
         this.channel2 = channel2;
@@ -16,8 +15,8 @@ public class Models {
         this.channel4 = channel4;
         this.channel5 = channel5;
         this.channel6 = channel6;
-       // this.channel7 = channel7;
-       // this.channel8 = channel8;
+        this.channel7 = channel7;
+        this.channel8 = channel8;
         this.channel = channel;
     }
 

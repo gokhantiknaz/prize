@@ -4,8 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
-import android.widget.RadioButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -15,8 +13,6 @@ import androidx.fragment.app.Fragment;
 
 import com.urushi.prizeleds.R;
 import com.urushiLeds.prizeleds.Class.LocalDataManager;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 
 public class Fragment3 extends Fragment {
     private TextView tv_testSeekBar1,tv_testSeekBar2,tv_testSeekBar3,tv_testSeekBar4,tv_testSeekBar5,tv_testSeekBar6,tv_testSeekBar7,tv_testSeekBar8;
@@ -191,6 +187,7 @@ public class Fragment3 extends Fragment {
 
             }
         });
+
         test_seekBar2.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -208,6 +205,7 @@ public class Fragment3 extends Fragment {
 
             }
         });
+
         test_seekBar3.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -225,6 +223,7 @@ public class Fragment3 extends Fragment {
 
             }
         });
+
         test_seekBar4.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -242,6 +241,8 @@ public class Fragment3 extends Fragment {
 
             }
         });
+
+
         test_seekBar5.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -259,6 +260,8 @@ public class Fragment3 extends Fragment {
 
             }
         });
+
+
         test_seekBar6.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -276,6 +279,8 @@ public class Fragment3 extends Fragment {
 
             }
         });
+
+
         test_seekBar7.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -293,6 +298,8 @@ public class Fragment3 extends Fragment {
 
             }
         });
+
+
         test_seekBar8.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -311,8 +318,10 @@ public class Fragment3 extends Fragment {
             }
         });
 
+
         return view;
     }
+
     public void init(View view){
         tv_sb1title = view.findViewById(R.id.tv_testsb1title);
         tv_sb2title = view.findViewById(R.id.tv_testSb2title);
@@ -340,7 +349,6 @@ public class Fragment3 extends Fragment {
         test_seekBar6 = view.findViewById(R.id.test_seekBar6);
         test_seekBar7 = view.findViewById(R.id.test_seekBar7);
         test_seekBar8 = view.findViewById(R.id.test_seekBar8);
-
 
         localDataManager = new LocalDataManager();
 

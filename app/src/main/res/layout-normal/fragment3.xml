@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/black"
+    android:background="@drawable/mainbg"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -30,8 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="ROYAL"
-            android:fontFamily="@font/akaya_telivigala"
+            android:text="Kanal 1"
             android:textColor="@color/white" />
 
         <LinearLayout
@@ -68,8 +67,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="BLUE"
-            android:fontFamily="@font/akaya_telivigala"
+            android:text="Kanal 2"
             android:textColor="@color/white" />
 
         <LinearLayout
@@ -105,8 +103,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="CYAN +"
-            android:fontFamily="@font/akaya_telivigala"
+            android:text="Kanal 3"
             android:textColor="@color/white" />
 
         <LinearLayout
@@ -142,8 +139,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="ACTINIC +"
-            android:fontFamily="@font/akaya_telivigala"
+            android:text="Kanal 4"
             android:textColor="@color/white" />
 
         <LinearLayout
@@ -174,16 +170,19 @@
                 android:thumbTint="@android:color/holo_orange_dark" />
         </LinearLayout>
 
+
+
         <TextView
+            android:visibility="gone"
             android:id="@+id/tv_testSb5title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="HE WHITE"
-            android:fontFamily="@font/akaya_telivigala"
+            android:text="Kanal 5"
             android:textColor="@color/white" />
 
         <LinearLayout
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
@@ -213,16 +212,16 @@
 
 
         <TextView
-
+            android:visibility="gone"
             android:id="@+id/tv_testSb6title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="MAGENTA +"
-            android:fontFamily="@font/akaya_telivigala"
+            android:text="Kanal 6"
             android:textColor="@color/white" />
 
         <LinearLayout
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
@@ -268,10 +267,11 @@
 
             <TextView
                 android:id="@+id/tv_testSeekBar7"
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
                 android:layout_height="20dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="0dp"
+                android:gravity="right"
                 android:text="% 0"
                 android:textColor="@color/white" />
 
@@ -283,7 +283,9 @@
                 android:layout_marginTop="0dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="0dp"
-                android:max="100" />
+                android:max="100"
+                android:progressTint="@android:color/holo_orange_dark"
+                android:thumbTint="@android:color/holo_orange_dark" />
         </LinearLayout>
 
 
@@ -304,10 +306,11 @@
 
             <TextView
                 android:id="@+id/tv_testSeekBar8"
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
                 android:layout_height="20dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="0dp"
+                android:gravity="right"
                 android:text="% 0"
                 android:textColor="@color/white" />
 
@@ -319,45 +322,10 @@
                 android:layout_marginTop="0dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="0dp"
-                android:max="100" />
+                android:max="100"
+                android:progressTint="@android:color/holo_orange_dark"
+                android:thumbTint="@android:color/holo_orange_dark" />
         </LinearLayout>
-
-
-<!--        <CheckBox-->
-<!--            android:id="@+id/chkOpen1"-->
-<!--            android:layout_width="342dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Open for 1 Minute"-->
-<!--            android:textColor="@color/white" />-->
-<!--        <CheckBox-->
-<!--            android:id="@+id/chkOpen10"-->
-<!--            android:layout_width="342dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Open for 10 Minutes"-->
-<!--            android:textColor="@color/white" />-->
-
-        <RadioGroup
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal">
-
-            <RadioButton
-                android:id="@+id/oneMinute"
-                android:layout_width="129dp"
-                android:layout_height="wrap_content"
-                android:onClick="onRadioButtonClicked"
-                android:text="One Minute"
-                android:textColor="@color/white" />
-
-            <RadioButton
-                android:id="@+id/tenMinutes"
-                android:layout_width="154dp"
-                android:layout_height="wrap_content"
-                android:onClick="onRadioButtonClicked"
-                android:text="10 Minutes"
-                android:textColor="@color/white" />
-        </RadioGroup>
 
     </LinearLayout>
 
