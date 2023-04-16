@@ -1,15 +1,17 @@
-
 package com.urushiLeds.prizeleds;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
+import android.Manifest;
 import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -89,12 +91,50 @@ public class MainActivity extends AppCompatActivity {
 
     LocalDataManager localDataManager = new LocalDataManager();
 
+
+    private static String[] PERMISSIONS_STORAGE = {
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.ACCESS_COARSE_LOCATION,
+            Manifest.permission.ACCESS_LOCATION_EXTRA_COMMANDS,
+            Manifest.permission.BLUETOOTH_SCAN,
+            Manifest.permission.BLUETOOTH_CONNECT,
+            Manifest.permission.BLUETOOTH_PRIVILEGED
+    };
+    private static String[] PERMISSIONS_LOCATION = {
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.ACCESS_COARSE_LOCATION,
+            Manifest.permission.ACCESS_LOCATION_EXTRA_COMMANDS,
+            Manifest.permission.BLUETOOTH_SCAN,
+            Manifest.permission.BLUETOOTH_CONNECT,
+            Manifest.permission.BLUETOOTH_PRIVILEGED
+    };
+
+    private void checkPermissions(){
+        int permission1 = ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        int permission2 = ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_SCAN);
+        if (permission1 != PackageManager.PERMISSION_GRANTED) {
+            // We don't have permission so prompt the user
+            ActivityCompat.requestPermissions(
+                    this,
+                    PERMISSIONS_STORAGE,
+                    1
+            );
+        } else if (permission2 != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(
+                    this,
+                    PERMISSIONS_LOCATION,
+                    1
+            );
+        }
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        checkPermissions();
         setContentView(R.layout.activity_main);
         init();
-
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             if (!Environment.isExternalStorageManager()) {
@@ -103,8 +143,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(getpermission);
             }
         }
-
-
         //    modelsArrayList.add(new Models("CUSTOM","Channel 1","Channel 2","Channel 3","Channel 4","Channel 5","Channel 6",6));
         //    modelsArrayList.add(new Models("F-MAJOR","Cool White","Wide Spectrum",null,null,null,null,2));
         //    modelsArrayList.add(new Models("S-MAJOR","Deep Blue","Aqua Sun",null,null,null,null,2));
@@ -120,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
             getSupportFragmentManager().beginTransaction().add(R.id.frame, new Fragment4()).commit();
         }
 
-        progress = ProgressDialog.show(MainActivity.this, "Baglanıyor...", "Lütfen Bekleyin");
+        progress = ProgressDialog.show(MainActivity.this, "Bağlanıyor...", "Lütfen Bekleyin");
 
         // Gelen device id ile bluetooth bağlantısını kur.
         if (bleList.size() > 0) {
@@ -165,6 +203,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
         bluetoothAdapter.disable();
     }
 
@@ -267,7 +315,7 @@ public class MainActivity extends AppCompatActivity {
                         Log.e(TAG, "Diğer cihaza bağlanıyor ...");
                         tv_status.setText("Bağlanıyor");
                         tv_status.setTextColor(getResources().getColor(R.color.accent));
-                        progress = ProgressDialog.show(MainActivity.this, "Diğer Cihaza Baglanıyor...", "Lütfen Bekleyin");
+                        progress = ProgressDialog.show(MainActivity.this, "Diğer Cihaza bağlanıyor...", "Lütfen Bekleyin");
                         // Bluetooth bağlantısını kes.
                         if (socket.isConnected()) {
                             closeBluetooth();
@@ -516,78 +564,78 @@ public class MainActivity extends AppCompatActivity {
                 txData[2] = 0x01;
 
                 String fmax_cw_gd_f = "0";
-                String fmax_cw_gd_h = localDataManager.getSharedPreference(getApplicationContext(), "SPECTRUM+5000Kgdh", "07");
-                String fmax_cw_gd_m = localDataManager.getSharedPreference(getApplicationContext(), "SPECTRUM+5000Kgdm", "00");
+                String fmax_cw_gd_h = localDataManager.getSharedPreference(getApplicationContext(), "SPECTRUM+9000Kgdh", "07");
+                String fmax_cw_gd_m = localDataManager.getSharedPreference(getApplicationContext(), "SPECTRUM+9000Kgdm", "00");
                 txData[3] = (byte) Integer.parseInt(fmax_cw_gd_f);
                 txData[4] = (byte) Integer.parseInt(fmax_cw_gd_h);
                 txData[5] = (byte) Integer.parseInt(fmax_cw_gd_m);
-                String fmax_cw_g_f = localDataManager.getSharedPreference(getApplicationContext(), "SPECTRUM+5000Kf2", "0");
-                String fmax_cw_g_h = localDataManager.getSharedPreference(getApplicationContext(), "SPECTRUM+5000Kgh", "12");
-                String fmax_cw_g_m = localDataManager.getSharedPreference(getApplicationContext(), "SPECTRUM+5000Kgm", "00");
+                String fmax_cw_g_f = localDataManager.getSharedPreference(getApplicationContext(), "SPECTRUM+9000Kf2", "0");
+                String fmax_cw_g_h = localDataManager.getSharedPreference(getApplicationContext(), "SPECTRUM+9000Kgh", "12");
+                String fmax_cw_g_m = localDataManager.getSharedPreference(getApplicationContext(), "SPECTRUM+9000Kgm", "00");
                 txData[6] = (byte) Integer.parseInt(fmax_cw_g_f);
                 txData[7] = (byte) Integer.parseInt(fmax_cw_g_h);
                 txData[8] = (byte) Integer.parseInt(fmax_cw_g_m);
-                String fmax_cw_gb_f = localDataManager.getSharedPreference(getApplicationContext(), "SPECTRUM+5000Kf3", "0");
-                String fmax_cw_gb_h = localDataManager.getSharedPreference(getApplicationContext(), "SPECTRUM+5000Kgbh", "17");
-                String fmax_cw_gb_m = localDataManager.getSharedPreference(getApplicationContext(), "SPECTRUM+5000Kgbm", "00");
+                String fmax_cw_gb_f = localDataManager.getSharedPreference(getApplicationContext(), "SPECTRUM+9000Kf3", "0");
+                String fmax_cw_gb_h = localDataManager.getSharedPreference(getApplicationContext(), "SPECTRUM+9000Kgbh", "17");
+                String fmax_cw_gb_m = localDataManager.getSharedPreference(getApplicationContext(), "SPECTRUM+9000Kgbm", "00");
                 txData[9] = (byte) Integer.parseInt(fmax_cw_gb_f);
                 txData[10] = (byte) Integer.parseInt(fmax_cw_gb_h);
                 txData[11] = (byte) Integer.parseInt(fmax_cw_gb_m);
                 String fmax_cw_a_f = "0";
-                String fmax_cw_a_h = localDataManager.getSharedPreference(getApplicationContext(), "SPECTRUM+5000Kah", "22");
-                String fmax_cw_a_m = localDataManager.getSharedPreference(getApplicationContext(), "SPECTRUM+5000Kam", "00");
+                String fmax_cw_a_h = localDataManager.getSharedPreference(getApplicationContext(), "SPECTRUM+9000Kah", "22");
+                String fmax_cw_a_m = localDataManager.getSharedPreference(getApplicationContext(), "SPECTRUM+9000Kam", "00");
                 txData[12] = (byte) Integer.parseInt(fmax_cw_a_f);
                 txData[13] = (byte) Integer.parseInt(fmax_cw_a_h);
                 txData[14] = (byte) Integer.parseInt(fmax_cw_a_m);
 
                 txData[15] = 0x02;
                 String fmax_fs_gd_f = "0";
-                String fmax_fs_gd_h = localDataManager.getSharedPreference(getApplicationContext(), "SPECTRUM+6500Kgdh", "07");
-                String fmax_fs_gd_m = localDataManager.getSharedPreference(getApplicationContext(), "SPECTRUM+6500Kgdm", "00");
+                String fmax_fs_gd_h = localDataManager.getSharedPreference(getApplicationContext(), "SPECTRUM+7500Kgdh", "07");
+                String fmax_fs_gd_m = localDataManager.getSharedPreference(getApplicationContext(), "SPECTRUM+7500Kgdm", "00");
                 txData[16] = (byte) Integer.parseInt(fmax_fs_gd_f);
                 txData[17] = (byte) Integer.parseInt(fmax_fs_gd_h);
                 txData[18] = (byte) Integer.parseInt(fmax_fs_gd_m);
-                String fmax_fs_g_f = localDataManager.getSharedPreference(getApplicationContext(), "SPECTRUM+6500Kf2", "0");
-                String fmax_fs_g_h = localDataManager.getSharedPreference(getApplicationContext(), "SPECTRUM+6500Kgh", "12");
-                String fmax_fs_g_m = localDataManager.getSharedPreference(getApplicationContext(), "SPECTRUM+6500Kgm", "00");
+                String fmax_fs_g_f = localDataManager.getSharedPreference(getApplicationContext(), "SPECTRUM+7500Kf2", "0");
+                String fmax_fs_g_h = localDataManager.getSharedPreference(getApplicationContext(), "SPECTRUM+7500Kgh", "12");
+                String fmax_fs_g_m = localDataManager.getSharedPreference(getApplicationContext(), "SPECTRUM+7500Kgm", "00");
                 txData[19] = (byte) Integer.parseInt(fmax_fs_g_f);
                 txData[20] = (byte) Integer.parseInt(fmax_fs_g_h);
                 txData[21] = (byte) Integer.parseInt(fmax_fs_g_m);
-                String fmax_fs_gb_f = localDataManager.getSharedPreference(getApplicationContext(), "SPECTRUM+6500Kf3", "0");
-                String fmax_fs_gb_h = localDataManager.getSharedPreference(getApplicationContext(), "SPECTRUM+6500Kgbh", "17");
-                String fmax_fs_gb_m = localDataManager.getSharedPreference(getApplicationContext(), "SPECTRUM+6500Kgbm", "00");
+                String fmax_fs_gb_f = localDataManager.getSharedPreference(getApplicationContext(), "SPECTRUM+7500Kf3", "0");
+                String fmax_fs_gb_h = localDataManager.getSharedPreference(getApplicationContext(), "SPECTRUM+7500Kgbh", "17");
+                String fmax_fs_gb_m = localDataManager.getSharedPreference(getApplicationContext(), "SPECTRUM+7500Kgbm", "00");
                 txData[22] = (byte) Integer.parseInt(fmax_fs_gb_f);
                 txData[23] = (byte) Integer.parseInt(fmax_fs_gb_h);
                 txData[24] = (byte) Integer.parseInt(fmax_fs_gb_m);
                 String fmax_fs_a_f = "0";
-                String fmax_fs_a_h = localDataManager.getSharedPreference(getApplicationContext(), "SPECTRUM+6500Kah", "22");
-                String fmax_fs_a_m = localDataManager.getSharedPreference(getApplicationContext(), "SPECTRUM+6500Kam", "00");
+                String fmax_fs_a_h = localDataManager.getSharedPreference(getApplicationContext(), "SPECTRUM+7500Kah", "22");
+                String fmax_fs_a_m = localDataManager.getSharedPreference(getApplicationContext(), "SPECTRUM+7500Kam", "00");
                 txData[25] = (byte) Integer.parseInt(fmax_fs_a_f);
                 txData[26] = (byte) Integer.parseInt(fmax_fs_a_h);
                 txData[27] = (byte) Integer.parseInt(fmax_fs_a_m);
 
                 txData[28] = 0x03;
                 String fmax_rw_gd_f = "0";
-                String fmax_rw_gd_h = localDataManager.getSharedPreference(getApplicationContext(), "SPECTRUM+9000Kgdh", "07");
-                String fmax_rw_gd_m = localDataManager.getSharedPreference(getApplicationContext(), "SPECTRUM+9000Kgdm", "00");
+                String fmax_rw_gd_h = localDataManager.getSharedPreference(getApplicationContext(), "SPECTRUM+5500Kgdh", "07");
+                String fmax_rw_gd_m = localDataManager.getSharedPreference(getApplicationContext(), "SPECTRUM+5500Kgdm", "00");
                 txData[29] = (byte) Integer.parseInt(fmax_rw_gd_f);
                 txData[30] = (byte) Integer.parseInt(fmax_rw_gd_h);
                 txData[31] = (byte) Integer.parseInt(fmax_rw_gd_m);
-                String fmax_rw_g_f = localDataManager.getSharedPreference(getApplicationContext(), "SPECTRUM+9000Kf2", "0");
-                String fmax_rw_g_h = localDataManager.getSharedPreference(getApplicationContext(), "SPECTRUM+9000Kgh", "12");
-                String fmax_rw_g_m = localDataManager.getSharedPreference(getApplicationContext(), "SPECTRUM+9000Kgm", "00");
+                String fmax_rw_g_f = localDataManager.getSharedPreference(getApplicationContext(), "SPECTRUM+5500Kf2", "0");
+                String fmax_rw_g_h = localDataManager.getSharedPreference(getApplicationContext(), "SPECTRUM+5500Kgh", "12");
+                String fmax_rw_g_m = localDataManager.getSharedPreference(getApplicationContext(), "SPECTRUM+5500Kgm", "00");
                 txData[32] = (byte) Integer.parseInt(fmax_rw_g_f);
                 txData[33] = (byte) Integer.parseInt(fmax_rw_g_h);
                 txData[34] = (byte) Integer.parseInt(fmax_rw_g_m);
-                String fmax_rw_gb_f = localDataManager.getSharedPreference(getApplicationContext(), "SPECTRUM+9000Kf3", "0");
-                String fmax_rw_gb_h = localDataManager.getSharedPreference(getApplicationContext(), "SPECTRUM+9000Kgbh", "17");
-                String fmax_rw_gb_m = localDataManager.getSharedPreference(getApplicationContext(), "SPECTRUM+9000Kgbm", "00");
+                String fmax_rw_gb_f = localDataManager.getSharedPreference(getApplicationContext(), "SPECTRUM+5500Kf3", "0");
+                String fmax_rw_gb_h = localDataManager.getSharedPreference(getApplicationContext(), "SPECTRUM+5500Kgbh", "17");
+                String fmax_rw_gb_m = localDataManager.getSharedPreference(getApplicationContext(), "SPECTRUM+5500Kgbm", "00");
                 txData[35] = (byte) Integer.parseInt(fmax_rw_gb_f);
                 txData[36] = (byte) Integer.parseInt(fmax_rw_gb_h);
                 txData[37] = (byte) Integer.parseInt(fmax_rw_gb_m);
                 String fmax_rw_a_f = "0";
-                String fmax_rw_a_h = localDataManager.getSharedPreference(getApplicationContext(), "SPECTRUM+9000Kah", "22");
-                String fmax_rw_a_m = localDataManager.getSharedPreference(getApplicationContext(), "SPECTRUM+9000Kam", "00");
+                String fmax_rw_a_h = localDataManager.getSharedPreference(getApplicationContext(), "SPECTRUM+5500Kah", "22");
+                String fmax_rw_a_m = localDataManager.getSharedPreference(getApplicationContext(), "SPECTRUM+5500Kam", "00");
                 txData[38] = (byte) Integer.parseInt(fmax_rw_a_f);
                 txData[39] = (byte) Integer.parseInt(fmax_rw_a_h);
                 txData[40] = (byte) Integer.parseInt(fmax_rw_a_m);
@@ -1151,6 +1199,16 @@ public class MainActivity extends AppCompatActivity {
         public ClientClass(String device_id) {
             device = bluetoothAdapter.getRemoteDevice(device_id);
             try {
+                if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+                    // TODO: Consider calling
+                    //    ActivityCompat#requestPermissions
+                    // here to request the missing permissions, and then overriding
+                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                    //                                          int[] grantResults)
+                    // to handle the case where the user grants the permission. See the documentation
+                    // for ActivityCompat#requestPermissions for more details.
+                }
+
                 socket = device.createRfcommSocketToServiceRecord(ESP32_UUID);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -1162,6 +1220,18 @@ public class MainActivity extends AppCompatActivity {
                 // bağlantı kurulu ise önce kapat
                 if (socket.isConnected()) {
                     closeBluetooth();
+                }
+                if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+                    // TODO: Consider calling
+                    //    ActivityCompat#requestPermissions
+                    // here to request the missing permissions, and then overriding
+                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                    //                                          int[] grantResults)
+                    // to handle the case where the user grants the permission. See the documentation
+                    // for ActivityCompat#requestPermissions for more details.
+
+
+                    return;
                 }
                 socket.connect();
                 sendReceive = new SendReceive(socket);
@@ -1179,6 +1249,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
 
     private class SendReceive extends Thread {
         private final BluetoothSocket bluetoothSocket;

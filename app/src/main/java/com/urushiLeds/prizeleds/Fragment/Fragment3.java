@@ -78,11 +78,10 @@ public class Fragment3 extends Fragment {
             tv_sb7title.setVisibility(View.INVISIBLE);
             tv_sb8title.setVisibility(View.INVISIBLE);
 
-            tv_sb1title.setText("5000K");
-            tv_sb2title.setText("6500K");
-            tv_sb3title.setText("9000K");
+            tv_sb1title.setText("9000K");
+            tv_sb2title.setText("7500K");
+            tv_sb3title.setText("5500K");
             tv_sb4title.setText("MAGENTA");
-
 
             tv_testSeekBar1.setVisibility(View.VISIBLE);
             tv_testSeekBar2.setVisibility(View.VISIBLE);

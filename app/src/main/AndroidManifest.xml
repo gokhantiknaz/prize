@@ -2,6 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.urushi.prizeleds">
 
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
     <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
@@ -15,9 +20,10 @@
         android:roundIcon="@drawable/prizelogo"
         android:supportsRtl="true"
         android:theme="@style/Theme.MaterialComponents">
-        <activity android:name="com.urushiLeds.prizeleds.MainActivity"></activity>
+        <activity android:name="com.urushiLeds.prizeleds.MainActivity" />
         <activity android:name="com.urushiLeds.prizeleds.BluetoothScanActivity" />
-        <activity android:name="com.urushiLeds.prizeleds.SplashScreenActivity">
+        <activity android:name="com.urushiLeds.prizeleds.SplashScreenActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

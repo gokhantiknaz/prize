@@ -1,13 +1,20 @@
 package com.urushiLeds.prizeleds.Fragment;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.Instrumentation;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -25,6 +32,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.urushiLeds.prizeleds.Class.DateTime;
@@ -96,6 +105,9 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
     private String model;
 
     private LocalDataManager localDataManager;
+
+    private static final int STORAGE_PERMISSION_CODE = 100;
+
 
     @Nullable
     @Override
@@ -256,6 +268,10 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
                 .setPositiveButton("Save", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+
+
+
+
                         String fileName = String.valueOf(taskEditText.getText());
                         saveState(fileName);
                         if (tv_status != null) {
@@ -676,16 +692,16 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
         else if (model.equals("SPECTRUM+")){
             seekBar1.setEnabled(false);
             seekBar4.setEnabled(false);
-            lDataSet1.setLabel("5000K");
-            lDataSet2.setLabel("6500K");
-            lDataSet3.setLabel("9000K");
+            lDataSet1.setLabel("9000K");
+            lDataSet2.setLabel("7500K");
+            lDataSet3.setLabel("5500K");
             lDataSet4.setLabel("MAGENTA");
-            if (selectedChannel.equals("5000K")){
-                setDatasetSettings(1,"5000K");
-            }else if (selectedChannel.equals("6500K")){
-                setDatasetSettings(2,"6500K");
-            }else if (selectedChannel.equals("9000K")){
-                setDatasetSettings(3,"9000K");
+            if (selectedChannel.equals("9000K")){
+                setDatasetSettings(1,"9000K");
+            }else if (selectedChannel.equals("7500K")){
+                setDatasetSettings(2,"7500K");
+            }else if (selectedChannel.equals("5500K")){
+                setDatasetSettings(3,"5500K");
             }else if (selectedChannel.equals("MAGENTA")){
                 setDatasetSettings(4,"MAGENTA");
             }
@@ -1004,14 +1020,14 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
                 tv_sb3title.setVisibility(View.VISIBLE);
                 tv_sb4title.setVisibility(View.VISIBLE);
             }else if (model.equals("SPECTRUM+")){
-                lDataSet1.setLabel("5000K");
-                lDataSet2.setLabel("6500K");
-                lDataSet3.setLabel("9000K");
+                lDataSet1.setLabel("9000K");
+                lDataSet2.setLabel("7500K");
+                lDataSet3.setLabel("5500K");
                 lDataSet4.setLabel("MAGENTA");
                 channels.clear();
-                channels.add("5000K");
-                channels.add("6500K");
                 channels.add("9000K");
+                channels.add("7500K");
+                channels.add("5500K");
                 channels.add("MAGENTA");
                 setSpinner();
 
@@ -1290,12 +1306,12 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
                 setSwitch(entries4,seekBarNo,progress,lDataSet4,"WHITE");
             }
         }else if (model.equals("SPECTRUM+")){
-            if (selectedChannel.equals("5000K")){
-                setSwitch(entries,seekBarNo,progress,lDataSet1,"5000K");
-            }else if (selectedChannel.equals("6500K")){
-                setSwitch(entries2,seekBarNo,progress,lDataSet2,"6500K");
-            }else if (selectedChannel.equals("9000K")){
-                setSwitch(entries3,seekBarNo,progress,lDataSet3,"9000K");
+            if (selectedChannel.equals("9000K")){
+                setSwitch(entries,seekBarNo,progress,lDataSet1,"9000K");
+            }else if (selectedChannel.equals("7500K")){
+                setSwitch(entries2,seekBarNo,progress,lDataSet2,"7500K");
+            }else if (selectedChannel.equals("5500K")){
+                setSwitch(entries3,seekBarNo,progress,lDataSet3,"5500K");
             }else if (selectedChannel.equals("MAGENTA")){
                 setSwitch(entries4,seekBarNo,progress,lDataSet4,"MAGENTA");
             }
@@ -1319,7 +1335,7 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
             }else if (selectedChannel.equals("9000K")){
                 setSwitch(entries3,seekBarNo,progress,lDataSet3,"9000K");
             }else if (selectedChannel.equals("MAGENTA")){
-                setSwitch(entries4,seekBarNo,progress,lDataSet4,"MAGENTA");
+                setSwitch(entries4,seekBarNo,progress,lDataSet4,"UV+");
             }
 
         }
@@ -1695,7 +1711,7 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
             refreshChart(entries4,Integer.parseInt(c4f1),Integer.parseInt(c4f2),Integer.parseInt(c4f3),Integer.parseInt(c4f4),c4gdh/8f + c4gdm/1000f,c4gh/8f + c4gm/1000f,c4gbh/8f + c4gbm/1000f,c4ah/8f + c4am/1000f,lDataSet4,2,"WHITE",R.color.lighgray);
 
         }else if (model.equals("SPECTRUM+")){
-            String mChannel = "5000K";
+            String mChannel = "9000K";
             String c1f1 = localDataManager.getSharedPreference(getContext(),model+mChannel+"f1","0");
             String c1f2 = localDataManager.getSharedPreference(getContext(),model+mChannel+"f2","0");
             String c1f3 = localDataManager.getSharedPreference(getContext(),model+mChannel+"f3","0");
@@ -1708,7 +1724,7 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
             float c1gbm = Float.parseFloat(localDataManager.getSharedPreference(getContext(),model+mChannel+"gbm","0"));
             float c1ah = Float.parseFloat(localDataManager.getSharedPreference(getContext(),model+mChannel+"ah","22"));
             float c1am = Float.parseFloat(localDataManager.getSharedPreference(getContext(),model+mChannel+"am","0"));
-            mChannel = "6500K";
+            mChannel = "7500K";
             String c2f1 = localDataManager.getSharedPreference(getContext(),model+mChannel+"f1","0");
             String c2f2 = localDataManager.getSharedPreference(getContext(),model+mChannel+"f2","0");
             String c2f3 = localDataManager.getSharedPreference(getContext(),model+mChannel+"f3","0");
@@ -1721,7 +1737,7 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
             float c2gbm = Float.parseFloat(localDataManager.getSharedPreference(getContext(),model+mChannel+"gbm","0"));
             float c2ah = Float.parseFloat(localDataManager.getSharedPreference(getContext(),model+mChannel+"ah","22"));
             float c2am = Float.parseFloat(localDataManager.getSharedPreference(getContext(),model+mChannel+"am","0"));
-            mChannel = "9000K";
+            mChannel = "5500K";
             String c3f1 = localDataManager.getSharedPreference(getContext(),model+mChannel+"f1","0");
             String c3f2 = localDataManager.getSharedPreference(getContext(),model+mChannel+"f2","0");
             String c3f3 = localDataManager.getSharedPreference(getContext(),model+mChannel+"f3","0");
@@ -1748,9 +1764,9 @@ public class Fragment1 extends Fragment implements OnChartGestureListener, OnCha
             float c4ah = Float.parseFloat(localDataManager.getSharedPreference(getContext(),model+mChannel+"ah","22"));
             float c4am = Float.parseFloat(localDataManager.getSharedPreference(getContext(),model+mChannel+"am","0"));
 
-            refreshChart(entries,Integer.parseInt(c1f1),Integer.parseInt(c1f2),Integer.parseInt(c1f3),Integer.parseInt(c1f4),c1gdh/8f + c1gdm/1000f,c1gh/8f + c1gm/1000f,c1gbh/8f + c1gbm/1000f,c1ah/8f + c1am/1000f,lDataSet1,2,"5000K",R.color.lighgray);
-            refreshChart(entries2,Integer.parseInt(c2f1),Integer.parseInt(c2f2),Integer.parseInt(c2f3),Integer.parseInt(c2f4),c2gdh/8f + c2gdm/1000f,c2gh/8f + c2gm/1000f,c2gbh/8f + c2gbm/1000f,c2ah/8f + c2am/1000f,lDataSet2,2,"6500K",R.color.lighgray);
-            refreshChart(entries3,Integer.parseInt(c3f1),Integer.parseInt(c3f2),Integer.parseInt(c3f3),Integer.parseInt(c3f4),c3gdh/8f + c3gdm/1000f,c3gh/8f + c3gm/1000f,c3gbh/8f + c3gbm/1000f,c3ah/8f + c3am/1000f,lDataSet3,2,"9000K",R.color.lighgray);
+            refreshChart(entries,Integer.parseInt(c1f1),Integer.parseInt(c1f2),Integer.parseInt(c1f3),Integer.parseInt(c1f4),c1gdh/8f + c1gdm/1000f,c1gh/8f + c1gm/1000f,c1gbh/8f + c1gbm/1000f,c1ah/8f + c1am/1000f,lDataSet1,2,"9000K",R.color.lighgray);
+            refreshChart(entries2,Integer.parseInt(c2f1),Integer.parseInt(c2f2),Integer.parseInt(c2f3),Integer.parseInt(c2f4),c2gdh/8f + c2gdm/1000f,c2gh/8f + c2gm/1000f,c2gbh/8f + c2gbm/1000f,c2ah/8f + c2am/1000f,lDataSet2,2,"7500K",R.color.lighgray);
+            refreshChart(entries3,Integer.parseInt(c3f1),Integer.parseInt(c3f2),Integer.parseInt(c3f3),Integer.parseInt(c3f4),c3gdh/8f + c3gdm/1000f,c3gh/8f + c3gm/1000f,c3gbh/8f + c3gbm/1000f,c3ah/8f + c3am/1000f,lDataSet3,2,"5500K",R.color.lighgray);
             refreshChart(entries4,Integer.parseInt(c4f1),Integer.parseInt(c4f2),Integer.parseInt(c4f3),Integer.parseInt(c4f4),c4gdh/8f + c4gdm/1000f,c4gh/8f + c4gm/1000f,c4gbh/8f + c4gbm/1000f,c4ah/8f + c4am/1000f,lDataSet4,2,"MAGENTA",R.color.lighgray);
         }else if (model.equals("WIDE SPECT")){
             String mChannel = "REDDISH WHITE";

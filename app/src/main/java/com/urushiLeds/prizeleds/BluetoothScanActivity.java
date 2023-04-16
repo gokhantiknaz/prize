@@ -2,12 +2,15 @@ package com.urushiLeds.prizeleds;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.Manifest;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -38,33 +41,53 @@ public class BluetoothScanActivity extends AppCompatActivity {
     int a = 0;
     View view;
 
+    private static String[] PERMISSIONS_STORAGE = {
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.ACCESS_COARSE_LOCATION,
+            Manifest.permission.ACCESS_LOCATION_EXTRA_COMMANDS,
+            Manifest.permission.BLUETOOTH_SCAN,
+            Manifest.permission.BLUETOOTH_CONNECT,
+            Manifest.permission.BLUETOOTH_PRIVILEGED
+    };
+    private static String[] PERMISSIONS_LOCATION = {
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.ACCESS_COARSE_LOCATION,
+            Manifest.permission.ACCESS_LOCATION_EXTRA_COMMANDS,
+            Manifest.permission.BLUETOOTH_SCAN,
+            Manifest.permission.BLUETOOTH_CONNECT,
+            Manifest.permission.BLUETOOTH_PRIVILEGED
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bluetooth_scan);
 
+
+        setContentView(R.layout.activity_bluetooth_scan);
         init();
 
         if (bluetoothAdapter == null) {
-            Toast.makeText(getApplicationContext(),"Bluetooth desteklenmiyor ... ",Toast.LENGTH_LONG).show();
-        }else {
-            if (!bluetoothAdapter.isEnabled()){
-                startActivityForResult(intent_ble,ble_request_en);
+            Toast.makeText(getApplicationContext(), "Bluetooth desteklenmiyor ... ", Toast.LENGTH_LONG).show();
+        } else {
+            if (!bluetoothAdapter.isEnabled()) {
+                startActivityForResult(intent_ble, ble_request_en);
             }
         }
 
         // cihaz seçildiğinde buraya dallanacak buradan bir sonraki aktiviteye seçilen cihazın device_name ve device_id si gönderilecek
         mAdapter.setCallback(new CallBackDevice() {
             @Override
-            public void listenerMethod(String device_name,String device_id,boolean action,int pos) {
-                if (action == true){
-                    if(!device_id.isEmpty()){
+            public void listenerMethod(String device_name, String device_id, boolean action, int pos) {
+                if (action == true) {
+                    if (!device_id.isEmpty()) {
                         bleDeviceList.add(device_id);
                     }
                     //btn_scan.setText("Bağlan");
-                    Log.e("pos",""+device_id + " " + pos);
+                    Log.e("pos", "" + device_id + " " + pos);
 
-                }else if (action == false){
+                } else if (action == false) {
                     //bleDeviceList.clear();
                     //btn_scan(view);
 /*                    bleDeviceList.set(pos,"null");
@@ -76,7 +99,7 @@ public class BluetoothScanActivity extends AppCompatActivity {
         });
     }
 
-    public void init(){
+    public void init() {
         btn_scan = findViewById(R.id.btn_scan);
         mRecylerView = findViewById(R.id.rv_ble);
 
@@ -88,7 +111,26 @@ public class BluetoothScanActivity extends AppCompatActivity {
         mRecylerView.setHasFixedSize(true);
         mRecylerView.setItemViewCacheSize(50);
         mRecylerView.setLayoutManager(linearLayoutManager);
-        mAdapter = new DeviceAdapter(arrayList_bleDevices,callBackDevice);
+        mAdapter = new DeviceAdapter(arrayList_bleDevices, callBackDevice);
+    }
+
+    private void checkPermissions(){
+        int permission1 = ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        int permission2 = ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_SCAN);
+        if (permission1 != PackageManager.PERMISSION_GRANTED) {
+            // We don't have permission so prompt the user
+            ActivityCompat.requestPermissions(
+                    this,
+                    PERMISSIONS_STORAGE,
+                    1
+            );
+        } else if (permission2 != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(
+                    this,
+                    PERMISSIONS_LOCATION,
+                    1
+            );
+        }
     }
 
     @Override
@@ -104,9 +146,20 @@ public class BluetoothScanActivity extends AppCompatActivity {
     }
 
     public void btn_scan(View view) {
-        if (bleDeviceList.isEmpty() && !bluetoothAdapter.getAddress().isEmpty()){
+        checkPermissions();
+        if (bleDeviceList.isEmpty() && !bluetoothAdapter.getAddress().isEmpty()) {
             arrayList_bleDevices.clear();
 
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
+                return;
+            }
             Set<BluetoothDevice> bt = bluetoothAdapter.getBondedDevices();
 
             for (BluetoothDevice bluetoothDevice : bt){
@@ -117,7 +170,8 @@ public class BluetoothScanActivity extends AppCompatActivity {
             if(arrayList_bleDevices.size()==0)
                 Toast.makeText(getApplicationContext(), "Prize Armatür Bulunamadı", Toast.LENGTH_LONG).show();
             mRecylerView.setAdapter(mAdapter);
-        }else{
+        }
+        else{
 
             for (int i = 0; i < bleDeviceList.size(); i ++){
                 Log.e("deviceList",bleDeviceList.get(i).toString() + "pos : " + i);
@@ -127,6 +181,5 @@ public class BluetoothScanActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
-
     }
 }
