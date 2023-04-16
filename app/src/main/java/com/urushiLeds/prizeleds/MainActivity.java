@@ -96,7 +96,6 @@ public class MainActivity extends AppCompatActivity {
             Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
             Manifest.permission.ACCESS_FINE_LOCATION,
-            Manifest.permission.ACCESS_COARSE_LOCATION,
             Manifest.permission.ACCESS_LOCATION_EXTRA_COMMANDS,
             Manifest.permission.BLUETOOTH,
             //    Manifest.permission.BLUETOOTH_CONNECT,
@@ -104,7 +103,6 @@ public class MainActivity extends AppCompatActivity {
     };
     private static String[] PERMISSIONS_LOCATION = {
             Manifest.permission.ACCESS_FINE_LOCATION,
-            Manifest.permission.ACCESS_COARSE_LOCATION,
             Manifest.permission.ACCESS_LOCATION_EXTRA_COMMANDS,
             Manifest.permission.BLUETOOTH,
             // Manifest.permission.BLUETOOTH_CONNECT,
@@ -133,13 +131,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         init();
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            if (!Environment.isExternalStorageManager()) {
-                Intent getpermission = new Intent();
-                getpermission.setAction(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION);
-                startActivity(getpermission);
-            }
+
+        if (!Environment.isExternalStorageManager()) {
+            Intent getpermission = new Intent();
+            getpermission.setAction(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION);
+            startActivity(getpermission);
         }
+
         // modelsArrayList.add(new Models("CUSTOM","Channel 1","Channel 2","Channel 3","Channel 4","Channel 5","Channel 6",6));
         // modelsArrayList.add(new Models("F-MAJOR","Cool White","Wide Spectrum",null,null,null,null,2));
         // modelsArrayList.add(new Models("S-MAJOR","Deep Blue","Aqua Sun",null,null,null,null,2));
