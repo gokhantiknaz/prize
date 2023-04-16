@@ -3,13 +3,13 @@ plugins {
 }
 
 android {
-    compileSdkVersion 33
+    compileSdkVersion 30
     buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "com.urushi.prizeleds"
         minSdkVersion 21
-        targetSdkVersion 33
+        targetSdkVersion 30
         versionCode 16
         versionName "1.6.0"
 

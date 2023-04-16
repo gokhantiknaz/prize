@@ -1,6 +1,7 @@
 package com.urushiLeds.prizeleds;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -11,6 +12,7 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -24,6 +26,7 @@ import com.urushi.prizeleds.R;
 
 import java.util.ArrayList;
 import java.util.Set;
+
 
 public class BluetoothScanActivity extends AppCompatActivity {
 
@@ -47,23 +50,21 @@ public class BluetoothScanActivity extends AppCompatActivity {
             Manifest.permission.ACCESS_FINE_LOCATION,
             Manifest.permission.ACCESS_COARSE_LOCATION,
             Manifest.permission.ACCESS_LOCATION_EXTRA_COMMANDS,
-            Manifest.permission.BLUETOOTH_SCAN,
-            Manifest.permission.BLUETOOTH_CONNECT,
             Manifest.permission.BLUETOOTH_PRIVILEGED
     };
     private static String[] PERMISSIONS_LOCATION = {
+            Manifest.permission.BLUETOOTH,
+//            Manifest.permission.BLUETOOTH_CONNECT,
             Manifest.permission.ACCESS_FINE_LOCATION,
             Manifest.permission.ACCESS_COARSE_LOCATION,
             Manifest.permission.ACCESS_LOCATION_EXTRA_COMMANDS,
-            Manifest.permission.BLUETOOTH_SCAN,
-            Manifest.permission.BLUETOOTH_CONNECT,
+            Manifest.permission.BLUETOOTH_ADMIN,
             Manifest.permission.BLUETOOTH_PRIVILEGED
     };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
 
         setContentView(R.layout.activity_bluetooth_scan);
         init();
@@ -100,6 +101,7 @@ public class BluetoothScanActivity extends AppCompatActivity {
     }
 
     public void init() {
+
         btn_scan = findViewById(R.id.btn_scan);
         mRecylerView = findViewById(R.id.rv_ble);
 
@@ -115,16 +117,10 @@ public class BluetoothScanActivity extends AppCompatActivity {
     }
 
     private void checkPermissions(){
-        int permission1 = ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
-        int permission2 = ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_SCAN);
-        if (permission1 != PackageManager.PERMISSION_GRANTED) {
-            // We don't have permission so prompt the user
-            ActivityCompat.requestPermissions(
-                    this,
-                    PERMISSIONS_STORAGE,
-                    1
-            );
-        } else if (permission2 != PackageManager.PERMISSION_GRANTED){
+//        int permission1 = ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        int permission2 = ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH);
+
+            if (permission2 != PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions(
                     this,
                     PERMISSIONS_LOCATION,
@@ -146,24 +142,20 @@ public class BluetoothScanActivity extends AppCompatActivity {
     }
 
     public void btn_scan(View view) {
-        checkPermissions();
+
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH) != PackageManager.PERMISSION_GRANTED) {
+            checkPermissions();
+            return;
+        }
         if (bleDeviceList.isEmpty() && !bluetoothAdapter.getAddress().isEmpty()) {
             arrayList_bleDevices.clear();
 
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
-                // TODO: Consider calling
-                //    ActivityCompat#requestPermissions
-                // here to request the missing permissions, and then overriding
-                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                //                                          int[] grantResults)
-                // to handle the case where the user grants the permission. See the documentation
-                // for ActivityCompat#requestPermissions for more details.
-                return;
-            }
+
             Set<BluetoothDevice> bt = bluetoothAdapter.getBondedDevices();
 
             for (BluetoothDevice bluetoothDevice : bt){
-                if (bluetoothDevice.getName().contains("prize") || bluetoothDevice.getName().contains("PRIZE")){
+                if (bluetoothDevice.getName().contains("ikigai") || bluetoothDevice.getName().contains("IKIGAI")){
                     arrayList_bleDevices.add(new Ble_devices(bluetoothDevice.getName(),bluetoothDevice.getAddress()));
                 }
             }
