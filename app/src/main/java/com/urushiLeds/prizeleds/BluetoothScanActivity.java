@@ -158,9 +158,9 @@ public class BluetoothScanActivity extends AppCompatActivity {
                 if (bluetoothDevice.getName().contains("prize") || bluetoothDevice.getName().contains("PRIZE")){
                     arrayList_bleDevices.add(new Ble_devices(bluetoothDevice.getName(),bluetoothDevice.getAddress()));
                 }
-                if (bluetoothDevice.getName().contains("ikigai") || bluetoothDevice.getName().contains("IKIGAI")){
-                    arrayList_bleDevices.add(new Ble_devices(bluetoothDevice.getName(),bluetoothDevice.getAddress()));
-                }
+//                if (bluetoothDevice.getName().contains("ikigai") || bluetoothDevice.getName().contains("IKIGAI")){
+//                    arrayList_bleDevices.add(new Ble_devices(bluetoothDevice.getName(),bluetoothDevice.getAddress()));
+//                }
             }
             if(arrayList_bleDevices.size()==0)
                 Toast.makeText(getApplicationContext(), "Prize Armatür Bulunamadı", Toast.LENGTH_LONG).show();

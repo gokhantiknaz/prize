@@ -91,10 +91,9 @@ public class MainActivity extends AppCompatActivity {
 
     LocalDataManager localDataManager = new LocalDataManager();
 
-
     private static String[] PERMISSIONS_STORAGE = {
-            Manifest.permission.READ_EXTERNAL_STORAGE,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+//            Manifest.permission.READ_EXTERNAL_STORAGE,
+//            Manifest.permission.WRITE_EXTERNAL_STORAGE,
             Manifest.permission.ACCESS_FINE_LOCATION,
             Manifest.permission.ACCESS_LOCATION_EXTRA_COMMANDS,
             Manifest.permission.BLUETOOTH,
@@ -102,8 +101,8 @@ public class MainActivity extends AppCompatActivity {
             Manifest.permission.BLUETOOTH_PRIVILEGED
     };
     private static String[] PERMISSIONS_LOCATION = {
-            Manifest.permission.ACCESS_FINE_LOCATION,
-            Manifest.permission.ACCESS_LOCATION_EXTRA_COMMANDS,
+//            Manifest.permission.ACCESS_FINE_LOCATION,
+//            Manifest.permission.ACCESS_LOCATION_EXTRA_COMMANDS,
             Manifest.permission.BLUETOOTH,
             // Manifest.permission.BLUETOOTH_CONNECT,
             Manifest.permission.BLUETOOTH_PRIVILEGED
@@ -127,16 +126,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        checkPermissions();
+        //checkPermissions();
         setContentView(R.layout.activity_main);
         init();
 
-
-        if (!Environment.isExternalStorageManager()) {
-            Intent getpermission = new Intent();
-            getpermission.setAction(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION);
-            startActivity(getpermission);
-        }
+//        if (!Environment.isExternalStorageManager()) {
+//            Intent getpermission = new Intent();
+//            getpermission.setAction(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION);
+//            startActivity(getpermission);
+//        }
 
         // modelsArrayList.add(new Models("CUSTOM","Channel 1","Channel 2","Channel 3","Channel 4","Channel 5","Channel 6",6));
         // modelsArrayList.add(new Models("F-MAJOR","Cool White","Wide Spectrum",null,null,null,null,2));
