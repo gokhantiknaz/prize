@@ -55,9 +55,9 @@ public class BluetoothScanActivity extends AppCompatActivity {
     private static String[] PERMISSIONS_LOCATION = {
             Manifest.permission.BLUETOOTH,
 //            Manifest.permission.BLUETOOTH_CONNECT,
-            Manifest.permission.ACCESS_FINE_LOCATION,
-            Manifest.permission.ACCESS_COARSE_LOCATION,
-            Manifest.permission.ACCESS_LOCATION_EXTRA_COMMANDS,
+//            Manifest.permission.ACCESS_FINE_LOCATION,
+//            Manifest.permission.ACCESS_COARSE_LOCATION,
+//            Manifest.permission.ACCESS_LOCATION_EXTRA_COMMANDS,
             Manifest.permission.BLUETOOTH_ADMIN,
             Manifest.permission.BLUETOOTH_PRIVILEGED
     };
@@ -144,10 +144,10 @@ public class BluetoothScanActivity extends AppCompatActivity {
     public void btn_scan(View view) {
 
 
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH) != PackageManager.PERMISSION_GRANTED) {
-            checkPermissions();
-            return;
-        }
+//        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH) != PackageManager.PERMISSION_GRANTED) {
+//            checkPermissions();
+//            return;
+//        }
         if (bleDeviceList.isEmpty() && !bluetoothAdapter.getAddress().isEmpty()) {
             arrayList_bleDevices.clear();
 
